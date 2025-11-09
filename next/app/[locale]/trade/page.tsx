@@ -622,8 +622,29 @@ export default function TradePage() {
               </TabsTrigger>
             </TabsList>
 
+            {/* Action Bar - Always Visible */}
+            <div className="flex items-center justify-end gap-2 mt-6 mb-4">
+              <Button
+                onClick={handleTemplatesClick}
+                variant="outline"
+                size="sm"
+                className="bg-white/[0.03] text-white hover:bg-white/[0.05] border border-white/[0.08] gap-2 backdrop-blur-sm h-8 px-3 text-xs"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                {t('templates')}
+              </Button>
+              <Button
+                onClick={() => setIsCreateModalOpen(true)}
+                size="sm"
+                className="bg-white text-black hover:bg-white/90 gap-2 shadow-lg h-8 px-3 text-xs font-semibold"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                {t('createAgent')}
+              </Button>
+            </div>
+
             {/* Tab Content */}
-            <TabsContent value="account" className="mt-6">
+            <TabsContent value="account" className="mt-0">
               {/* Account Equity Dashboard */}
               {(() => {
                 const totalCapital = agents.reduce((sum, a) => sum + (a.deposit || 0), 0)
@@ -833,37 +854,16 @@ export default function TradePage() {
               })()}
             </TabsContent>
 
-            <TabsContent value="agents" className="mt-6">
+            <TabsContent value="agents" className="mt-0">
               {/* Agents Grid */}
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-lg font-semibold text-white">{t('yourAgents')}</h2>
-                  <div className="flex items-center gap-3">
-                    {agents.length > 0 && (
-                      <div className="text-xs text-white/40">
-                        {agents.length} {agents.length === 1 ? 'agent' : 'agents'}
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      <Button
-                        onClick={handleTemplatesClick}
-                        variant="outline"
-                        size="sm"
-                        className="bg-white/[0.03] text-white hover:bg-white/[0.05] border border-white/[0.08] gap-2 backdrop-blur-sm h-8 px-3 text-xs"
-                      >
-                        <FileText className="w-3.5 h-3.5" />
-                        <span className="hidden sm:inline">{t('templates')}</span>
-                      </Button>
-                      <Button
-                        onClick={() => setIsCreateModalOpen(true)}
-                        size="sm"
-                        className="bg-white text-black hover:bg-white/90 gap-2 shadow-lg h-8 px-3 text-xs font-semibold"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                        <span className="hidden sm:inline">{t('createAgent')}</span>
-                      </Button>
+                  {agents.length > 0 && (
+                    <div className="text-xs text-white/40">
+                      {agents.length} {agents.length === 1 ? 'agent' : 'agents'}
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {error && (
@@ -876,14 +876,7 @@ export default function TradePage() {
                   <div className="text-center py-16 rounded-xl bg-white/[0.02] border border-white/[0.08] backdrop-blur-sm">
                     <div className="text-5xl mb-4">🤖</div>
                     <h3 className="text-xl font-semibold text-white mb-2">{t('noAgents')}</h3>
-                    <p className="text-sm text-white/50 mb-6 max-w-md mx-auto">{t('noAgentsDescription')}</p>
-                    <Button
-                      onClick={() => setIsCreateModalOpen(true)}
-                      className="bg-white text-black hover:bg-white/90 gap-2 shadow-lg h-9 px-4 text-xs font-semibold"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                      {t('createFirstAgent')}
-                    </Button>
+                    <p className="text-sm text-white/50 max-w-md mx-auto">{t('noAgentsDescription')}</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1009,7 +1002,7 @@ export default function TradePage() {
               </div>
             </TabsContent>
 
-            <TabsContent value="positions" className="mt-6">
+            <TabsContent value="positions" className="mt-0">
               {/* Positions Section */}
               <div>
                 <div className="flex items-center justify-between mb-6">
@@ -1028,26 +1021,9 @@ export default function TradePage() {
                   <div className="text-center py-16 rounded-xl bg-white/[0.02] border border-white/[0.08] backdrop-blur-sm">
                     <div className="text-5xl mb-4">📊</div>
                     <h3 className="text-xl font-semibold text-white mb-2">{t('positions.noPositions')}</h3>
-                    <p className="text-sm text-white/50 mb-6 max-w-md mx-auto">
+                    <p className="text-sm text-white/50 max-w-md mx-auto">
                       {t('positions.noPositionsDescription')}
                     </p>
-                    <div className="flex items-center justify-center gap-3">
-                      <Button
-                        onClick={() => router.push(`/${locale}/marketplace`)}
-                        variant="outline"
-                        className="border-white/20 text-white hover:bg-white/5"
-                      >
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        {t('positions.browseMarketplace')}
-                      </Button>
-                      <Button
-                        onClick={() => setIsCreateModalOpen(true)}
-                        className="bg-white text-black hover:bg-white/90"
-                      >
-                        <Plus className="w-4 h-4 mr-2" />
-                        {t('positions.createAgent')}
-                      </Button>
-                    </div>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
