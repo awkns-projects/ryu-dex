@@ -296,18 +296,24 @@ export default function PulsingCircle() {
                     <div className="text-[13px] font-light leading-relaxed">
                       {message.parts?.map((part, partIndex) => {
                         if (part.type === 'text') {
+                          // Filter out technical metadata about function calls
+                          const cleanText = part.text
+                            .replace(/<has_function_call>.*?<\/has_function_call>/gs, '')
+                            .replace(/<has_function_call>.*$/gs, '')
+                            .trim()
+                          
+                          // Only render if there's actual content after cleaning
+                          if (!cleanText) return null
+                          
                           return (
                             <div key={partIndex}>
-                              <ReactMarkdown>{part.text}</ReactMarkdown>
+                              <ReactMarkdown>{cleanText}</ReactMarkdown>
                             </div>
                           )
                         }
                         if (part.type === 'tool-call') {
-                          return (
-                            <div key={partIndex}>
-                              {renderToolCall(part.toolName, part.args, null)}
-                            </div>
-                          )
+                          // Don't show tool-call parts to user, they'll see the results
+                          return null
                         }
                         if (part.type === 'tool-result') {
                           return (
