@@ -335,22 +335,27 @@ export default function TradePage() {
       console.log('📊 Exchanges data received:', exchangesData)
 
       // Find the specific exchange config by ID
-      const exchange = Array.isArray(exchangesData)
-        ? exchangesData.find((ex: any) => ex.id === exchangeId)
+      const exchanges = exchangesData.exchanges || exchangesData
+      const exchange = Array.isArray(exchanges)
+        ? exchanges.find((ex: any) => ex.id === exchangeId)
         : null
 
       console.log('🔍 Exchange found:', exchange)
 
-      if (!exchange || !exchange.hyperliquidWalletAddr) {
+      // Check for wallet address with multiple possible field names
+      const walletAddress = exchange?.hyperliquid_wallet_addr || exchange?.wallet_address || exchange?.hyperliquidWalletAddr
+
+      if (!exchange || !walletAddress) {
         console.error('❌ No wallet address found. Exchange:', exchange)
+        console.error('❌ Available fields:', exchange ? Object.keys(exchange) : 'none')
         alert('No wallet address found for this trader. Please contact support.')
         return
       }
 
-      console.log(`✅ Wallet address found: ${exchange.hyperliquidWalletAddr}`)
+      console.log(`✅ Wallet address found: ${walletAddress}`)
 
       // Open deposit modal with wallet address
-      setDepositWalletAddress(exchange.hyperliquidWalletAddr)
+      setDepositWalletAddress(walletAddress)
       setCreatedTraderId(agentId)
       setIsDepositModalOpen(true)
     } catch (err: any) {
