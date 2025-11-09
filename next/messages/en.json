@@ -1,0 +1,1036 @@
+{
+  "metadata": {
+    "title": "Ryu - AI Trading Agents & Position Marketplace",
+    "description": "Build AI trading agents on Hyperliquid. Create strategies by prompt, trade AI-reasoned leveraged positions, and earn from your trading logic. Positions don't die—they become tradable opportunities."
+  },
+  "header": {
+    "logo": "Ryu",
+    "menu": {
+      "features": "Features",
+      "howItWorks": "How It Works",
+      "templates": "Templates",
+      "comparison": "Comparison",
+      "pricing": "Pricing",
+      "myAgents": "My Agents",
+      "pilot": "Pilot",
+      "docs": "Docs"
+    },
+    "signIn": "Sign In",
+    "getStarted": "Get Started",
+    "menuTitle": "Menu"
+  },
+  "shaderHeader": {
+    "howItWorks": "How it works",
+    "strategies": "Strategies",
+    "login": "Login"
+  },
+  "shaderHero": {
+    "badge": "AI-Powered Trading Platform",
+    "title": {
+      "intelligent": "Intelligent",
+      "trading": "Trading",
+      "madeSimple": "Made Simple"
+    },
+    "description": "Harness the power of advanced AI algorithms to automate your trading strategies. Real-time market analysis, predictive models, and intelligent execution that adapts to market conditions.",
+    "viewExplorer": "View Explorer",
+    "startTrading": "Start Trading"
+  },
+  "howItWorksSection": {
+    "title": "AI Trading Made",
+    "titleHighlight": "Simple",
+    "subtitle": "Start your automated trading journey in just three easy steps",
+    "step1": {
+      "title": "Prompt Your Strategy",
+      "description": "Simply describe your trading strategy in natural language. Our AI understands your goals and creates a customized trading plan.",
+      "news1": "Market volatility expected to rise",
+      "news2": "Tech stocks show strong momentum",
+      "news3": "Bitcoin breaks key resistance level"
+    },
+    "step2": {
+      "title": "Select Your Assets",
+      "description": "Choose from a wide range of cryptocurrencies, stocks, forex, or commodities. Trade what you know best.",
+      "assets": "BTC, ETH, AAPL +12 more",
+      "tag1": "Crypto",
+      "tag2": "Stocks"
+    },
+    "step3": {
+      "title": "Start Trading",
+      "description": "Deposit funds and let AI take over. Watch your strategy execute automatically with real-time monitoring.",
+      "activity1": "BUY BTC @ $42,150",
+      "activity2": "HOLD ETH @ $2,240",
+      "activity3": "AI Trading Active"
+    },
+    "cta": "Get Started Now"
+  },
+  "marketplaceSection": {
+    "title": "AI Strategy",
+    "titleHighlight": "Marketplace",
+    "subtitle": "Browse premium AI-powered trading strategies and positions crafted by experts",
+    "tabAgents": "AI Agents",
+    "tabPositions": "AI Positions",
+    "get": "Get",
+    "viewAll": "View All Marketplace",
+    "fixedPrice": "Fixed Price",
+    "currentBid": "Current Bid",
+    "viewDetails": "View Details",
+    "bids": "bids",
+    "endsIn": "Ends in",
+    "currentPNL": "Current PNL",
+    "auction": "Auction"
+  },
+  "marketplacePage": {
+    "backToHome": "Home",
+    "title": "AI Strategy Marketplace",
+    "agentsDescription": "Discover and purchase premium AI Trading Agents—intelligent bots that autonomously execute trading strategies 24/7. Powered by advanced algorithms and machine learning, these agents analyze markets in real-time, manage risk, and execute trades automatically, bringing institutional-grade trading to everyone.",
+    "positionsDescription": "Discover and purchase premium AI Trading Positions—pre-analyzed trade setups created by expert AI algorithms. Each position includes precise entry prices, target prices, and risk management levels, giving you professional-grade trading signals with transparent rationale and performance tracking.",
+    "searchPlaceholder": "Search {type}...",
+    "searchAgentsPlaceholder": "Search agents...",
+    "searchPositionsPlaceholder": "Search positions...",
+    "all": "All",
+    "fixedPrice": "Fixed Price",
+    "auction": "Auction",
+    "allAssets": "All Assets",
+    "assets": "Assets",
+    "sortTrending": "Trending",
+    "sortPriceLow": "Price: Low to High",
+    "sortPriceHigh": "Price: High to Low",
+    "sortRating": "Highest Rated",
+    "sortNewest": "Newest",
+    "noResults": "No {type} found",
+    "tryAdjusting": "Try adjusting your filters or search terms",
+    "get": "Get",
+    "currentBid": "Current Bid",
+    "viewDetails": "View Details",
+    "bids": "bids",
+    "endsIn": "Ends in",
+    "currentPNL": "Current PNL",
+    "agents": "agents",
+    "positions": "positions"
+  },
+  "agentPage": {
+    "backToMarketplace": "Back to Marketplace",
+    "notFound": "Agent not found",
+    "goBack": "Go back to marketplace",
+    "pageTitle": "AI Trading",
+    "pageTitleHighlight": "Agent",
+    "pageDescription": "An AI Trading Agent is an intelligent bot that autonomously executes trading strategies 24/7. Powered by advanced algorithms and machine learning, these agents analyze markets in real-time, manage risk, and execute trades automatically, bringing institutional-grade trading to everyone.",
+    "category": "Category",
+    "users": "Users",
+    "rating": "Rating",
+    "purchase": "Purchase for",
+    "overview": "Overview",
+    "features": "Features",
+    "requirements": "Requirements",
+    "changelog": "Changelog",
+    "version": "Version",
+    "whatYouGet": "What You'll Get",
+    "keyFeatures": "Key Features",
+    "systemRequirements": "System Requirements",
+    "updateHistory": "Update History",
+    "tags": "Tags"
+  },
+  "positionPage": {
+    "backToMarketplace": "Back to Marketplace",
+    "notFound": "Position not found",
+    "goBack": "Go back to marketplace",
+    "pageTitle": "AI Trading",
+    "pageTitleHighlight": "Position",
+    "pageDescription": "An AI Trading Position is a pre-analyzed trade setup created by expert AI algorithms. Each position includes precise entry prices, target prices, and risk management levels, giving you professional-grade trading signals with transparent rationale and performance tracking.",
+    "positionDetails": "Position Details",
+    "currentPNL": "Current PNL",
+    "entryPrice": "Entry Price",
+    "targetPrice": "Target Price",
+    "liquidationPrice": "Liquidation Price",
+    "riskReward": "Risk/Reward",
+    "duration": "Duration",
+    "contractValue": "Contract Value",
+    "placedDate": "Placed Date",
+    "aiReasoning": "AI Reasoning",
+    "whyThisPosition": "Why This Position",
+    "pnlChart": "PNL Chart",
+    "pnlOverTime": "Profit/Loss Over Time",
+    "breakEven": "Break Even",
+    "target": "Target",
+    "liquidation": "Liq",
+    "purchaseInfo": "Purchase Information",
+    "fixedPrice": "Fixed Price",
+    "buyNow": "Buy Now",
+    "currentBid": "Current Bid",
+    "minBid": "Minimum Bid",
+    "auctionEnds": "Auction Ends",
+    "totalBids": "Total Bids",
+    "placeBid": "Place Bid",
+    "bidAmount": "Bid Amount",
+    "yourBid": "Your Bid ($)",
+    "cancel": "Cancel",
+    "confirmBid": "Confirm Bid",
+    "bidPlaced": "Bid Placed!",
+    "bidSuccess": "Your bid has been placed successfully",
+    "okGotIt": "OK, Got it",
+    "timeLeft": "Time Left",
+    "days": "days",
+    "hours": "h",
+    "minutes": "m"
+  },
+  "hero": {
+    "badge": "Hyperliquid Perps • AI Agents • Position Marketplace",
+    "title": {
+      "line1": "Build AI Trading Agents.",
+      "line2": "Trade Positions as Assets."
+    },
+    "description": "Create custom trading agents by prompt on Hyperliquid L1. Buy and sell AI-reasoned leveraged positions with full transparency. Your stop-loss becomes someone else's entry—positions don't die, they evolve.",
+    "getStarted": "Get Started",
+    "viewTemplates": "View Templates",
+    "modal": {
+      "keyFeatures": "Key Features",
+      "feature1": "Build AI agents with prompts",
+      "feature2": "Trade AI-reasoned positions",
+      "feature3": "Earn from your trading logic"
+    },
+    "aiThinkingSteps": {
+      "step1": "Create Agent",
+      "step1Desc": "User prompts: 'Build a momentum scalper for BTC perps on 15m timeframe'",
+      "step2": "AI Designs Strategy",
+      "step2Desc": "AI generates complete strategy logic: entry rules, position sizing, risk params",
+      "step3": "Deploy on Hyperliquid",
+      "step3Desc": "Agent connects to Hyperliquid L1, monitors perpetual futures markets",
+      "step4": "Enter Position",
+      "step4Desc": "Agent opens 10x long BTC-PERP at $43,200 based on momentum breakout",
+      "step5": "Document Reasoning",
+      "step5Desc": "Full AI logic recorded: 'RSI 68, Volume spike +140%, Breakout confirmed'",
+      "step6": "Hit Stop Loss",
+      "step6Desc": "Price drops to $42,100, stop triggered. Position exits with -2.5% loss",
+      "step7": "List Position",
+      "step7Desc": "Position becomes tradable asset with all AI reasoning and context",
+      "step8": "Market Discovery",
+      "step8Desc": "Other traders browse: 'Discounted entry, original thesis still valid'",
+      "step9": "Position Sold",
+      "step9Desc": "New trader buys position at -15% discount, inherits 10x leverage",
+      "step10": "Continue Trade",
+      "step10Desc": "Position revives: BTC rebounds to $44,500, new holder profits +8%",
+      "step11": "Creator Earns",
+      "step11Desc": "Original AI creator receives 5% royalty on continuation profit",
+      "step12": "Cycle Repeats",
+      "step12Desc": "Position can be re-sold, building reputation for AI strategy over time"
+    }
+  },
+  "aiCapabilities": {
+    "badge": "Three Revolutionary Features",
+    "title": "Build. Trade. Earn.",
+    "description": "Create AI agents by prompt. Trade leveraged positions as assets. Earn royalties when others continue your trades. A new primitive for perpetual futures.",
+    "tabTitle": "See AI Reasoning",
+    "advancedReasoning": {
+      "title": "🤖 Build AI Agents",
+      "description": "Create custom strategies on Hyperliquid using natural language prompts",
+      "task": "PROMPT",
+      "taskText": "Build a mean reversion bot for ETH perps",
+      "reasoningTitle": "AI Generates:",
+      "step1": "Entry logic: Price 2σ below 20-period MA",
+      "step2": "Position sizing: 5x leverage, max 20% portfolio",
+      "step3": "Exit rules: Mean reversion or 3% stop-loss",
+      "result": "Status:",
+      "resultValue": "Agent Deployed ✓ Trading Live"
+    },
+    "imageGeneration": {
+      "title": "💰 Marketplace for AI Agents",
+      "description": "List your trading agents for sale. Others pay to use your strategy.",
+      "inputData": "Your Strategy:",
+      "product": "Name:",
+      "productValue": "Breakout Hunter V2",
+      "style": "Price:",
+      "styleValue": "$49/month",
+      "color": "Performance:",
+      "colorValue": "+127% (6 mo)",
+      "generatedImage": "Listed on Marketplace",
+      "imageSaved": "Earning royalties",
+      "done": "✓ Active"
+    },
+    "videoGeneration": {
+      "title": "📊 Trade Positions as Assets",
+      "description": "Buy leveraged positions others exited. Inherit AI logic and leverage.",
+      "templateData": "Available Position:",
+      "template": "Entry:",
+      "templateValue": "SOL 20x Long @ $125",
+      "duration": "Discount:",
+      "durationValue": "-15% from entry",
+      "dataSource": "AI Reasoning:",
+      "dataSourceValue": "Full strategy context",
+      "generatedVideo": "Position Purchased",
+      "videoSaved": "Leverage inherited",
+      "done": "✓ Trading"
+    },
+    "apiExecution": {
+      "title": "Exchange API Integration",
+      "description": "Connect to any exchange and execute trades using your strategy",
+      "spreadsheetData": "Trading Strategy:",
+      "email": "Asset:",
+      "order": "Action:",
+      "status": "Status:",
+      "statusValue": "Executed",
+      "apiCallTriggered": "Trade Executed",
+      "response": "✓ Response: Order Filled",
+      "emailSent": "Alert sent"
+    },
+    "autonomousScheduling": {
+      "title": "24/7 Market Monitoring",
+      "description": "Set it once and AI monitors markets automatically—never miss an opportunity. No supervision needed.",
+      "daily": "Every 5 minutes",
+      "dailyTask": "Scan for trade setups",
+      "completed": "Completed",
+      "everyThreeHours": "Every 1 hour",
+      "socialTask": "Update portfolio metrics",
+      "runningNow": "Running now",
+      "weekly": "Daily at 9:00 AM",
+      "weeklyTask": "Generate performance report",
+      "scheduled": "Scheduled"
+    },
+    "cta": "All capabilities work seamlessly together in your trading workspace",
+    "ctaButton": "See AI in Action"
+  },
+  "easyInterface": {
+    "badge": "Powerful Features",
+    "title": {
+      "line1": "Every feature you need.",
+      "line2": "All in one place."
+    },
+    "tabTitle": "Three Ways to Work",
+    "description": "Natural language chat, strategy builder, AI market analysis, technical indicators, exchange integrations, and automated execution—everything works together seamlessly.",
+    "methods": {
+      "chat": {
+        "title": "Chat with Your Trading AI",
+        "description": "Just ask questions in plain English. Your AI assistant analyzes markets and executes strategies instantly.",
+        "userMessage": "Find all assets showing bullish divergence on 4H and alert me with entry levels",
+        "aiResponse1": "✓ Scanned 247 assets",
+        "aiResponse2": "✓ Found 12 bullish setups",
+        "aiResponse3": "✓ Calculated entry/exit levels",
+        "aiResponse4": "All setups logged in Dashboard with risk metrics"
+      },
+      "form": {
+        "title": "Configure Your Strategy",
+        "description": "Set your parameters once. AI handles the analysis and execution behind the scenes.",
+        "taskLabel": "Strategy Type",
+        "taskValue": "Swing Trading - Crypto",
+        "toneLabel": "Risk Level",
+        "toneValue": "Moderate",
+        "audienceLabel": "Timeframe",
+        "audienceValue": "4H - Daily",
+        "executeButton": "Activate Strategy",
+        "resultsNote": "Signals appear in your dashboard automatically"
+      },
+      "actions": {
+        "title": "One-Click Trading Actions",
+        "description": "Pre-built strategies for common scenarios. Click a button and watch AI analyze markets.",
+        "action1Title": "Portfolio Rebalance",
+        "action1Desc": "Optimize holdings based on targets",
+        "action2Title": "Risk Check",
+        "action2Desc": "AI analyzes exposure and suggests adjustments",
+        "action3Title": "Pattern Scanner",
+        "action3Desc": "Find chart patterns across markets"
+      }
+    },
+    "benefits": {
+      "instant": {
+        "title": "Instant Execution",
+        "description": "AI processes your request immediately and shows real-time progress"
+      },
+      "transparency": {
+        "title": "Full Transparency",
+        "description": "Every trade decision and signal is documented with AI reasoning"
+      },
+      "noLearning": {
+        "title": "No Learning Curve",
+        "description": "Works exactly how you'd expect - simple, intuitive, powerful"
+      }
+    },
+    "ctaButton": "Try It Free - No Credit Card Required",
+    "ctaSubtext": "Start with templates or build from scratch"
+  },
+  "howItWorks": {
+    "title": "The magic behind the intelligence",
+    "description": "Every trading decision follows a simple 3-step process—with full transparency at each stage",
+    "steps": {
+      "step1": {
+        "number": "01",
+        "title": "Define Strategy",
+        "description": "Set your trading parameters and preferences—no coding required",
+        "accountName": "Asset Pair",
+        "dateRange": "Timeframe",
+        "dateRangeValue": "4H - Daily"
+      },
+      "step2": {
+        "number": "02",
+        "title": "AI Analyzes",
+        "description": "AI monitors markets, analyzes patterns, calculates signals automatically",
+        "processing": "Processing...",
+        "callingApi": "Analyzing market data"
+      },
+      "step3": {
+        "number": "03",
+        "title": "Review & Execute",
+        "description": "See AI's analysis and reasoning, approve or adjust trade decisions",
+        "input": "Market Data",
+        "aiReasoning": "AI Analysis",
+        "result": "Trade Signal"
+      }
+    }
+  },
+  "useCases": {
+    "title": "See AI trading intelligence in action",
+    "description": "Real trading scenarios from real traders. Watch how AI analyzes markets, makes decisions, and documents everything with full transparency.",
+    "cases": {
+      "trading": {
+        "title": "AI Trading Decisions",
+        "description": "Analyze markets, execute trades, document reasoning",
+        "capabilities": [
+          "API Execution",
+          "AI Research",
+          "Decision Making"
+        ],
+        "form": {
+          "symbol": "Symbol",
+          "symbolValue": "BTC/USD",
+          "strategy": "Strategy",
+          "strategyValue": "Momentum",
+          "risk": "Risk",
+          "riskValue": "Medium"
+        },
+        "rows": {
+          "row1Data": "BTC/USD @ $43,250",
+          "row1Reasoning": "Price crossed 20-day MA ↑, RSI: 58",
+          "row2Data": "Volume: 2.3B (120% avg)",
+          "row2Reasoning": "Institutional buying detected",
+          "row3Data": "BUY 0.1 BTC at market",
+          "row3Reasoning": "Entry signal confirmed by 3 indicators",
+          "row4Data": "Executed ✓ Entry: $43,250",
+          "row4Reasoning": "Order filled in 1.2s via Binance API",
+          "row5Data": "Stop-loss: $41,800",
+          "row5Reasoning": "3% below entry, matches risk tolerance"
+        }
+      },
+      "imageGen": {
+        "title": "💰 Sell Your AI Agent",
+        "description": "List your trading agent on the marketplace and earn subscription revenue",
+        "capabilities": [
+          "Agent Marketplace",
+          "Revenue Sharing",
+          "Reputation Building"
+        ],
+        "form": {
+          "type": "Agent",
+          "typeValue": "Breakout Hunter Pro",
+          "style": "Pricing",
+          "styleValue": "$49/month",
+          "size": "Performance",
+          "sizeValue": "+156% (6mo)"
+        },
+        "rows": {
+          "row1Data": "Agent Listed on Marketplace",
+          "row1Reasoning": "Published with full performance history and backtests",
+          "row2Data": "12 Subscribers in First Week",
+          "row2Reasoning": "Strong demand for momentum strategies, featured listing",
+          "row3Data": "Monthly Revenue: $588",
+          "row3Reasoning": "12 subscribers × $49/mo = $588 recurring revenue",
+          "row4Data": "Continuation Royalty: +$127",
+          "row4Reasoning": "5% royalty on 3 continuation trades this month",
+          "row5Data": "Total Earnings: $715/mo",
+          "row5Reasoning": "Passive income from your trading logic + royalties"
+        }
+      },
+      "research": {
+        "title": "📈 Buy Continuation Positions",
+        "description": "Browse AI-reasoned positions others exited. Get discounted entries with full context.",
+        "capabilities": [
+          "Position Marketplace",
+          "Discounted Entries",
+          "AI Context"
+        ],
+        "form": {
+          "topic": "Position",
+          "topicValue": "BTC 10x Long",
+          "sources": "Entry Price",
+          "sourcesValue": "$43,200",
+          "depth": "Discount",
+          "depthValue": "-15%"
+        },
+        "rows": {
+          "row1Data": "Original Entry: $43,200 (10x)",
+          "row1Reasoning": "AI: Momentum breakout, RSI 68, volume spike +140%",
+          "row2Data": "Stop Hit at $42,100 (-2.5%)",
+          "row2Reasoning": "Original trader exited, position now available",
+          "row3Data": "Your Entry: $36,720 (-15%)",
+          "row3Reasoning": "Discounted entry reflects risk, inherit 10x leverage",
+          "row4Data": "BTC Rebounds to $44,500",
+          "row4Reasoning": "Original AI thesis proves correct, trend continues",
+          "row5Data": "Your Profit: +21.2% ($7,780)",
+          "row5Reasoning": "Original creator earns 5% royalty ($389). Win-win."
+        }
+      }
+    },
+    "workflowInput": "Workflow Input",
+    "aiReasoningInCells": "AI Reasoning in Cells",
+    "live": "Live",
+    "data": "DATA",
+    "aiReasoningColumn": "AI REASONING",
+    "completedWorkflow": "Complete workflow with AI reasoning documented"
+  },
+  "apiConnections": {
+    "title": "Connect to All Exchanges",
+    "description": "Your trading hub connects to all major exchanges. Sync portfolios, execute trades, and monitor markets from one unified platform.",
+    "tabTitle": "Exchange Integrations",
+    "moreComing": "And 50+ more exchange integrations coming soon"
+  },
+  "globalIntelligence": {
+    "title": "Global Market Intelligence",
+    "description": "AI-powered market intelligence that monitors crypto, stocks, forex, and commodities across all time zones",
+    "tabTitle": "Global Markets",
+    "languages": {
+      "title": "All Major Markets",
+      "description": "Trade crypto, stocks, forex, and commodities with unified analysis and execution"
+    },
+    "countries": {
+      "title": "24/7 Monitoring",
+      "description": "Never miss opportunities with AI that watches markets around the clock"
+    },
+    "realtime": {
+      "title": "Real-Time Analysis",
+      "description": "Process market data instantly with AI trained on technical and fundamental analysis"
+    }
+  },
+  "aiScheduler": {
+    "title": "AI Trades on Autopilot",
+    "description": "Set your strategy once, and AI monitors and trades automatically—24/7. No manual work, no supervision needed.",
+    "tabTitle": "AI Autopilot",
+    "monthYear": "October 2025",
+    "weekDays": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "todaysSchedule": "Today's Schedule",
+    "mondayDate": "Monday, Oct 20",
+    "schedules": {
+      "task1": "Scan for trade setups",
+      "task2": "Update portfolio metrics",
+      "task3": "Analyze market sentiment",
+      "task4": "Check risk exposure",
+      "task5": "Send performance summary"
+    },
+    "duration": "Duration",
+    "status": {
+      "done": "Done",
+      "running": "Running",
+      "scheduled": "Scheduled"
+    },
+    "totalTasks": "Total tasks today",
+    "automatedWorkflows": "automated workflows"
+  },
+  "publicDisplay": {
+    "title": "Public Display",
+    "description": "Share your data beautifully with public dashboards and embeddable views. Create stunning visualizations that anyone can access.",
+    "tabTitle": "Public Display",
+    "features": {
+      "feature1Title": "Live Dashboards",
+      "feature1Desc": "Create real-time public dashboards that update automatically",
+      "feature2Title": "Embeddable Views",
+      "feature2Desc": "Share your data anywhere with embed codes",
+      "feature3Title": "Custom Branding",
+      "feature3Desc": "Match your brand with customizable themes"
+    }
+  },
+  "templateGallery": {
+    "title": "AI Agents & Positions Marketplace",
+    "description": "Browse AI trading agents for sale. Buy continuation positions at discounts. Build and earn.",
+    "useTemplate": "Purchase",
+    "viewMarketplace": "View Full Marketplace",
+    "templates": {
+      "trading": {
+        "title": "Momentum Breakout Bot",
+        "description": "15m scalping agent • +89% (3mo) • $29/mo",
+        "category": "AI Agent"
+      },
+      "instagram": {
+        "title": "Mean Reversion Agent",
+        "description": "Counter-trend entries • +156% (6mo) • $49/mo",
+        "category": "AI Agent"
+      },
+      "shopify": {
+        "title": "Funding Rate Arbitrage",
+        "description": "Cross-venue funding hunter • $79/mo",
+        "category": "AI Agent"
+      },
+      "socialMedia": {
+        "title": "BTC 10x Long Position",
+        "description": "Continuation trade • -12% discount • $43.2k entry",
+        "category": "Position"
+      },
+      "clinic": {
+        "title": "ETH 20x Short Position",
+        "description": "AI stopped out • -18% discount • Full reasoning",
+        "category": "Position"
+      },
+      "marketing": {
+        "title": "SOL Trend Follower",
+        "description": "4H timeframe bot • +203% (9mo) • Premium",
+        "category": "AI Agent"
+      },
+      "email": {
+        "title": "Liquidation Sweeper",
+        "description": "Buy extreme panic sells • High risk/reward",
+        "category": "AI Agent"
+      },
+      "expense": {
+        "title": "AVAX 15x Long Position",
+        "description": "Early stop-loss • -20% entry • AI bullish thesis",
+        "category": "Position"
+      },
+      "support": {
+        "title": "Grid Trading Bot",
+        "description": "Range-bound markets • Stable yields • $39/mo",
+        "category": "AI Agent"
+      },
+      "appUsage": {
+        "title": "Multi-Timeframe Agent",
+        "description": "Confluence strategy • +178% (1yr) • $99/mo",
+        "category": "AI Agent"
+      }
+    }
+  },
+  "comparison": {
+    "badge": "Trading Reinvented",
+    "title": "The First Position Marketplace",
+    "description": "Positions are no longer disposable. They're tradable assets with embedded AI logic.",
+    "traditionalSheets": "Traditional Trading",
+    "ryu": "Ryu on Hyperliquid",
+    "old1": "Stop-loss = dead position",
+    "new1": "Stop-loss = discounted opportunity",
+    "old2": "Copy trading blindly",
+    "new2": "Buy positions with full AI context",
+    "old3": "Pay for losing trades",
+    "new3": "Earn royalties on continuations",
+    "old4": "One trader, one position",
+    "new4": "Positions evolve across traders",
+    "footer": "Positions don't die —",
+    "footerHighlight": "they become opportunities"
+  },
+  "pricing": {
+    "title": "Build. Trade. Earn.",
+    "description": "Create AI agents. Trade positions. Earn when others continue your logic.",
+    "free": {
+      "name": "Trader",
+      "price": "$0",
+      "period": "forever",
+      "features": [
+        "Build 1 AI agent",
+        "Buy continuation positions",
+        "Trade on Hyperliquid L1",
+        "Full AI transparency"
+      ],
+      "cta": "Start Trading"
+    },
+    "pro": {
+      "name": "Creator",
+      "price": "$49",
+      "period": "per month",
+      "badge": "Most Popular",
+      "features": [
+        "Unlimited AI agents",
+        "List agents for sale",
+        "5% continuation royalties",
+        "Priority marketplace listing",
+        "Advanced backtesting",
+        "Creator dashboard"
+      ],
+      "cta": "Become Creator"
+    },
+    "team": {
+      "name": "Fund",
+      "price": "$299",
+      "period": "per month",
+      "features": [
+        "Everything in Creator",
+        "Team management",
+        "White-label agents",
+        "API access",
+        "Dedicated support",
+        "Custom deployment"
+      ],
+      "cta": "Contact Sales"
+    }
+  },
+  "finalCta": {
+    "title": "Your Position is an Asset",
+    "description": "Build AI agents on Hyperliquid. Trade leveraged positions with full transparency. Earn royalties when others continue your logic.",
+    "tryTemplate": "Browse Marketplace",
+    "createNew": "Build Your First Agent",
+    "socialProof": "Join the first position marketplace on Hyperliquid L1"
+  },
+  "pilot": {
+    "badge": "AI-Powered Agent Builder",
+    "title": "Create Your Custom Agent",
+    "description": "Answer a few questions and let AI design the perfect automation agent for your needs.",
+    "steps": {
+      "agentDetails": "Agent Details",
+      "agentDetailsDesc": "Describe your agent and what it should automate",
+      "connections": "External Services",
+      "connectionsDesc": "Select which external services your agent will connect to (optional)",
+      "review": "Review & Create",
+      "reviewDesc": "Review your agent configuration and let AI generate everything"
+    },
+    "fields": {
+      "agentName": "Agent Name",
+      "agentDescription": "What should this agent do?",
+      "connections": "External Service Connections (Optional)",
+      "characters": "characters"
+    },
+    "placeholders": {
+      "agentName": "Hyperliquid Breakout Hunter",
+      "agentDescription": "Describe your trading strategy...\n\nFor example:\n- Scan BTC, ETH, SOL perps on Hyperliquid for breakout patterns\n- Enter 10-15x leveraged positions on volume-confirmed breaks\n- Use trailing stops to lock profits as trade develops\n- Exit at resistance or with 3% stop-loss\n- Document full AI reasoning for each entry/exit\n- List positions for continuation if stopped out early\n- Track long-term performance and refine logic"
+    },
+    "hints": {
+      "agentDescription": "Be specific about what data you'll provide, what the agent should do, and what automation you want. The AI will imagine all features, forms, and schedules needed."
+    },
+    "examples": {
+      "title": "Try an Example",
+      "random": "Random Example"
+    },
+    "back": "Back",
+    "next": "Next Step",
+    "submit": "Create Agent with AI",
+    "submitSuccess": "Success! Your agent has been created and is ready to use. Setting up your workspace...",
+    "footerNote": "AI will imagine all features, forms, and automation based on your description.",
+    "review": {
+      "agentDetails": "Agent Description",
+      "connections": "Selected Connections",
+      "aiWillGenerate": "🤖 AI will automatically generate all features, data models, forms, actions, and schedules based on your description and selected connections. This may take 10-30 seconds."
+    },
+    "noConnectionsNote": "No external services selected. AI will use generic webhooks for any API needs."
+  },
+  "templatesMarketplace": {
+    "hero": {
+      "title": "Automation Templates Built for Your Workflow",
+      "description": "Start with proven templates. Customize to fit your needs. Deploy in minutes.",
+      "searchPlaceholder": "Search templates... (e.g., 'social media scheduling', 'lead enrichment')",
+      "statsTemplates": "50+ Templates",
+      "statsIntegrations": "20+ Integrations",
+      "statsUsage": "10,000+ Automations Created"
+    },
+    "filters": {
+      "title": "Filters",
+      "clearAll": "Clear All",
+      "showingResults": "Showing {count} of {total} templates",
+      "categories": {
+        "title": "Categories",
+        "all": "All Templates"
+      },
+      "useCases": {
+        "title": "Use Cases",
+        "dataCollection": "Data Collection",
+        "contentGeneration": "Content Generation",
+        "apiIntegration": "API Integration",
+        "reportingAnalytics": "Reporting & Analytics",
+        "automationScheduling": "Automation & Scheduling",
+        "dataEnrichment": "Data Enrichment",
+        "notificationAlerts": "Notification & Alerts",
+        "syncMigration": "Sync & Migration",
+        "sentimentAnalysis": "Sentiment Analysis",
+        "webResearch": "Web Research"
+      },
+      "integrations": {
+        "title": "Integrations",
+        "showMore": "Show more..."
+      },
+      "difficulty": {
+        "title": "Difficulty Level",
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "aiFeatures": {
+        "title": "AI Features",
+        "textGeneration": "Text Generation",
+        "imageGeneration": "Image Generation",
+        "videoGeneration": "Video Generation",
+        "webResearch": "Web Research",
+        "sentimentAnalysis": "Sentiment Analysis",
+        "dataExtraction": "Data Extraction",
+        "contentSummarization": "Content Summarization",
+        "languageTranslation": "Language Translation"
+      },
+      "pricingTier": {
+        "title": "Pricing Tier",
+        "free": "Free Plan",
+        "starter": "Starter Plan",
+        "pro": "Pro Plan",
+        "enterprise": "Enterprise"
+      },
+      "sortBy": {
+        "title": "Sort by",
+        "popular": "Most Popular",
+        "recent": "Recently Added",
+        "alphabetical": "Alphabetical (A-Z)",
+        "rating": "Highest Rated"
+      }
+    },
+    "templateCard": {
+      "uses": "{count} uses",
+      "popular": "Popular",
+      "useTemplate": "Use Template",
+      "viewDetails": "View Details",
+      "moreTags": "+{count} more",
+      "badges": {
+        "new": "NEW",
+        "featured": "FEATURED",
+        "trending": "TRENDING",
+        "updated": "UPDATED",
+        "popular": "POPULAR"
+      },
+      "difficulty": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "setupTime": "{minutes} min setup"
+    },
+    "templateDetail": {
+      "closeButton": "Close",
+      "previousTemplate": "Previous",
+      "nextTemplate": "Next",
+      "useTemplate": "Use This Template",
+      "previewDemo": "Preview Demo",
+      "forkCustomize": "Fork & Customize",
+      "nameDialog": {
+        "title": "Name Your Agent",
+        "description": "Choose a name for your new agent. You can always change it later.",
+        "label": "Agent Name",
+        "placeholder": "e.g., Social Media Manager",
+        "defaultHint": "Default: {templateTitle}",
+        "cancel": "Cancel",
+        "create": "Create Agent",
+        "creating": "Creating...",
+        "errorRequired": "Please enter a name for your agent."
+      },
+      "tabs": {
+        "overview": "Overview",
+        "features": "Features",
+        "setup": "Setup",
+        "faq": "FAQ"
+      },
+      "sections": {
+        "whatItDoes": "What This Template Does",
+        "keyFeatures": "Key Features",
+        "howItWorks": "How It Works",
+        "included": "What's Included",
+        "integrations": "Integrations Required",
+        "aiFeatures": "AI Features Used",
+        "difficulty": "Difficulty Level",
+        "setupTime": "Estimated Setup Time",
+        "pricingTier": "Required Plan",
+        "prerequisites": "Prerequisites",
+        "configuration": "Configuration Steps",
+        "similarTemplates": "Similar Templates"
+      },
+      "stats": {
+        "uses": "{count} uses",
+        "rating": "{rating} out of 5",
+        "reviews": "{count} reviews",
+        "created": "Created: {date}",
+        "updated": "Last updated: {date}",
+        "version": "Version {version}"
+      },
+      "creator": {
+        "by": "By",
+        "officialTemplate": "Official Ryu Template"
+      },
+      "included": {
+        "agents": "AI agent setups",
+        "actions": "Action sequences",
+        "data": "Example data",
+        "docs": "Documentation",
+        "support": "Support resources"
+      }
+    },
+    "featured": {
+      "title": "Featured Templates",
+      "description": "Hand-picked templates to help you get started quickly"
+    },
+    "categorySpotlight": {
+      "viewAll": "View All {category} Templates →"
+    },
+    "gettingStarted": {
+      "title": "How to Use Templates",
+      "description": "Get up and running in minutes with our ready-to-use templates",
+      "steps": {
+        "step1": {
+          "title": "Browse & Find",
+          "description": "Explore our template library or search for what you need"
+        },
+        "step2": {
+          "title": "Preview & Learn",
+          "description": "Review the template details, features, and setup requirements"
+        },
+        "step3": {
+          "title": "Use & Customize",
+          "description": "Add the template to your workspace and customize it to your needs"
+        },
+        "step4": {
+          "title": "Automate & Scale",
+          "description": "Let AI handle the work while you focus on strategy"
+        }
+      },
+      "ctaButton": "Browse All Templates"
+    },
+    "noResults": {
+      "title": "No templates found",
+      "description": "Try adjusting your filters or search terms",
+      "suggestions": "You might be interested in:",
+      "clearFilters": "Clear all filters",
+      "requestTemplate": "Request a custom template"
+    },
+    "auth": {
+      "signUpToUse": "Sign up to use this template",
+      "loginToUse": "Log in to use this template",
+      "explorePilot": "Or explore our pilot version first"
+    },
+    "integration": {
+      "required": "Required",
+      "optional": "Optional"
+    }
+  },
+  "marketplaceHeader": {
+    "home": "Home",
+    "trade": "Trade",
+    "marketplace": "Marketplace",
+    "explorer": "Explorer"
+  },
+  "myAgents": {
+    "title": "My Agents",
+    "description": "Manage your AI automation agents. Each agent contains workspaces, actions, and workflows.",
+    "createAgent": "Create New Agent",
+    "confirmDelete": "Are you sure you want to delete this agent? This action cannot be undone.",
+    "lastActive": "Last active",
+    "workspaces": "Workspaces",
+    "totalActions": "Total Actions",
+    "thisMonth": "This Month",
+    "stats": {
+      "activeAgents": "Active Agents",
+      "totalWorkspaces": "Total Workspaces",
+      "totalActions": "Total Actions"
+    },
+    "status": {
+      "active": "Active",
+      "paused": "Paused"
+    },
+    "empty": {
+      "title": "No agents yet",
+      "description": "Create your first agent to start automating your workflows. Agents help organize your workspaces and automation tasks.",
+      "createFirst": "Create Your First Agent"
+    },
+    "createModal": {
+      "title": "Create New Agent",
+      "subtitle": "Agents help you organize workspaces and automation workflows by project or business function.",
+      "icon": "Icon",
+      "name": "Agent Name",
+      "namePlaceholder": "e.g., Content Marketing Hub",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe what this agent will be used for...",
+      "cancel": "Cancel",
+      "create": "Create Agent"
+    },
+    "detail": {
+      "status": "Status",
+      "workspaces": "Workspaces",
+      "actionsThisMonth": "Actions This Month",
+      "apiCalls": "API Calls",
+      "metrics": "Metrics",
+      "totalActions": "Total Actions Executed",
+      "storageUsed": "Storage Used",
+      "created": "Created",
+      "lastActive": "Last Active",
+      "settings": "Settings",
+      "viewWorkspaces": "View Workspaces"
+    }
+  },
+  "tradePage": {
+    "title": "Trade",
+    "titleHighlight": "Dashboard",
+    "description": "Create and manage your AI trading agents. Deploy automated trading strategies with custom parameters and monitor their performance in real-time.",
+    "createAgent": "Create Agent",
+    "templates": "Templates",
+    "yourAgents": "Your Trading Agents",
+    "noAgents": "No Agents Yet",
+    "noAgentsDescription": "Create your first AI trading agent to start automated trading",
+    "createFirstAgent": "Create First Agent",
+    "confirmDelete": "Are you sure you want to delete this agent?",
+    "statusActive": "Active",
+    "statusPaused": "Paused",
+    "deposit": "Deposit",
+    "pnl": "P&L",
+    "assets": "Assets",
+    "createNewAgent": "Create New Trading Agent",
+    "createAgentDescription": "Follow these steps to set up your automated trading agent",
+    "step1Title": "Step 1: Name Your Agent",
+    "step1Description": "Give your trading agent a memorable name",
+    "agentNamePlaceholder": "e.g., Bitcoin Momentum Trader",
+    "step2Title": "Step 2: Choose Strategy",
+    "step2Description": "Select a pre-built template from marketplace or create a custom strategy",
+    "useTemplate": "Use Template",
+    "customPrompt": "Custom Strategy",
+    "customPromptPlaceholder": "Describe your trading strategy in detail... e.g., 'Buy BTC when RSI < 30 and MACD crosses above signal line, sell when RSI > 70 or profit reaches 5%'",
+    "step3Title": "Step 3: Select Assets",
+    "step3Description": "Choose which cryptocurrencies your agent will trade",
+    "step4Title": "Step 4: Set Initial Deposit",
+    "step4Description": "Specify the initial capital for your trading agent",
+    "initialDeposit": "Initial Deposit",
+    "summary": "Summary",
+    "agentName": "Agent Name",
+    "template": "Template",
+    "customStrategy": "Custom Strategy",
+    "previous": "Previous",
+    "next": "Next",
+    "stepIndicator": "Step {current} of {total}",
+    "creating": "Creating...",
+    "purchasedTemplates": "Purchased Templates",
+    "purchasedTemplatesDescription": "Select a template to create a new trading agent",
+    "noTemplates": "No Templates Yet",
+    "noTemplatesDescription": "Browse the marketplace to purchase trading strategy templates",
+    "browseMarketplace": "Browse Marketplace"
+  },
+  "explorerPage": {
+    "title": "Trading",
+    "titleHighlight": "Explorer",
+    "description": "Explore the ecosystem: discover top-performing agents on the leaderboard, browse active trading agents, monitor live positions, and find the perfect template to start your trading journey.",
+    "viewAll": "View All",
+    "leaderboard": {
+      "title": "Leaderboard",
+      "description": "Top performing trading agents by P&L",
+      "trades": "Trades",
+      "winRate": "Win Rate",
+      "volume": "Volume"
+    },
+    "agents": {
+      "title": "Running Agents",
+      "description": "All active trading agents",
+      "active": "Active",
+      "paused": "Paused",
+      "deposit": "Deposit",
+      "pnl": "P&L"
+    },
+    "positions": {
+      "title": "Active Positions",
+      "description": "Live trading positions",
+      "entry": "Entry",
+      "current": "Current",
+      "pnl": "P&L"
+    },
+    "templates": {
+      "title": "Templates",
+      "description": "Pre-built trading strategies available for purchase",
+      "agents": "agents",
+      "price": "Price"
+    }
+  }
+}

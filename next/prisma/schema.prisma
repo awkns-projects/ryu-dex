@@ -1,0 +1,532 @@
+// Clean Prisma Schema for RYU Application
+// Minimal necessary indexes only
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum ChatVisibility {
+  public
+  private
+}
+
+enum ExecutionStatus {
+  pending
+  running
+  completed
+  failed
+}
+
+enum SubscriptionStatus {
+  active
+  inactive
+  canceled
+  past_due
+  unpaid
+  trialing
+  expired
+}
+
+enum PaymentStatus {
+  pending
+  completed
+  failed
+  refunded
+}
+
+enum ScheduleMode {
+  once
+  recurring
+}
+
+enum ScheduleStatus {
+  active
+  paused
+}
+
+enum StepType {
+  ai_reasoning
+  web_search
+  custom
+  image_generation
+}
+
+enum DocumentKind {
+  text
+  code
+  image
+  sheet
+  agent
+}
+
+enum PositionSource {
+  agent
+  market
+}
+
+enum PositionStatus {
+  open
+  closed
+  liquidated
+}
+
+enum PositionType {
+  long
+  short
+}
+
+// ============================================================================
+// AUTHENTICATION & USER MANAGEMENT
+// ============================================================================
+
+model User {
+  id               String   @id @default(cuid())
+  name             String?
+  email            String   @unique
+  emailVerified    Boolean  @default(false)
+  image            String?
+  password         String?
+  stripeCustomerId String?
+  points           Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  sessions         Session[]
+  accounts         Account[]
+  chats            Chat[]
+  documents        Document[]
+  suggestions      Suggestion[]
+  agents           Agent[]
+  subscriptions    Subscription[]
+  inviteCodes      InviteCode[]
+  pointsActivities PointsActivity[]
+}
+
+model PointsActivity {
+  id          String   @id @default(cuid())
+  userId      String
+  points      Int
+  activity    String
+  description String?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ============================================================================
+// CHAT & MESSAGING
+// ============================================================================
+
+model Chat {
+  id          String         @id @default(uuid())
+  createdAt   DateTime       @default(now())
+  title       String
+  userId      String
+  visibility  ChatVisibility @default(private)
+  lastContext Json?
+
+  user     User      @relation(fields: [userId], references: [id])
+  messages Message[]
+  votes    Vote[]
+  streams  Stream[]
+
+  @@index([userId])
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  chatId      String
+  role        String
+  parts       Json
+  attachments Json
+  createdAt   DateTime @default(now())
+
+  chat  Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  votes Vote[]
+
+  @@index([chatId])
+}
+
+model Vote {
+  chatId    String
+  messageId String
+  isUpvoted Boolean
+
+  chat    Chat    @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@id([chatId, messageId])
+}
+
+model Stream {
+  id        String   @id @default(uuid())
+  chatId    String
+  createdAt DateTime @default(now())
+
+  chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@index([chatId])
+}
+
+// ============================================================================
+// DOCUMENTS & COLLABORATION
+// ============================================================================
+
+model Document {
+  id        String       @id @default(uuid())
+  createdAt DateTime     @default(now())
+  title     String
+  content   String?
+  kind      DocumentKind @default(text)
+  userId    String
+
+  user        User         @relation(fields: [userId], references: [id])
+  suggestions Suggestion[]
+
+  @@index([userId])
+}
+
+model Suggestion {
+  id            String   @id @default(uuid())
+  documentId    String
+  originalText  String
+  suggestedText String
+  description   String?
+  isResolved    Boolean  @default(false)
+  userId        String
+  createdAt     DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id])
+  document Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  @@index([documentId])
+  @@index([userId])
+}
+
+// ============================================================================
+// AGENT BUILDER SYSTEM
+// ============================================================================
+
+model Agent {
+  id          String   @id @default(uuid())
+  title       String?
+  name        String?
+  description String?
+  templateId  String?
+  image       String?
+  features    Json?
+  connections Json?
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user      User            @relation(fields: [userId], references: [id])
+  models    AgentModel[]
+  actions   AgentAction[]
+  schedules AgentSchedule[]
+  positions Position[]
+
+  @@index([userId])
+}
+
+model AgentModel {
+  id        String   @id @default(uuid())
+  agentId   String
+  name      String
+  fields    Json
+  forms     Json?
+  createdAt DateTime @default(now())
+
+  agent         Agent               @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  actions       AgentAction[]
+  records       AgentRecord[]
+  scheduleSteps AgentScheduleStep[]
+
+  @@index([agentId])
+}
+
+model AgentAction {
+  id           String   @id @default(uuid())
+  agentId      String
+  modelId      String
+  name         String
+  title        String?
+  emoji        String?
+  description  String?
+  inputFields  Json
+  outputFields Json
+  createdAt    DateTime @default(now())
+
+  agent         Agent               @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  model         AgentModel          @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  steps         AgentStep[]
+  executions    AgentExecution[]
+  scheduleSteps AgentScheduleStep[]
+
+  @@index([agentId])
+  @@index([modelId])
+}
+
+model AgentStep {
+  id        String   @id @default(uuid())
+  actionId  String
+  name      String
+  type      StepType
+  config    Json
+  order     Int
+  createdAt DateTime @default(now())
+
+  action AgentAction @relation(fields: [actionId], references: [id], onDelete: Cascade)
+
+  @@index([actionId])
+}
+
+model AgentRecord {
+  id        String    @id @default(uuid())
+  modelId   String
+  data      Json
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  model      AgentModel       @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  executions AgentExecution[]
+
+  @@index([modelId, deletedAt])
+}
+
+model AgentExecution {
+  id              String          @id @default(uuid())
+  recordId        String
+  actionId        String
+  scheduleId      String?
+  status          ExecutionStatus @default(pending)
+  result          Json?
+  error           String?
+  totalTokens     Int?
+  inputTokens     Int?
+  outputTokens    Int?
+  executionTimeMs Int?
+  createdAt       DateTime        @default(now())
+  completedAt     DateTime?
+
+  record   AgentRecord    @relation(fields: [recordId], references: [id], onDelete: Cascade)
+  action   AgentAction    @relation(fields: [actionId], references: [id], onDelete: Cascade)
+  schedule AgentSchedule? @relation(fields: [scheduleId], references: [id], onDelete: SetNull)
+
+  @@index([recordId])
+  @@index([actionId])
+  @@index([createdAt])
+}
+
+model AgentSchedule {
+  id            String         @id @default(uuid())
+  agentId       String
+  name          String?
+  mode          ScheduleMode
+  intervalHours Int?
+  status        ScheduleStatus @default(active)
+  nextRunAt     DateTime?
+  lastRunAt     DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  agent      Agent               @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  steps      AgentScheduleStep[]
+  executions AgentExecution[]
+
+  @@index([agentId])
+  @@index([nextRunAt])
+}
+
+model AgentScheduleStep {
+  id         String   @id @default(uuid())
+  scheduleId String
+  modelId    String
+  query      Json?
+  actionId   String
+  order      Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  schedule AgentSchedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  model    AgentModel    @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  action   AgentAction   @relation(fields: [actionId], references: [id], onDelete: Cascade)
+
+  @@index([scheduleId])
+}
+
+// ============================================================================
+// SUBSCRIPTION & BILLING
+// ============================================================================
+
+model SubscriptionPlan {
+  id            String   @id @default(uuid())
+  emoji         String?
+  name          String
+  description   String?
+  price         Int
+  currency      String   @default("USD")
+  features      Json?
+  stripePriceId String   @unique
+  active        Boolean  @default(true)
+  isInviteOnly  Boolean  @default(false)
+  isPopular     Boolean  @default(false)
+  orderIndex    Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  subscriptions Subscription[]
+  inviteCodes   InviteCode[]
+}
+
+model Subscription {
+  id                   String             @id @default(uuid())
+  userId               String
+  planId               String
+  stripeSubscriptionId String             @unique
+  stripeCustomerId     String
+  status               SubscriptionStatus
+  startDate            DateTime
+  endDate              DateTime?
+  cancelDate           DateTime?
+  stoppedDate          DateTime?
+  active               Boolean            @default(true)
+  autoRenew            Boolean            @default(true)
+  cancelAtPeriodEnd    Boolean            @default(false)
+  upgradeInitiated     Boolean            @default(false)
+  upgradeSessionId     String?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan     SubscriptionPlan @relation(fields: [planId], references: [id])
+  payments Payment[]
+
+  @@index([userId])
+}
+
+model Payment {
+  id                    String        @id @default(uuid())
+  subscriptionId        String
+  amount                Int
+  currency              String        @default("USD")
+  status                PaymentStatus
+  paymentMethod         String
+  invoiceId             String?
+  invoiceUrl            String?
+  stripePaymentIntentId String?
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  deletedAt             DateTime?
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  @@index([subscriptionId])
+}
+
+model InviteCode {
+  id        String    @id @default(uuid())
+  code      String    @unique
+  planId    String
+  userId    String?
+  isUsed    Boolean   @default(false)
+  usedAt    DateTime?
+  expiresAt DateTime?
+  paidAt    DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  plan SubscriptionPlan @relation(fields: [planId], references: [id])
+  user User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([planId])
+}
+
+// ============================================================================
+// TRADING POSITIONS
+// ============================================================================
+
+model Position {
+  id             String         @id @default(uuid())
+  userId         String
+  agentId        String?
+  symbol         String
+  type           PositionType
+  leverage       Int            @default(1)
+  entryPrice     Float
+  currentPrice   Float
+  quantity       Float
+  stopLoss       Float?
+  takeProfit     Float?
+  pnl            Float          @default(0)
+  pnlPercent     Float          @default(0)
+  status         PositionStatus @default(open)
+  source         PositionSource
+  marketPrice    Float?
+  marketDiscount Float?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  closedAt       DateTime?
+
+  agent Agent? @relation(fields: [agentId], references: [id], onDelete: SetNull)
+
+  @@index([userId, status])
+  @@index([agentId])
+}

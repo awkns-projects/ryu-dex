@@ -1,0 +1,1038 @@
+{
+  "metadata": {
+    "title": "Ryu - AI 驅動的交易平台",
+    "description": "由 AI 驅動的智能交易自動化。追蹤市場、分析趨勢、執行策略，並透過 AI 管理您的投資組合，AI 會思考、推理並解釋每個決策。"
+  },
+  "header": {
+    "logo": "Ryu",
+    "menu": {
+      "features": "功能特色",
+      "howItWorks": "運作方式",
+      "templates": "範本",
+      "comparison": "比較",
+      "pricing": "定價",
+      "myAgents": "我的智能體",
+      "pilot": "建立智能體",
+      "docs": "文件"
+    },
+    "signIn": "登入",
+    "getStarted": "開始使用",
+    "menuTitle": "選單"
+  },
+  "shaderHeader": {
+    "howItWorks": "運作方式",
+    "strategies": "策略",
+    "login": "登入"
+  },
+  "shaderHero": {
+    "badge": "AI 驅動交易平台",
+    "title": {
+      "intelligent": "智能",
+      "trading": "交易",
+      "madeSimple": "化繁為簡"
+    },
+    "description": "利用先進的 AI 演算法來自動化您的交易策略。即時市場分析、預測模型和智能執行，適應市場狀況。",
+    "viewExplorer": "查看探索器",
+    "startTrading": "開始交易"
+  },
+  "howItWorksSection": {
+    "title": "AI 交易",
+    "titleHighlight": "化繁為簡",
+    "subtitle": "只需三個簡單步驟即可開始您的自動化交易之旅",
+    "step1": {
+      "title": "描述您的策略",
+      "description": "只需用自然語言描述您的交易策略。我們的 AI 理解您的目標並創建客製化的交易計劃。",
+      "news1": "市場波動性預期將上升",
+      "news2": "科技股展現強勁動能",
+      "news3": "比特幣突破關鍵阻力位"
+    },
+    "step2": {
+      "title": "選擇您的資產",
+      "description": "從各種加密貨幣、股票、外匯或商品中選擇。交易您最了解的資產。",
+      "assets": "BTC、ETH、AAPL 等 12 種",
+      "tag1": "加密貨幣",
+      "tag2": "股票"
+    },
+    "step3": {
+      "title": "開始交易",
+      "description": "存入資金並讓 AI 接管。即時監控您的策略自動執行。",
+      "activity1": "買入 BTC @ $42,150",
+      "activity2": "持有 ETH @ $2,240",
+      "activity3": "AI 交易中"
+    },
+    "cta": "立即開始"
+  },
+  "marketplaceSection": {
+    "title": "AI 策略",
+    "titleHighlight": "市集",
+    "subtitle": "瀏覽專家打造的頂級 AI 驅動交易策略和倉位",
+    "tabAgents": "AI 智能體",
+    "tabPositions": "AI 倉位",
+    "get": "獲取",
+    "viewAll": "查看完整市集",
+    "fixedPrice": "固定價格",
+    "currentBid": "當前出價",
+    "viewDetails": "查看詳情",
+    "bids": "出價",
+    "endsIn": "結束於",
+    "currentPNL": "當前盈虧",
+    "auction": "拍賣"
+  },
+  "marketplacePage": {
+    "backToHome": "首頁",
+    "title": "AI 策略市集",
+    "agentsDescription": "探索並購買高級 AI 交易智能體——全天候自主執行交易策略的智能機器人。由先進的演算法和機器學習驅動，這些智能體即時分析市場、管理風險並自動執行交易，將機構級交易帶給所有人。",
+    "positionsDescription": "探索並購買高級 AI 交易倉位——由專業 AI 演算法創建的預先分析交易設定。每個倉位都包含精確的進場價格、目標價格和風險管理級別，為您提供具有透明理由和績效追蹤的專業級交易訊號。",
+    "searchPlaceholder": "搜尋{type}...",
+    "searchAgentsPlaceholder": "搜尋智能體...",
+    "searchPositionsPlaceholder": "搜尋倉位...",
+    "all": "全部",
+    "fixedPrice": "固定價格",
+    "auction": "拍賣",
+    "allAssets": "所有資產",
+    "assets": "資產",
+    "sortTrending": "熱門",
+    "sortPriceLow": "價格：從低到高",
+    "sortPriceHigh": "價格：從高到低",
+    "sortRating": "評分最高",
+    "sortNewest": "最新",
+    "noResults": "找不到{type}",
+    "tryAdjusting": "請嘗試調整您的篩選條件或搜尋詞",
+    "get": "獲取",
+    "currentBid": "當前出價",
+    "viewDetails": "查看詳情",
+    "bids": "出價",
+    "endsIn": "結束於",
+    "currentPNL": "當前盈虧",
+    "agents": "智能體",
+    "positions": "倉位"
+  },
+  "agentPage": {
+    "backToMarketplace": "返回市集",
+    "notFound": "找不到智能體",
+    "goBack": "返回市集",
+    "pageTitle": "AI 交易",
+    "pageTitleHighlight": "智能體",
+    "pageDescription": "AI 交易智能體是一個智能機器人，全天候自主執行交易策略。由先進的演算法和機器學習驅動，這些智能體即時分析市場、管理風險並自動執行交易，將機構級交易帶給所有人。",
+    "category": "分類",
+    "users": "用戶",
+    "rating": "評分",
+    "purchase": "購買價格",
+    "overview": "概覽",
+    "features": "功能",
+    "requirements": "需求",
+    "changelog": "更新日誌",
+    "version": "版本",
+    "whatYouGet": "您將獲得",
+    "keyFeatures": "主要功能",
+    "systemRequirements": "系統需求",
+    "updateHistory": "更新歷史",
+    "tags": "標籤"
+  },
+  "positionPage": {
+    "backToMarketplace": "返回市集",
+    "notFound": "找不到倉位",
+    "goBack": "返回市集",
+    "pageTitle": "AI 交易",
+    "pageTitleHighlight": "倉位",
+    "pageDescription": "AI 交易倉位是由專業 AI 演算法創建的預先分析交易設定。每個倉位都包含精確的進場價格、目標價格和風險管理級別，為您提供具有透明理由和績效追蹤的專業級交易訊號。",
+    "positionDetails": "倉位詳情",
+    "currentPNL": "當前盈虧",
+    "entryPrice": "進場價格",
+    "targetPrice": "目標價格",
+    "liquidationPrice": "清算價格",
+    "riskReward": "風險/回報",
+    "duration": "持續時間",
+    "contractValue": "合約價值",
+    "placedDate": "建立日期",
+    "aiReasoning": "AI 推理",
+    "whyThisPosition": "為什麼選擇這個倉位",
+    "pnlChart": "盈虧圖表",
+    "pnlOverTime": "隨時間變化的盈虧",
+    "breakEven": "損益平衡",
+    "target": "目標",
+    "liquidation": "清算",
+    "purchaseInfo": "購買資訊",
+    "fixedPrice": "固定價格",
+    "buyNow": "立即購買",
+    "currentBid": "當前出價",
+    "minBid": "最低出價",
+    "auctionEnds": "拍賣結束",
+    "totalBids": "總出價",
+    "placeBid": "出價",
+    "bidAmount": "出價金額",
+    "yourBid": "您的出價 ($)",
+    "cancel": "取消",
+    "confirmBid": "確認出價",
+    "bidPlaced": "出價已提交！",
+    "bidSuccess": "您的出價已成功提交",
+    "okGotIt": "好的，知道了",
+    "timeLeft": "剩餘時間",
+    "days": "天",
+    "hours": "小時",
+    "minutes": "分鐘"
+  },
+  "hero": {
+    "badge": "AI 驅動交易",
+    "title": {
+      "line1": "更聰明的交易",
+      "line2": "AI 洞察力"
+    },
+    "description": "您的智能交易夥伴。AI 全天候監控市場、分析趨勢、執行策略，並解釋每個決策。專為想要數據驅動洞察而非猜測的交易者而建。",
+    "getStarted": "開始使用",
+    "viewTemplates": "查看範本",
+    "modal": {
+      "keyFeatures": "主要功能",
+      "feature1": "即時市場監控",
+      "feature2": "AI 驅動的交易分析",
+      "feature3": "自動化策略執行"
+    },
+    "aiThinkingSteps": {
+      "step1": "接收任務",
+      "step1Desc": "用戶提交請求：「分析評論中的客戶情緒」",
+      "step2": "解析輸入",
+      "step2Desc": "AI 識別數據來源，從 3 個平台提取 234 條評論",
+      "step3": "分析數據",
+      "step3Desc": "使用 NLP 模型處理情緒，檢測主題和模式",
+      "step4": "計算見解",
+      "step4Desc": "計算加權分數：87% 正面，識別出 5 個關鍵主題",
+      "step5": "生成摘要",
+      "step5Desc": "將發現綜合成可行的見解和建議",
+      "step6": "記錄到儲存格 A1",
+      "step6Desc": "寫入：「整體情緒：87% 正面」並記錄推理過程",
+      "step7": "記錄到儲存格 A2",
+      "step7Desc": "寫入：「最高主題：產品品質（在 156 條評論中提及）」",
+      "step8": "記錄到儲存格 A3",
+      "step8Desc": "寫入：「行動：將行銷重點放在品質訊息上」",
+      "step9": "呼叫 API",
+      "step9Desc": "觸發 Slack 通知向行銷團隊發送結果",
+      "step10": "更新儀表板",
+      "step10Desc": "將結果同步到分析儀表板，視覺化時間趨勢",
+      "step11": "生成報告",
+      "step11Desc": "創建包含圖表和建議的詳細 PDF 報告",
+      "step12": "任務完成",
+      "step12Desc": "所有步驟成功執行。結果記錄在儲存格 A1-A8"
+    }
+  },
+  "aiCapabilities": {
+    "badge": "AI 交易智能",
+    "title": "不只是圖表。一個完整的 AI 交易助手。",
+    "description": "分析市場、識別模式、執行策略等等——每個決策都有 AI 推理。確切了解 AI 為何建議每筆交易。",
+    "tabTitle": "查看 AI 推理",
+    "advancedReasoning": {
+      "title": "進階推理",
+      "description": "逐步思考複雜問題，完全透明",
+      "task": "任務",
+      "taskText": "分析客戶情緒",
+      "reasoningTitle": "AI 推理：",
+      "step1": "分析了跨 3 個平台的 234 條評論",
+      "step2": "識別出 5 個主題：品質、運送、支援",
+      "step3": "計算加權情緒分數",
+      "result": "結果：",
+      "resultValue": "87% 正面"
+    },
+    "imageGeneration": {
+      "title": "圖像生成",
+      "description": "直接從試算表數據產生視覺效果",
+      "inputData": "輸入數據：",
+      "product": "產品：",
+      "productValue": "馬克杯",
+      "style": "風格：",
+      "styleValue": "極簡",
+      "color": "顏色：",
+      "colorValue": "海軍藍",
+      "generatedImage": "生成的圖像",
+      "imageSaved": "圖像已保存",
+      "done": "✓ 完成"
+    },
+    "videoGeneration": {
+      "title": "影片生成",
+      "description": "從您的數據創建產品演示和社群內容",
+      "templateData": "範本 + 數據：",
+      "template": "範本：",
+      "templateValue": "產品發布",
+      "duration": "時長：",
+      "durationValue": "15 秒",
+      "dataSource": "數據來源：",
+      "dataSourceValue": "產品數據",
+      "generatedVideo": "AI 生成的影片",
+      "videoSaved": "影片連結已保存",
+      "done": "✓ 完成"
+    },
+    "apiExecution": {
+      "title": "從欄位執行 API",
+      "description": "使用儲存格中的數據執行任何 API 呼叫",
+      "spreadsheetData": "試算表數據：",
+      "email": "電子郵件：",
+      "order": "訂單：",
+      "status": "狀態：",
+      "statusValue": "已出貨",
+      "apiCallTriggered": "API 呼叫已觸發",
+      "response": "✓ 回應：200 OK",
+      "emailSent": "郵件已發送"
+    },
+    "autonomousScheduling": {
+      "title": "按時程表自主運行",
+      "description": "設定一次，AI 就會自動執行任務——每小時、每天或每週。無需監督。",
+      "daily": "每日早上 6:00",
+      "dailyTask": "獲取夜間訂單",
+      "completed": "已完成",
+      "everyThreeHours": "每 3 小時",
+      "socialTask": "更新社群分析",
+      "runningNow": "正在運行",
+      "weekly": "每週一",
+      "weeklyTask": "生成銷售報告",
+      "scheduled": "已排程"
+    },
+    "cta": "所有功能在您的試算表中無縫協同工作",
+    "ctaButton": "查看 AI 實際運作"
+  },
+  "easyInterface": {
+    "badge": "強大功能",
+    "title": {
+      "line1": "您需要的每個功能。",
+      "line2": "全部整合在一起。"
+    },
+    "tabTitle": "三種工作方式",
+    "description": "自然語言聊天、結構化表單、預建動作、AI 推理、API 整合、全球智能和自動排程——所有功能無縫協同工作。",
+    "methods": {
+      "chat": {
+        "title": "與試算表聊天",
+        "description": "只需用簡單的中文提問。您的 AI 助手理解上下文並立即執行操作。",
+        "userMessage": "找出過去 30 天內未購買的所有客戶，並向他們發送折扣電子郵件",
+        "aiResponse1": "✓ 找到 47 位客戶",
+        "aiResponse2": "✓ 生成個性化電子郵件",
+        "aiResponse3": "✓ 透過 Gmail API 發送",
+        "aiResponse4": "所有結果記錄在 Sheet1，第 15-61 行"
+      },
+      "form": {
+        "title": "提交簡單表單",
+        "description": "填寫包含您需求的表單。AI 在幕後處理複雜性。",
+        "taskLabel": "任務描述",
+        "taskValue": "產生 10 個關於 AI 的部落格文章創意",
+        "toneLabel": "語調",
+        "toneValue": "專業",
+        "audienceLabel": "目標受眾",
+        "audienceValue": "開發者",
+        "executeButton": "執行 AI 動作",
+        "resultsNote": "結果會自動出現在您的試算表中"
+      },
+      "actions": {
+        "title": "一鍵 AI 動作",
+        "description": "為常見任務預建的動作。點擊按鈕，觀看 AI 施展魔法。",
+        "action1Title": "豐富電子郵件列表",
+        "action1Desc": "為聯絡人添加公司數據",
+        "action2Title": "生成產品圖像",
+        "action2Desc": "AI 從描述創建視覺效果",
+        "action3Title": "分析情緒",
+        "action3Desc": "大規模處理客戶回饋"
+      }
+    },
+    "benefits": {
+      "instant": {
+        "title": "即時執行",
+        "description": "AI 立即處理您的請求並顯示實時進度"
+      },
+      "transparency": {
+        "title": "完全透明",
+        "description": "每個決策和動作都記錄在您的試算表中"
+      },
+      "noLearning": {
+        "title": "無學習曲線",
+        "description": "完全按照您的預期工作——簡單、直觀、強大"
+      }
+    },
+    "ctaButton": "免費試用 - 無需信用卡",
+    "ctaSubtext": "從範本開始或從頭開始建立"
+  },
+  "howItWorks": {
+    "title": "簡單背後的魔法",
+    "description": "每個 AI 動作都遵循簡單的 3 步驟流程——每個階段都完全透明",
+    "steps": {
+      "step1": {
+        "number": "01",
+        "title": "定義工作流程",
+        "description": "建立團隊需要的表單輸入——無需編碼",
+        "accountName": "帳戶名稱",
+        "dateRange": "日期範圍",
+        "dateRangeValue": "過去 7 天"
+      },
+      "step2": {
+        "number": "02",
+        "title": "AI 執行",
+        "description": "AI 自動呼叫 API、產生內容、分析數據",
+        "processing": "處理中...",
+        "callingApi": "正在呼叫 Instagram API"
+      },
+      "step3": {
+        "number": "03",
+        "title": "審查與批准",
+        "description": "在儲存格中查看 AI 的推理，批准或調整決策",
+        "input": "輸入",
+        "aiReasoning": "AI 推理",
+        "result": "結果"
+      }
+    }
+  },
+  "useCases": {
+    "title": "查看 AI 推理實際運作",
+    "description": "來自真實用戶的真實工作流程。觀看 AI 如何思考問題、做出決策，並在您的試算表中記錄一切。",
+    "cases": {
+      "trading": {
+        "title": "AI 交易決策",
+        "description": "分析市場、執行交易、記錄推理",
+        "capabilities": [
+          "API 執行",
+          "AI 研究",
+          "決策制定"
+        ],
+        "form": {
+          "symbol": "交易對",
+          "symbolValue": "BTC/USD",
+          "strategy": "策略",
+          "strategyValue": "動量",
+          "risk": "風險",
+          "riskValue": "中等"
+        },
+        "rows": {
+          "row1Data": "BTC/USD @ $43,250",
+          "row1Reasoning": "價格突破 20 日均線 ↑，RSI：58",
+          "row2Data": "成交量：2.3B（平均值的 120%）",
+          "row2Reasoning": "檢測到機構買入",
+          "row3Data": "以市價買入 0.1 BTC",
+          "row3Reasoning": "3 個指標確認進場信號",
+          "row4Data": "已執行 ✓ 進場：$43,250",
+          "row4Reasoning": "訂單在 1.2 秒內透過幣安 API 成交",
+          "row5Data": "止損：$41,800",
+          "row5Reasoning": "低於進場價 3%，符合風險承受度"
+        }
+      },
+      "imageGen": {
+        "title": "AI 圖像生成",
+        "description": "生成、審查和優化視覺內容",
+        "capabilities": [
+          "圖像生成",
+          "AI 審查",
+          "迭代"
+        ],
+        "form": {
+          "type": "類型",
+          "typeValue": "產品照片",
+          "style": "風格",
+          "styleValue": "極簡主義",
+          "size": "尺寸",
+          "sizeValue": "1024x1024"
+        },
+        "rows": {
+          "row1Data": "無線耳機，白色背景",
+          "row1Reasoning": "產品名稱 + 乾淨背景用於電子商務",
+          "row2Data": "版本 v1：檢測到刺眼陰影",
+          "row2Reasoning": "品質檢查：陰影太強（置信度：85%）",
+          "row3Data": "使用柔和工作室照明重新生成",
+          "row3Reasoning": "調整提示詞以修復照明問題",
+          "row4Data": "v2 已批准 ✓ image_final.png",
+          "row4Reasoning": "照明改善，符合品牌指南",
+          "row5Data": "已上傳至 CDN",
+          "row5Reasoning": "自動優化，部署至生產 CDN"
+        }
+      },
+      "research": {
+        "title": "AI 研究與見解",
+        "description": "收集數據、綜合見解、提供建議",
+        "capabilities": [
+          "網路研究",
+          "數據分析",
+          "建議"
+        ],
+        "form": {
+          "topic": "主題",
+          "topicValue": "2025 年 AI 趨勢",
+          "sources": "來源",
+          "sourcesValue": "10 篇文章",
+          "depth": "深度",
+          "depthValue": "詳細"
+        },
+        "rows": {
+          "row1Data": "研究：2025 年 AI 趨勢",
+          "row1Reasoning": "已發送查詢至 Perplexity API 並設定篩選器",
+          "row2Data": "分析了 10 個來源，3 個關鍵主題",
+          "row2Reasoning": "按主題相似性聚類（NLP）",
+          "row3Data": "首位：多模態 AI（10/10 提及 8 次）",
+          "row3Reasoning": "最高頻率，80% 的來源中提及",
+          "row4Data": "亞軍：AI 代理（6/10）",
+          "row4Reasoning": "第二常見主題",
+          "row5Data": "報告已生成 ✓ 2,450 字",
+          "row5Reasoning": "將所有發現綜合成結構化文件"
+        }
+      }
+    },
+    "workflowInput": "工作流程輸入",
+    "aiReasoningInCells": "儲存格中的 AI 推理",
+    "live": "即時",
+    "data": "數據",
+    "aiReasoningColumn": "AI 推理",
+    "completedWorkflow": "已記錄 AI 推理的完整工作流程"
+  },
+  "apiConnections": {
+    "title": "連接一切",
+    "description": "您的試算表成為您的中央樞紐。透過 API 與外部平台同步，跨所有工具讀寫數據。",
+    "tabTitle": "連接一切",
+    "moreComing": "還有 50+ 個整合即將推出"
+  },
+  "globalIntelligence": {
+    "title": "全球智能網路",
+    "description": "AI 驅動的智能，理解每種語言和地區的上下文、文化和細微差別",
+    "tabTitle": "全球智能",
+    "languages": {
+      "title": "100+ 種語言",
+      "description": "以任何語言自然溝通，具備母語水平的理解和文化意識"
+    },
+    "countries": {
+      "title": "195 個國家",
+      "description": "從全球每個角落獲取即時知識，包含本地上下文和專業知識"
+    },
+    "realtime": {
+      "title": "即時智能",
+      "description": "使用經世界級知識訓練的 AI 即時處理和理解資訊"
+    }
+  },
+  "aiScheduler": {
+    "title": "AI 自動駕駛運行",
+    "description": "設定任務一次，您的 AI 就會自動執行——每小時、每天、每週。無需手動工作，無需監督。",
+    "tabTitle": "AI 自動駕駛",
+    "monthYear": "2025 年 10 月",
+    "weekDays": {
+      "mon": "週一",
+      "tue": "週二",
+      "wed": "週三",
+      "thu": "週四",
+      "fri": "週五",
+      "sat": "週六",
+      "sun": "週日"
+    },
+    "todaysSchedule": "今日排程",
+    "mondayDate": "週一，10 月 20 日",
+    "schedules": {
+      "task1": "獲取夜間訂單",
+      "task2": "更新社群分析",
+      "task3": "生成銷售報告",
+      "task4": "檢查庫存水平",
+      "task5": "發送每日摘要"
+    },
+    "duration": "持續時間",
+    "status": {
+      "done": "完成",
+      "running": "運行中",
+      "scheduled": "已排程"
+    },
+    "totalTasks": "今日總任務",
+    "automatedWorkflows": "個自動化工作流程"
+  },
+  "publicDisplay": {
+    "title": "公開展示",
+    "description": "透過公開儀表板和可嵌入視圖精美地分享您的資料。創建任何人都可以訪問的精美視覺化效果。",
+    "tabTitle": "公開展示",
+    "features": {
+      "feature1Title": "即時儀表板",
+      "feature1Desc": "創建自動更新的即時公開儀表板",
+      "feature2Title": "可嵌入視圖",
+      "feature2Desc": "使用嵌入代碼在任何地方分享您的資料",
+      "feature3Title": "自訂品牌",
+      "feature3Desc": "使用可自訂主題匹配您的品牌"
+    }
+  },
+  "templateGallery": {
+    "title": "今天就開始更聰明的交易",
+    "description": "為加密貨幣和傳統市場預建的策略和追蹤範本",
+    "useTemplate": "使用範本",
+    "viewMarketplace": "查看所有模板",
+    "templates": {
+      "shopify": {
+        "title": "Shopify 銷售儀表板",
+        "description": "自動同步訂單、收入和庫存",
+        "category": "電子商務"
+      },
+      "instagram": {
+        "title": "Instagram 分析",
+        "description": "每日追蹤成長、互動和觸及率",
+        "category": "社群媒體"
+      },
+      "trading": {
+        "title": "交易盈虧追蹤器",
+        "description": "提取錢包或交易所數據並計算盈虧",
+        "category": "財務"
+      },
+      "socialMedia": {
+        "title": "社群媒體報告",
+        "description": "總結 X、IG 和 TikTok 的互動",
+        "category": "行銷"
+      },
+      "clinic": {
+        "title": "診所預約日誌",
+        "description": "管理預約並自動生成摘要",
+        "category": "醫療保健"
+      },
+      "marketing": {
+        "title": "行銷活動概覽",
+        "description": "在一個視圖中結合廣告支出、流量和效能",
+        "category": "行銷"
+      },
+      "email": {
+        "title": "電子郵件活動追蹤器",
+        "description": "自動監控開信率、點擊率和轉換率",
+        "category": "行銷"
+      },
+      "expense": {
+        "title": "費用管理器",
+        "description": "自動分類收據並追蹤業務支出",
+        "category": "財務"
+      },
+      "support": {
+        "title": "客戶支援機器人",
+        "description": "AI 驅動的常見客戶查詢回應",
+        "category": "支援"
+      },
+      "appUsage": {
+        "title": "應用程式使用分析",
+        "description": "追蹤用戶行為和功能採用率",
+        "category": "產品"
+      }
+    }
+  },
+  "comparison": {
+    "badge": "看看差異",
+    "title": "下一代交易智能",
+    "description": "專業交易平台的所有功能。為所有人而建。",
+    "traditionalSheets": "傳統平台",
+    "ryu": "Ryu",
+    "old1": "手動圖表分析",
+    "new1": "AI 驅動的模式識別",
+    "old2": "靜態指標",
+    "new2": "自適應策略建議",
+    "old3": "分散的工具和訂閱",
+    "new3": "全合一平台",
+    "old4": "複雜設定",
+    "new4": "幾分鐘內開始交易",
+    "footer": "感覺直觀且強大——",
+    "footerHighlight": "專為交易者而建"
+  },
+  "pricing": {
+    "title": "免費開始。更聰明地交易。",
+    "description": "只有當您準備好擴展交易時才需要付費。",
+    "free": {
+      "name": "免費",
+      "price": "$0",
+      "period": "永久",
+      "features": [
+        "1 個投資組合追蹤器",
+        "1 個策略範本",
+        "基本交易所連接",
+        "社群支援"
+      ],
+      "cta": "免費開始"
+    },
+    "pro": {
+      "name": "專業版",
+      "price": "$29",
+      "period": "每月",
+      "badge": "最受歡迎",
+      "features": [
+        "無限策略",
+        "所有交易範本",
+        "所有交易所連接器",
+        "AI 市場分析",
+        "24/7 監控",
+        "優先支援"
+      ],
+      "cta": "開始專業版"
+    },
+    "team": {
+      "name": "基金版",
+      "price": "$199",
+      "period": "每月",
+      "features": [
+        "專業版的所有功能",
+        "團隊投資組合",
+        "進階分析",
+        "審計日誌",
+        "專屬支援",
+        "自訂策略"
+      ],
+      "cta": "聯繫銷售"
+    }
+  },
+  "finalCta": {
+    "title": "今天就開始使用 AI 交易",
+    "description": "您的 AI 交易助手已準備就緒——全天候監控市場、分析模式和尋找機會。",
+    "tryTemplate": "試用交易範本",
+    "createNew": "建立新策略",
+    "socialProof": "加入 10,000+ 位使用 AI 驅動洞察的交易者"
+  },
+  "pilot": {
+    "badge": "AI 驅動的智能體建立器",
+    "title": "建立您的客製化智能體",
+    "description": "回答幾個問題，讓 AI 為您的需求設計完美的自動化智能體。",
+    "steps": {
+      "userInfo": "智能體詳情",
+      "userInfoDesc": "告訴我們關於您的智能體及其目標",
+      "features": "智能體能力",
+      "featuresDesc": "定義您的智能體應該能做什麼",
+      "review": "審查並建立",
+      "reviewDesc": "在建立前檢查您的智能體配置"
+    },
+    "fields": {
+      "name": "智能體名稱",
+      "email": "您的電子郵件",
+      "company": "公司/團隊",
+      "useCase": "這個智能體應該幫助您自動化什麼？",
+      "description": "能力描述",
+      "userProvides": "您將向智能體提供什麼數據？",
+      "aiShould": "智能體應該如何處理這些數據？"
+    },
+    "placeholders": {
+      "name": "行銷自動化智能體",
+      "email": "your@email.com",
+      "company": "行銷團隊",
+      "useCase": "描述您想要此智能體自動化的內容（例如：社群媒體發文、潛在客戶豐富化、報告生成）...",
+      "description": "您需要什麼能力？（例如：生成社群媒體貼文、分析客戶回饋）...",
+      "userProvides": "您將提供什麼輸入？（例如：產品描述、客戶評論、網站網址...）",
+      "aiShould": "它應該採取什麼行動？（例如：建立貼文、分析情緒、生成報告、發送通知...）"
+    },
+    "featureTitle": "能力 #{number}",
+    "addFeature": "新增另一個能力",
+    "backToMyAgents": "返回我的智能體",
+    "back": "返回",
+    "next": "下一步",
+    "submit": "建立智能體",
+    "submitSuccess": "成功！您的智能體已建立並準備就緒。正在設定您的工作區...",
+    "footerNote": "您的智能體將根據您的規格配置，並準備好自動化您的工作流程。",
+    "review": {
+      "userInfo": "智能體配置",
+      "features": "智能體能力"
+    }
+  },
+  "templatesMarketplace": {
+    "hero": {
+      "title": "為您的工作流程打造的自動化範本",
+      "description": "從經過驗證的範本開始。客製化以符合您的需求。幾分鐘內部署完成。",
+      "searchPlaceholder": "搜尋範本...（例如：「社群媒體排程」、「潛在客戶擴充」）",
+      "statsTemplates": "50+ 範本",
+      "statsIntegrations": "20+ 整合",
+      "statsUsage": "已建立 10,000+ 自動化"
+    },
+    "filters": {
+      "title": "篩選",
+      "clearAll": "清除全部",
+      "showingResults": "顯示 {total} 個範本中的 {count} 個",
+      "categories": {
+        "title": "分類",
+        "all": "所有範本"
+      },
+      "useCases": {
+        "title": "使用情境",
+        "dataCollection": "資料收集",
+        "contentGeneration": "內容生成",
+        "apiIntegration": "API 整合",
+        "reportingAnalytics": "報告與分析",
+        "automationScheduling": "自動化與排程",
+        "dataEnrichment": "資料擴充",
+        "notificationAlerts": "通知與提醒",
+        "syncMigration": "同步與遷移",
+        "sentimentAnalysis": "情緒分析",
+        "webResearch": "網路研究"
+      },
+      "integrations": {
+        "title": "整合",
+        "showMore": "顯示更多..."
+      },
+      "difficulty": {
+        "title": "難度等級",
+        "beginner": "初學者",
+        "intermediate": "中級",
+        "advanced": "進階"
+      },
+      "aiFeatures": {
+        "title": "AI 功能",
+        "textGeneration": "文字生成",
+        "imageGeneration": "圖片生成",
+        "videoGeneration": "影片生成",
+        "webResearch": "網路研究",
+        "sentimentAnalysis": "情緒分析",
+        "dataExtraction": "資料提取",
+        "contentSummarization": "內容摘要",
+        "languageTranslation": "語言翻譯"
+      },
+      "pricingTier": {
+        "title": "方案等級",
+        "free": "免費方案",
+        "starter": "入門方案",
+        "pro": "專業方案",
+        "enterprise": "企業方案"
+      },
+      "sortBy": {
+        "title": "排序方式",
+        "popular": "最受歡迎",
+        "recent": "最近新增",
+        "alphabetical": "字母順序（A-Z）",
+        "rating": "評分最高"
+      }
+    },
+    "templateCard": {
+      "uses": "{count} 次使用",
+      "popular": "熱門",
+      "useTemplate": "使用範本",
+      "viewDetails": "查看詳情",
+      "moreTags": "+{count} 個",
+      "badges": {
+        "new": "新",
+        "featured": "精選",
+        "trending": "趨勢",
+        "updated": "已更新",
+        "popular": "熱門"
+      },
+      "difficulty": {
+        "beginner": "初學者",
+        "intermediate": "中級",
+        "advanced": "進階"
+      },
+      "setupTime": "{minutes} 分鐘設定"
+    },
+    "templateDetail": {
+      "closeButton": "關閉",
+      "previousTemplate": "上一個",
+      "nextTemplate": "下一個",
+      "useTemplate": "使用此範本",
+      "previewDemo": "預覽示範",
+      "forkCustomize": "複製並自訂",
+      "nameDialog": {
+        "title": "為您的代理命名",
+        "description": "為您的新代理選擇一個名稱。您以後可以隨時更改它。",
+        "label": "代理名稱",
+        "placeholder": "例如：社交媒體管理員",
+        "defaultHint": "預設：{templateTitle}",
+        "cancel": "取消",
+        "create": "創建代理",
+        "creating": "創建中...",
+        "errorRequired": "請輸入代理的名稱。"
+      },
+      "tabs": {
+        "overview": "概覽",
+        "features": "功能",
+        "setup": "設定",
+        "faq": "常見問題"
+      },
+      "sections": {
+        "whatItDoes": "此範本的功能",
+        "keyFeatures": "主要功能",
+        "howItWorks": "運作方式",
+        "included": "包含內容",
+        "integrations": "所需整合",
+        "aiFeatures": "使用的 AI 功能",
+        "difficulty": "難度等級",
+        "setupTime": "預估設定時間",
+        "pricingTier": "所需方案",
+        "prerequisites": "前置需求",
+        "configuration": "配置步驟",
+        "similarTemplates": "類似範本"
+      },
+      "stats": {
+        "uses": "{count} 次使用",
+        "rating": "{rating} 分（滿分 5 分）",
+        "reviews": "{count} 則評論",
+        "created": "建立時間：{date}",
+        "updated": "最後更新：{date}",
+        "version": "版本 {version}"
+      },
+      "creator": {
+        "by": "由",
+        "officialTemplate": "Ryu 官方範本"
+      },
+      "included": {
+        "agents": "AI 代理設定",
+        "actions": "動作序列",
+        "data": "範例資料",
+        "docs": "文件",
+        "support": "支援資源"
+      }
+    },
+    "featured": {
+      "title": "精選範本",
+      "description": "精心挑選的範本，幫助您快速開始"
+    },
+    "categorySpotlight": {
+      "viewAll": "查看所有 {category} 範本 →"
+    },
+    "gettingStarted": {
+      "title": "如何使用範本",
+      "description": "使用我們即用型範本，幾分鐘內即可啟動並運行",
+      "steps": {
+        "step1": {
+          "title": "瀏覽與尋找",
+          "description": "探索我們的範本庫或搜尋您需要的內容"
+        },
+        "step2": {
+          "title": "預覽與學習",
+          "description": "查看範本詳情、功能和設定要求"
+        },
+        "step3": {
+          "title": "使用與自訂",
+          "description": "將範本新增到您的工作區並根據需求自訂"
+        },
+        "step4": {
+          "title": "自動化與擴展",
+          "description": "讓 AI 處理工作，您專注於策略"
+        }
+      },
+      "ctaButton": "瀏覽所有範本"
+    },
+    "noResults": {
+      "title": "找不到範本",
+      "description": "請嘗試調整您的篩選條件或搜尋詞",
+      "suggestions": "您可能感興趣：",
+      "clearFilters": "清除所有篩選",
+      "requestTemplate": "申請自訂範本"
+    },
+    "auth": {
+      "signUpToUse": "註冊以使用此範本",
+      "loginToUse": "登入以使用此範本",
+      "explorePilot": "或先探索我們的試用版"
+    },
+    "integration": {
+      "required": "必需",
+      "optional": "選用"
+    }
+  },
+  "marketplaceHeader": {
+    "home": "首頁",
+    "trade": "交易",
+    "marketplace": "市集",
+    "explorer": "探索"
+  },
+  "myAgents": {
+    "title": "我的智能體",
+    "description": "管理您的 AI 自動化智能體。每個智能體包含工作區、操作和工作流程。",
+    "createAgent": "建立新智能體",
+    "confirmDelete": "確定要刪除此智能體嗎？此操作無法復原。",
+    "lastActive": "最後活動",
+    "workspaces": "工作區",
+    "totalActions": "總操作數",
+    "thisMonth": "本月",
+    "stats": {
+      "activeAgents": "活躍智能體",
+      "totalWorkspaces": "總工作區數",
+      "totalActions": "總操作數"
+    },
+    "status": {
+      "active": "活躍",
+      "paused": "已暫停"
+    },
+    "empty": {
+      "title": "尚無智能體",
+      "description": "建立您的第一個智能體以開始自動化工作流程。智能體幫助組織您的工作區和自動化任務。",
+      "createFirst": "建立第一個智能體"
+    },
+    "createModal": {
+      "title": "建立新智能體",
+      "subtitle": "智能體幫助您按專案或業務功能組織工作區和自動化工作流程。",
+      "icon": "圖示",
+      "name": "智能體名稱",
+      "namePlaceholder": "例如：內容行銷中心",
+      "description": "描述",
+      "descriptionPlaceholder": "描述此智能體的用途...",
+      "cancel": "取消",
+      "create": "建立智能體"
+    },
+    "detail": {
+      "status": "狀態",
+      "workspaces": "工作區",
+      "actionsThisMonth": "本月操作數",
+      "apiCalls": "API 呼叫",
+      "metrics": "指標",
+      "totalActions": "總執行操作數",
+      "storageUsed": "已使用儲存空間",
+      "created": "建立時間",
+      "lastActive": "最後活動",
+      "settings": "設定",
+      "viewWorkspaces": "查看工作區"
+    }
+  },
+  "tradePage": {
+    "title": "交易",
+    "titleHighlight": "儀表板",
+    "description": "建立和管理您的 AI 交易智能體。部署自動化交易策略，設定自訂參數，並即時監控其表現。",
+    "createAgent": "建立智能體",
+    "templates": "模板",
+    "yourAgents": "您的交易智能體",
+    "noAgents": "尚無智能體",
+    "noAgentsDescription": "建立您的第一個 AI 交易智能體以開始自動化交易",
+    "createFirstAgent": "建立第一個智能體",
+    "confirmDelete": "您確定要刪除此智能體嗎？",
+    "statusActive": "運作中",
+    "statusPaused": "已暫停",
+    "deposit": "存款",
+    "pnl": "損益",
+    "assets": "資產",
+    "createNewAgent": "建立新的交易智能體",
+    "createAgentDescription": "按照以下步驟設定您的自動化交易智能體",
+    "step1Title": "步驟 1：命名您的智能體",
+    "step1Description": "為您的交易智能體取一個好記的名稱",
+    "agentNamePlaceholder": "例如：比特幣動量交易者",
+    "step2Title": "步驟 2：選擇策略",
+    "step2Description": "從市場選擇預建模板或建立自訂策略",
+    "useTemplate": "使用模板",
+    "customPrompt": "自訂策略",
+    "customPromptPlaceholder": "詳細描述您的交易策略... 例如：「當 RSI < 30 且 MACD 上穿信號線時買入 BTC，當 RSI > 70 或利潤達到 5% 時賣出」",
+    "step3Title": "步驟 3：選擇資產",
+    "step3Description": "選擇您的智能體將交易哪些加密貨幣",
+    "step4Title": "步驟 4：設定初始存款",
+    "step4Description": "指定您的交易智能體的初始資金",
+    "initialDeposit": "初始存款",
+    "summary": "摘要",
+    "agentName": "智能體名稱",
+    "template": "模板",
+    "customStrategy": "自訂策略",
+    "previous": "上一步",
+    "next": "下一步",
+    "stepIndicator": "步驟 {current} / {total}",
+    "creating": "建立中...",
+    "purchasedTemplates": "已購買的模板",
+    "purchasedTemplatesDescription": "選擇一個模板以建立新的交易智能體",
+    "noTemplates": "尚無模板",
+    "noTemplatesDescription": "瀏覽市場以購買交易策略模板",
+    "browseMarketplace": "瀏覽市場"
+  },
+  "explorerPage": {
+    "title": "交易",
+    "titleHighlight": "探索",
+    "description": "探索生態系統：發現排行榜上表現最佳的智能體、瀏覽運作中的交易智能體、監控即時倉位，並找到完美的模板開始您的交易之旅。",
+    "viewAll": "查看全部",
+    "leaderboard": {
+      "title": "排行榜",
+      "description": "依損益排名的頂尖交易智能體",
+      "trades": "交易次數",
+      "winRate": "勝率",
+      "volume": "交易量"
+    },
+    "agents": {
+      "title": "運作中的智能體",
+      "description": "所有運作中的交易智能體",
+      "active": "運作中",
+      "paused": "已暫停",
+      "deposit": "存款",
+      "pnl": "損益"
+    },
+    "positions": {
+      "title": "活躍倉位",
+      "description": "即時交易倉位",
+      "entry": "進場",
+      "current": "當前",
+      "pnl": "損益"
+    },
+    "templates": {
+      "title": "模板",
+      "description": "可購買的預建交易策略",
+      "agents": "智能體",
+      "price": "價格"
+    }
+  }
+}

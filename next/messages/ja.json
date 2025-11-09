@@ -1,0 +1,1036 @@
+{
+  "metadata": {
+    "title": "Ryu - AI トレーディングエージェント & ポジションマーケットプレイス",
+    "description": "Hyperliquidで AIトレーディングエージェントを構築。プロンプトで戦略を作成し、AIが推論したレバレッジポジションを取引し、トレーディングロジックで収益を得ましょう。ポジションは消滅せず、取引可能な機会になります。"
+  },
+  "header": {
+    "logo": "Ryu",
+    "menu": {
+      "features": "機能",
+      "howItWorks": "仕組み",
+      "templates": "テンプレート",
+      "comparison": "比較",
+      "pricing": "価格",
+      "myAgents": "マイエージェント",
+      "pilot": "パイロット",
+      "docs": "ドキュメント"
+    },
+    "signIn": "ログイン",
+    "getStarted": "始める",
+    "menuTitle": "メニュー"
+  },
+  "shaderHeader": {
+    "howItWorks": "仕組み",
+    "strategies": "戦略",
+    "login": "ログイン"
+  },
+  "shaderHero": {
+    "badge": "AI搭載トレーディングプラットフォーム",
+    "title": {
+      "intelligent": "インテリジェント",
+      "trading": "トレーディング",
+      "madeSimple": "をシンプルに"
+    },
+    "description": "高度なAIアルゴリズムの力を活用して、トレーディング戦略を自動化しましょう。リアルタイム市場分析、予測モデル、市場状況に適応するインテリジェント実行。",
+    "viewExplorer": "エクスプローラーを見る",
+    "startTrading": "トレーディング開始"
+  },
+  "howItWorksSection": {
+    "title": "AIトレーディングを",
+    "titleHighlight": "シンプルに",
+    "subtitle": "たった3つの簡単なステップで自動トレーディングの旅を始めましょう",
+    "step1": {
+      "title": "戦略をプロンプト",
+      "description": "自然言語でトレーディング戦略を説明するだけです。AIがあなたの目標を理解し、カスタマイズされたトレーディングプランを作成します。",
+      "news1": "市場のボラティリティが上昇する見込み",
+      "news2": "テクノロジー株が強い勢いを見せる",
+      "news3": "ビットコインが重要な抵抗線を突破"
+    },
+    "step2": {
+      "title": "資産を選択",
+      "description": "幅広い暗号通貨、株式、外国為替、商品から選択します。最もよく知っているものを取引しましょう。",
+      "assets": "BTC、ETH、AAPL +12種類以上",
+      "tag1": "暗号通貨",
+      "tag2": "株式"
+    },
+    "step3": {
+      "title": "トレーディング開始",
+      "description": "資金を入金してAIに任せましょう。リアルタイムモニタリングで戦略が自動的に実行されるのを見守ります。",
+      "activity1": "BTC購入 @ $42,150",
+      "activity2": "ETH保有 @ $2,240",
+      "activity3": "AIトレーディング有効"
+    },
+    "cta": "今すぐ始める"
+  },
+  "marketplaceSection": {
+    "title": "AI戦略",
+    "titleHighlight": "マーケットプレイス",
+    "subtitle": "エキスパートが作成したプレミアムAI搭載トレーディング戦略とポジションを閲覧",
+    "tabAgents": "AIエージェント",
+    "tabPositions": "AIポジション",
+    "get": "取得",
+    "viewAll": "すべてのマーケットプレイスを見る",
+    "fixedPrice": "固定価格",
+    "currentBid": "現在の入札",
+    "viewDetails": "詳細を見る",
+    "bids": "入札",
+    "endsIn": "終了まで",
+    "currentPNL": "現在の損益",
+    "auction": "オークション"
+  },
+  "marketplacePage": {
+    "backToHome": "ホーム",
+    "title": "AI戦略マーケットプレイス",
+    "agentsDescription": "プレミアムAIトレーディングエージェントを発見して購入しましょう—24時間365日自律的にトレーディング戦略を実行するインテリジェントボットです。高度なアルゴリズムと機械学習で駆動され、これらのエージェントはリアルタイムで市場を分析し、リスクを管理し、自動的に取引を実行して、すべての人に機関レベルのトレーディングをもたらします。",
+    "positionsDescription": "プレミアムAIトレーディングポジションを発見して購入しましょう—エキスパートAIアルゴリズムによって作成された事前分析済みの取引設定です。各ポジションには正確なエントリー価格、ターゲット価格、リスク管理レベルが含まれており、透明な根拠とパフォーマンス追跡を備えたプロフェッショナルグレードのトレーディングシグナルを提供します。",
+    "searchPlaceholder": "{type}を検索...",
+    "searchAgentsPlaceholder": "エージェントを検索...",
+    "searchPositionsPlaceholder": "ポジションを検索...",
+    "all": "すべて",
+    "fixedPrice": "固定価格",
+    "auction": "オークション",
+    "allAssets": "すべての資産",
+    "assets": "資産",
+    "sortTrending": "トレンド",
+    "sortPriceLow": "価格: 低い順",
+    "sortPriceHigh": "価格: 高い順",
+    "sortRating": "評価の高い順",
+    "sortNewest": "新しい順",
+    "noResults": "{type}が見つかりません",
+    "tryAdjusting": "フィルターまたは検索語を調整してください",
+    "get": "取得",
+    "currentBid": "現在の入札",
+    "viewDetails": "詳細を見る",
+    "bids": "入札",
+    "endsIn": "終了まで",
+    "currentPNL": "現在の損益",
+    "agents": "エージェント",
+    "positions": "ポジション"
+  },
+  "agentPage": {
+    "backToMarketplace": "マーケットプレイスに戻る",
+    "notFound": "エージェントが見つかりません",
+    "goBack": "マーケットプレイスに戻る",
+    "pageTitle": "AIトレーディング",
+    "pageTitleHighlight": "エージェント",
+    "pageDescription": "AIトレーディングエージェントは、24時間365日自律的にトレーディング戦略を実行するインテリジェントボットです。高度なアルゴリズムと機械学習で駆動され、これらのエージェントはリアルタイムで市場を分析し、リスクを管理し、自動的に取引を実行して、すべての人に機関レベルのトレーディングをもたらします。",
+    "category": "カテゴリー",
+    "users": "ユーザー",
+    "rating": "評価",
+    "purchase": "購入価格",
+    "overview": "概要",
+    "features": "機能",
+    "requirements": "要件",
+    "changelog": "変更履歴",
+    "version": "バージョン",
+    "whatYouGet": "提供内容",
+    "keyFeatures": "主な機能",
+    "systemRequirements": "システム要件",
+    "updateHistory": "更新履歴",
+    "tags": "タグ"
+  },
+  "positionPage": {
+    "backToMarketplace": "マーケットプレイスに戻る",
+    "notFound": "ポジションが見つかりません",
+    "goBack": "マーケットプレイスに戻る",
+    "pageTitle": "AIトレーディング",
+    "pageTitleHighlight": "ポジション",
+    "pageDescription": "AIトレーディングポジションは、エキスパートAIアルゴリズムによって作成された事前分析済みの取引設定です。各ポジションには正確なエントリー価格、ターゲット価格、リスク管理レベルが含まれており、透明な根拠とパフォーマンス追跡を備えたプロフェッショナルグレードのトレーディングシグナルを提供します。",
+    "positionDetails": "ポジション詳細",
+    "currentPNL": "現在の損益",
+    "entryPrice": "エントリー価格",
+    "targetPrice": "ターゲット価格",
+    "liquidationPrice": "清算価格",
+    "riskReward": "リスク/リワード",
+    "duration": "期間",
+    "contractValue": "契約価値",
+    "placedDate": "配置日",
+    "aiReasoning": "AI推論",
+    "whyThisPosition": "このポジションを選んだ理由",
+    "pnlChart": "損益チャート",
+    "pnlOverTime": "時間経過による損益",
+    "breakEven": "損益分岐点",
+    "target": "ターゲット",
+    "liquidation": "清算",
+    "purchaseInfo": "購入情報",
+    "fixedPrice": "固定価格",
+    "buyNow": "今すぐ購入",
+    "currentBid": "現在の入札",
+    "minBid": "最低入札額",
+    "auctionEnds": "オークション終了",
+    "totalBids": "合計入札数",
+    "placeBid": "入札する",
+    "bidAmount": "入札額",
+    "yourBid": "入札額 ($)",
+    "cancel": "キャンセル",
+    "confirmBid": "入札確認",
+    "bidPlaced": "入札完了！",
+    "bidSuccess": "入札が正常に完了しました",
+    "okGotIt": "了解",
+    "timeLeft": "残り時間",
+    "days": "日",
+    "hours": "時間",
+    "minutes": "分"
+  },
+  "hero": {
+    "badge": "Hyperliquid Perps • AIエージェント • ポジションマーケットプレイス",
+    "title": {
+      "line1": "AIトレーディングエージェントを構築。",
+      "line2": "ポジションを資産として取引。"
+    },
+    "description": "Hyperliquid L1でプロンプトによってカスタムトレーディングエージェントを作成します。完全な透明性でAIが推論したレバレッジポジションを売買します。あなたのストップロスが他の人のエントリーになります—ポジションは消滅せず、進化します。",
+    "getStarted": "始める",
+    "viewTemplates": "テンプレートを見る",
+    "modal": {
+      "keyFeatures": "主な機能",
+      "feature1": "プロンプトでAIエージェントを構築",
+      "feature2": "AIが推論したポジションを取引",
+      "feature3": "トレーディングロジックで収益を得る"
+    },
+    "aiThinkingSteps": {
+      "step1": "エージェント作成",
+      "step1Desc": "ユーザープロンプト: '15分タイムフレームでBTC perps用のモメンタムスキャルパーを構築'",
+      "step2": "AI戦略設計",
+      "step2Desc": "AIが完全な戦略ロジックを生成: エントリールール、ポジションサイズ、リスクパラメータ",
+      "step3": "Hyperliquidにデプロイ",
+      "step3Desc": "エージェントがHyperliquid L1に接続し、無期限先物市場を監視",
+      "step4": "ポジションエントリー",
+      "step4Desc": "エージェントがモメンタムブレイクアウトに基づいて$43,200で10倍BTC-PERPロングポジションを開始",
+      "step5": "推論の文書化",
+      "step5Desc": "完全なAIロジックを記録: 'RSI 68、出来高急増+140%、ブレイクアウト確認'",
+      "step6": "ストップロスヒット",
+      "step6Desc": "価格が$42,100に下落、ストップ発動。-2.5%の損失でポジション終了",
+      "step7": "ポジション上場",
+      "step7Desc": "ポジションがすべてのAI推論とコンテキストとともに取引可能な資産になります",
+      "step8": "市場発見",
+      "step8Desc": "他のトレーダーが閲覧: '割引エントリー、元のテーゼは依然として有効'",
+      "step9": "ポジション売却",
+      "step9Desc": "新しいトレーダーが-15%割引でポジションを購入し、10倍レバレッジを継承",
+      "step10": "取引継続",
+      "step10Desc": "ポジション復活: BTCが$44,500にリバウンド、新しい保有者が+8%の利益",
+      "step11": "クリエイター収益",
+      "step11Desc": "元のAIクリエイターが継続利益の5%ロイヤルティを受け取る",
+      "step12": "サイクル繰り返し",
+      "step12Desc": "ポジションを再販売でき、時間の経過とともにAI戦略の評判を構築"
+    }
+  },
+  "aiCapabilities": {
+    "badge": "3つの革命的機能",
+    "title": "構築。取引。収益。",
+    "description": "プロンプトでAIエージェントを作成します。レバレッジポジションを資産として取引します。他の人があなたの取引を継続するときにロイヤルティを獲得します。無期限先物の新しいプリミティブ。",
+    "tabTitle": "AI推論を見る",
+    "advancedReasoning": {
+      "title": "🤖 AIエージェントを構築",
+      "description": "自然言語プロンプトを使用してHyperliquidでカスタム戦略を作成",
+      "task": "プロンプト",
+      "taskText": "ETH perps用の平均回帰ボットを構築",
+      "reasoningTitle": "AI生成:",
+      "step1": "エントリーロジック: 価格が20期間MA下2σ",
+      "step2": "ポジションサイズ: 5倍レバレッジ、ポートフォリオ最大20%",
+      "step3": "終了ルール: 平均回帰または3%ストップロス",
+      "result": "ステータス:",
+      "resultValue": "エージェントデプロイ済み ✓ ライブトレーディング"
+    },
+    "imageGeneration": {
+      "title": "💰 AIエージェントマーケットプレイス",
+      "description": "トレーディングエージェントを販売用にリストします。他の人があなたの戦略を使用するために料金を支払います。",
+      "inputData": "あなたの戦略:",
+      "product": "名前:",
+      "productValue": "Breakout Hunter V2",
+      "style": "価格:",
+      "styleValue": "$49/月",
+      "color": "パフォーマンス:",
+      "colorValue": "+127% (6ヶ月)",
+      "generatedImage": "マーケットプレイスに掲載",
+      "imageSaved": "ロイヤルティ獲得",
+      "done": "✓ アクティブ"
+    },
+    "videoGeneration": {
+      "title": "📊 ポジションを資産として取引",
+      "description": "他の人が終了したレバレッジポジションを購入します。AIロジックとレバレッジを継承します。",
+      "templateData": "利用可能なポジション:",
+      "template": "エントリー:",
+      "templateValue": "SOL 20倍ロング @ $125",
+      "duration": "割引:",
+      "durationValue": "エントリーから-15%",
+      "dataSource": "AI推論:",
+      "dataSourceValue": "完全な戦略コンテキスト",
+      "generatedVideo": "ポジション購入完了",
+      "videoSaved": "レバレッジ継承",
+      "done": "✓ トレーディング中"
+    },
+    "apiExecution": {
+      "title": "取引所API統合",
+      "description": "任意の取引所に接続し、戦略を使用して取引を実行",
+      "spreadsheetData": "トレーディング戦略:",
+      "email": "資産:",
+      "order": "アクション:",
+      "status": "ステータス:",
+      "statusValue": "実行済み",
+      "apiCallTriggered": "取引実行",
+      "response": "✓ レスポンス: 注文約定",
+      "emailSent": "アラート送信"
+    },
+    "autonomousScheduling": {
+      "title": "24時間365日市場監視",
+      "description": "一度設定すれば、AIが自動的に市場を監視します—機会を逃しません。監督不要。",
+      "daily": "5分ごと",
+      "dailyTask": "取引セットアップをスキャン",
+      "completed": "完了",
+      "everyThreeHours": "1時間ごと",
+      "socialTask": "ポートフォリオメトリクス更新",
+      "runningNow": "現在実行中",
+      "weekly": "毎日午前9時",
+      "weeklyTask": "パフォーマンスレポート生成",
+      "scheduled": "スケジュール済み"
+    },
+    "cta": "すべての機能がトレーディングワークスペースでシームレスに連携",
+    "ctaButton": "AIの動作を見る"
+  },
+  "easyInterface": {
+    "badge": "強力な機能",
+    "title": {
+      "line1": "必要なすべての機能。",
+      "line2": "すべて一箇所に。"
+    },
+    "tabTitle": "3つの作業方法",
+    "description": "自然言語チャット、戦略ビルダー、AI市場分析、テクニカル指標、取引所統合、自動実行—すべてがシームレスに連携します。",
+    "methods": {
+      "chat": {
+        "title": "トレーディングAIとチャット",
+        "description": "平易な日本語で質問するだけです。AIアシスタントが市場を分析し、即座に戦略を実行します。",
+        "userMessage": "4Hで強気ダイバージェンスを示すすべての資産を見つけて、エントリーレベルでアラート",
+        "aiResponse1": "✓ 247資産をスキャン",
+        "aiResponse2": "✓ 12の強気セットアップを発見",
+        "aiResponse3": "✓ エントリー/エグジットレベルを計算",
+        "aiResponse4": "リスクメトリクスとともにダッシュボードにすべてのセットアップを記録"
+      },
+      "form": {
+        "title": "戦略を設定",
+        "description": "パラメータを一度設定します。AIがバックグラウンドで分析と実行を処理します。",
+        "taskLabel": "戦略タイプ",
+        "taskValue": "スイングトレーディング - 暗号通貨",
+        "toneLabel": "リスクレベル",
+        "toneValue": "中程度",
+        "audienceLabel": "タイムフレーム",
+        "audienceValue": "4H - 日次",
+        "executeButton": "戦略を有効化",
+        "resultsNote": "シグナルが自動的にダッシュボードに表示されます"
+      },
+      "actions": {
+        "title": "ワンクリックトレーディングアクション",
+        "description": "一般的なシナリオ用の事前構築された戦略。ボタンをクリックしてAIが市場を分析するのを見守ります。",
+        "action1Title": "ポートフォリオリバランス",
+        "action1Desc": "ターゲットに基づいて保有資産を最適化",
+        "action2Title": "リスクチェック",
+        "action2Desc": "AIがエクスポージャーを分析し調整を提案",
+        "action3Title": "パターンスキャナー",
+        "action3Desc": "市場全体でチャートパターンを検索"
+      }
+    },
+    "benefits": {
+      "instant": {
+        "title": "即座の実行",
+        "description": "AIがリクエストを即座に処理し、リアルタイムの進捗を表示します"
+      },
+      "transparency": {
+        "title": "完全な透明性",
+        "description": "すべての取引決定とシグナルがAI推論とともに文書化されます"
+      },
+      "noLearning": {
+        "title": "学習曲線なし",
+        "description": "期待通りに正確に動作 - シンプル、直感的、強力"
+      }
+    },
+    "ctaButton": "無料トライアル - クレジットカード不要",
+    "ctaSubtext": "テンプレートから始めるか、ゼロから構築"
+  },
+  "howItWorks": {
+    "title": "インテリジェンスの魔法",
+    "description": "すべてのトレーディング決定は簡単な3ステッププロセスに従います—各段階で完全な透明性",
+    "steps": {
+      "step1": {
+        "number": "01",
+        "title": "戦略を定義",
+        "description": "トレーディングパラメータと設定を設定—コーディング不要",
+        "accountName": "資産ペア",
+        "dateRange": "タイムフレーム",
+        "dateRangeValue": "4H - 日次"
+      },
+      "step2": {
+        "number": "02",
+        "title": "AI分析",
+        "description": "AIが市場を監視し、パターンを分析し、シグナルを自動的に計算します",
+        "processing": "処理中...",
+        "callingApi": "市場データを分析"
+      },
+      "step3": {
+        "number": "03",
+        "title": "レビューと実行",
+        "description": "AIの分析と推論を確認し、取引決定を承認または調整します",
+        "input": "市場データ",
+        "aiReasoning": "AI分析",
+        "result": "取引シグナル"
+      }
+    }
+  },
+  "useCases": {
+    "title": "実際のAIトレーディングインテリジェンスを見る",
+    "description": "実際のトレーダーからの実際のトレーディングシナリオ。AIが市場を分析し、決定を下し、完全な透明性ですべてを文書化するのを見守ります。",
+    "cases": {
+      "trading": {
+        "title": "AIトレーディング決定",
+        "description": "市場分析、取引実行、推論文書化",
+        "capabilities": [
+          "API実行",
+          "AI調査",
+          "意思決定"
+        ],
+        "form": {
+          "symbol": "シンボル",
+          "symbolValue": "BTC/USD",
+          "strategy": "戦略",
+          "strategyValue": "モメンタム",
+          "risk": "リスク",
+          "riskValue": "中"
+        },
+        "rows": {
+          "row1Data": "BTC/USD @ $43,250",
+          "row1Reasoning": "価格が20日MA ↑ をクロス、RSI: 58",
+          "row2Data": "出来高: 2.3B (平均120%)",
+          "row2Reasoning": "機関買い検出",
+          "row3Data": "成行でBTC 0.1を購入",
+          "row3Reasoning": "3つの指標でエントリーシグナル確認",
+          "row4Data": "実行済み ✓ エントリー: $43,250",
+          "row4Reasoning": "Binance APIを介して1.2秒で注文約定",
+          "row5Data": "ストップロス: $41,800",
+          "row5Reasoning": "エントリーから3%下、リスク許容度と一致"
+        }
+      },
+      "imageGen": {
+        "title": "💰 AIエージェントを販売",
+        "description": "マーケットプレイスにトレーディングエージェントをリストし、サブスクリプション収益を得る",
+        "capabilities": [
+          "エージェントマーケットプレイス",
+          "収益分配",
+          "評判構築"
+        ],
+        "form": {
+          "type": "エージェント",
+          "typeValue": "Breakout Hunter Pro",
+          "style": "価格",
+          "styleValue": "$49/月",
+          "size": "パフォーマンス",
+          "sizeValue": "+156% (6ヶ月)"
+        },
+        "rows": {
+          "row1Data": "マーケットプレイスにエージェント掲載",
+          "row1Reasoning": "完全なパフォーマンス履歴とバックテストとともに公開",
+          "row2Data": "初週で12人のサブスクライバー",
+          "row2Reasoning": "モメンタム戦略への強い需要、注目のリスティング",
+          "row3Data": "月収: $588",
+          "row3Reasoning": "12人のサブスクライバー × $49/月 = $588 経常収益",
+          "row4Data": "継続ロイヤルティ: +$127",
+          "row4Reasoning": "今月の3件の継続取引に対する5%ロイヤルティ",
+          "row5Data": "総収益: $715/月",
+          "row5Reasoning": "トレーディングロジック + ロイヤルティからの受動的収入"
+        }
+      },
+      "research": {
+        "title": "📈 継続ポジションを購入",
+        "description": "他の人が終了したAI推論ポジションを閲覧します。完全なコンテキストで割引エントリーを取得します。",
+        "capabilities": [
+          "ポジションマーケットプレイス",
+          "割引エントリー",
+          "AIコンテキスト"
+        ],
+        "form": {
+          "topic": "ポジション",
+          "topicValue": "BTC 10倍ロング",
+          "sources": "エントリー価格",
+          "sourcesValue": "$43,200",
+          "depth": "割引",
+          "depthValue": "-15%"
+        },
+        "rows": {
+          "row1Data": "元のエントリー: $43,200 (10倍)",
+          "row1Reasoning": "AI: モメンタムブレイクアウト、RSI 68、出来高急増+140%",
+          "row2Data": "$42,100でストップロスヒット (-2.5%)",
+          "row2Reasoning": "元のトレーダーが終了、ポジション現在利用可能",
+          "row3Data": "あなたのエントリー: $36,720 (-15%)",
+          "row3Reasoning": "割引エントリーはリスクを反映、10倍レバレッジを継承",
+          "row4Data": "BTCが$44,500にリバウンド",
+          "row4Reasoning": "元のAIテーゼが正しいと証明、トレンド継続",
+          "row5Data": "あなたの利益: +21.2% ($7,780)",
+          "row5Reasoning": "元のクリエイターが5%ロイヤルティ受領 ($389)。ウィンウィン。"
+        }
+      }
+    },
+    "workflowInput": "ワークフロー入力",
+    "aiReasoningInCells": "セルのAI推論",
+    "live": "ライブ",
+    "data": "データ",
+    "aiReasoningColumn": "AI推論",
+    "completedWorkflow": "AI推論が文書化された完全なワークフロー"
+  },
+  "apiConnections": {
+    "title": "すべての取引所に接続",
+    "description": "トレーディングハブがすべての主要取引所に接続します。1つの統合プラットフォームからポートフォリオを同期し、取引を実行し、市場を監視します。",
+    "tabTitle": "取引所統合",
+    "moreComing": "そして50以上の取引所統合が近日公開"
+  },
+  "globalIntelligence": {
+    "title": "グローバル市場インテリジェンス",
+    "description": "すべてのタイムゾーンで暗号通貨、株式、外国為替、商品を監視するAI搭載市場インテリジェンス",
+    "tabTitle": "グローバル市場",
+    "languages": {
+      "title": "すべての主要市場",
+      "description": "統合分析と実行で暗号通貨、株式、外国為替、商品を取引"
+    },
+    "countries": {
+      "title": "24時間365日監視",
+      "description": "24時間市場を監視するAIで機会を逃しません"
+    },
+    "realtime": {
+      "title": "リアルタイム分析",
+      "description": "テクニカルおよびファンダメンタル分析でトレーニングされたAIで市場データを即座に処理"
+    }
+  },
+  "aiScheduler": {
+    "title": "AI自動トレーディング",
+    "description": "戦略を一度設定すれば、AIが自動的に24時間365日監視して取引します。手動作業なし、監督不要。",
+    "tabTitle": "AI自動操縦",
+    "monthYear": "2025年10月",
+    "weekDays": {
+      "mon": "月",
+      "tue": "火",
+      "wed": "水",
+      "thu": "木",
+      "fri": "金",
+      "sat": "土",
+      "sun": "日"
+    },
+    "todaysSchedule": "今日のスケジュール",
+    "mondayDate": "10月20日月曜日",
+    "schedules": {
+      "task1": "取引セットアップをスキャン",
+      "task2": "ポートフォリオメトリクス更新",
+      "task3": "市場センチメント分析",
+      "task4": "リスクエクスポージャー確認",
+      "task5": "パフォーマンスサマリー送信"
+    },
+    "duration": "期間",
+    "status": {
+      "done": "完了",
+      "running": "実行中",
+      "scheduled": "スケジュール済み"
+    },
+    "totalTasks": "今日の総タスク",
+    "automatedWorkflows": "自動ワークフロー"
+  },
+  "publicDisplay": {
+    "title": "公開表示",
+    "description": "公開ダッシュボードと埋め込み可能なビューでデータを美しく共有します。誰でもアクセスできる素晴らしいビジュアライゼーションを作成します。",
+    "tabTitle": "公開表示",
+    "features": {
+      "feature1Title": "ライブダッシュボード",
+      "feature1Desc": "自動的に更新されるリアルタイム公開ダッシュボードを作成",
+      "feature2Title": "埋め込み可能なビュー",
+      "feature2Desc": "埋め込みコードでどこでもデータを共有",
+      "feature3Title": "カスタムブランディング",
+      "feature3Desc": "カスタマイズ可能なテーマでブランドにマッチ"
+    }
+  },
+  "templateGallery": {
+    "title": "AIエージェント & ポジションマーケットプレイス",
+    "description": "販売用のAIトレーディングエージェントを閲覧します。割引価格で継続ポジションを購入します。構築して収益を得ます。",
+    "useTemplate": "購入",
+    "viewMarketplace": "完全なマーケットプレイスを見る",
+    "templates": {
+      "trading": {
+        "title": "モメンタムブレイクアウトボット",
+        "description": "15分スキャルピングエージェント • +89% (3ヶ月) • $29/月",
+        "category": "AIエージェント"
+      },
+      "instagram": {
+        "title": "平均回帰エージェント",
+        "description": "逆トレンドエントリー • +156% (6ヶ月) • $49/月",
+        "category": "AIエージェント"
+      },
+      "shopify": {
+        "title": "ファンディングレート裁定",
+        "description": "取引所間ファンディングハンター • $79/月",
+        "category": "AIエージェント"
+      },
+      "socialMedia": {
+        "title": "BTC 10倍ロングポジション",
+        "description": "継続取引 • -12%割引 • $43.2kエントリー",
+        "category": "ポジション"
+      },
+      "clinic": {
+        "title": "ETH 20倍ショートポジション",
+        "description": "AIストップアウト • -18%割引 • 完全な推論",
+        "category": "ポジション"
+      },
+      "marketing": {
+        "title": "SOLトレンドフォロワー",
+        "description": "4Hタイムフレームボット • +203% (9ヶ月) • プレミアム",
+        "category": "AIエージェント"
+      },
+      "email": {
+        "title": "清算スイーパー",
+        "description": "極端なパニック売りで購入 • 高リスク/リワード",
+        "category": "AIエージェント"
+      },
+      "expense": {
+        "title": "AVAX 15倍ロングポジション",
+        "description": "早期ストップロス • -20%エントリー • AI強気テーゼ",
+        "category": "ポジション"
+      },
+      "support": {
+        "title": "グリッドトレーディングボット",
+        "description": "レンジ相場 • 安定収益 • $39/月",
+        "category": "AIエージェント"
+      },
+      "appUsage": {
+        "title": "マルチタイムフレームエージェント",
+        "description": "コンフルエンス戦略 • +178% (1年) • $99/月",
+        "category": "AIエージェント"
+      }
+    }
+  },
+  "comparison": {
+    "badge": "トレーディング再発明",
+    "title": "初のポジションマーケットプレイス",
+    "description": "ポジションはもはや使い捨てではありません。AIロジックが組み込まれた取引可能な資産です。",
+    "traditionalSheets": "従来のトレーディング",
+    "ryu": "HyperliquidのRyu",
+    "old1": "ストップロス = 死んだポジション",
+    "new1": "ストップロス = 割引された機会",
+    "old2": "盲目的なコピートレーディング",
+    "new2": "完全なAIコンテキストでポジションを購入",
+    "old3": "負け取引に支払う",
+    "new3": "継続取引でロイヤルティを受け取る",
+    "old4": "1人のトレーダー、1つのポジション",
+    "new4": "ポジションがトレーダー間で進化",
+    "footer": "ポジションは死にません —",
+    "footerHighlight": "機会になります"
+  },
+  "pricing": {
+    "title": "構築。取引。収益。",
+    "description": "AIエージェントを作成。ポジションを取引。他の人があなたのロジックを継続するときに収益を得る。",
+    "free": {
+      "name": "トレーダー",
+      "price": "$0",
+      "period": "永久",
+      "features": [
+        "AIエージェント1個を構築",
+        "継続ポジションを購入",
+        "Hyperliquid L1で取引",
+        "完全なAI透明性"
+      ],
+      "cta": "トレーディング開始"
+    },
+    "pro": {
+      "name": "クリエイター",
+      "price": "$49",
+      "period": "月",
+      "badge": "最も人気",
+      "features": [
+        "無制限AIエージェント",
+        "販売用エージェントをリスト",
+        "5%継続ロイヤルティ",
+        "優先マーケットプレイスリスティング",
+        "高度なバックテスト",
+        "クリエイターダッシュボード"
+      ],
+      "cta": "クリエイターになる"
+    },
+    "team": {
+      "name": "ファンド",
+      "price": "$299",
+      "period": "月",
+      "features": [
+        "クリエイターのすべて",
+        "チーム管理",
+        "ホワイトラベルエージェント",
+        "APIアクセス",
+        "専任サポート",
+        "カスタムデプロイメント"
+      ],
+      "cta": "営業に問い合わせ"
+    }
+  },
+  "finalCta": {
+    "title": "あなたのポジションは資産です",
+    "description": "HyperliquidでAIエージェントを構築します。完全な透明性でレバレッジポジションを取引します。他の人があなたのロジックを継続するときにロイヤルティを獲得します。",
+    "tryTemplate": "マーケットプレイスを閲覧",
+    "createNew": "最初のエージェントを構築",
+    "socialProof": "Hyperliquid L1の初のポジションマーケットプレイスに参加"
+  },
+  "pilot": {
+    "badge": "AI搭載エージェントビルダー",
+    "title": "カスタムエージェントを作成",
+    "description": "いくつかの質問に答えるだけで、AIがあなたのニーズに最適な自動化エージェントを設計します。",
+    "steps": {
+      "agentDetails": "エージェント詳細",
+      "agentDetailsDesc": "エージェントと自動化する内容を説明",
+      "connections": "外部サービス",
+      "connectionsDesc": "エージェントが接続する外部サービスを選択 (オプション)",
+      "review": "レビューと作成",
+      "reviewDesc": "エージェント構成をレビューし、AIにすべてを生成させます"
+    },
+    "fields": {
+      "agentName": "エージェント名",
+      "agentDescription": "このエージェントは何をすべきですか？",
+      "connections": "外部サービス接続 (オプション)",
+      "characters": "文字"
+    },
+    "placeholders": {
+      "agentName": "Hyperliquidブレイクアウトハンター",
+      "agentDescription": "トレーディング戦略を説明してください...\n\n例えば:\n- HyperliquidでBTC、ETH、SOL perpsのブレイクアウトパターンをスキャン\n- 出来高確認されたブレイクで10-15倍レバレッジポジションにエントリー\n- トレーリングストップを使用して取引が発展するにつれて利益を確定\n- レジスタンスで終了または3%ストップロスで終了\n- 各エントリー/エグジットの完全なAI推論を文書化\n- 早期ストップアウト時に継続用のポジションをリスト\n- 長期パフォーマンスを追跡しロジックを改良"
+    },
+    "hints": {
+      "agentDescription": "提供するデータ、エージェントが行うべきこと、希望する自動化について具体的に説明してください。AIが必要なすべての機能、フォーム、スケジュールを想像します。"
+    },
+    "examples": {
+      "title": "例を試す",
+      "random": "ランダムな例"
+    },
+    "back": "戻る",
+    "next": "次のステップ",
+    "submit": "AIでエージェントを作成",
+    "submitSuccess": "成功！エージェントが作成され、使用準備が整いました。ワークスペースをセットアップ中...",
+    "footerNote": "AIがあなたの説明に基づいてすべての機能、フォーム、自動化を想像します。",
+    "review": {
+      "agentDetails": "エージェント説明",
+      "connections": "選択された接続",
+      "aiWillGenerate": "🤖 AIがあなたの説明と選択された接続に基づいて、すべての機能、データモデル、フォーム、アクション、スケジュールを自動的に生成します。10-30秒かかる場合があります。"
+    },
+    "noConnectionsNote": "外部サービスが選択されていません。AIはAPI要件に汎用webhookを使用します。"
+  },
+  "templatesMarketplace": {
+    "hero": {
+      "title": "ワークフロー用に構築された自動化テンプレート",
+      "description": "実証済みのテンプレートから始めましょう。ニーズに合わせてカスタマイズ。数分でデプロイ。",
+      "searchPlaceholder": "テンプレートを検索... (例: 'ソーシャルメディアスケジュール', 'リードエンリッチメント')",
+      "statsTemplates": "50以上のテンプレート",
+      "statsIntegrations": "20以上の統合",
+      "statsUsage": "10,000以上の自動化作成"
+    },
+    "filters": {
+      "title": "フィルター",
+      "clearAll": "すべてクリア",
+      "showingResults": "{total}件中{count}件のテンプレートを表示",
+      "categories": {
+        "title": "カテゴリー",
+        "all": "すべてのテンプレート"
+      },
+      "useCases": {
+        "title": "ユースケース",
+        "dataCollection": "データ収集",
+        "contentGeneration": "コンテンツ生成",
+        "apiIntegration": "API統合",
+        "reportingAnalytics": "レポートと分析",
+        "automationScheduling": "自動化とスケジューリング",
+        "dataEnrichment": "データエンリッチメント",
+        "notificationAlerts": "通知とアラート",
+        "syncMigration": "同期と移行",
+        "sentimentAnalysis": "センチメント分析",
+        "webResearch": "ウェブリサーチ"
+      },
+      "integrations": {
+        "title": "統合",
+        "showMore": "さらに表示..."
+      },
+      "difficulty": {
+        "title": "難易度",
+        "beginner": "初級",
+        "intermediate": "中級",
+        "advanced": "上級"
+      },
+      "aiFeatures": {
+        "title": "AI機能",
+        "textGeneration": "テキスト生成",
+        "imageGeneration": "画像生成",
+        "videoGeneration": "ビデオ生成",
+        "webResearch": "ウェブリサーチ",
+        "sentimentAnalysis": "センチメント分析",
+        "dataExtraction": "データ抽出",
+        "contentSummarization": "コンテンツ要約",
+        "languageTranslation": "言語翻訳"
+      },
+      "pricingTier": {
+        "title": "価格帯",
+        "free": "無料プラン",
+        "starter": "スタータープラン",
+        "pro": "プロプラン",
+        "enterprise": "エンタープライズ"
+      },
+      "sortBy": {
+        "title": "並び替え",
+        "popular": "最も人気",
+        "recent": "最近追加",
+        "alphabetical": "アルファベット順 (A-Z)",
+        "rating": "評価の高い順"
+      }
+    },
+    "templateCard": {
+      "uses": "{count}回使用",
+      "popular": "人気",
+      "useTemplate": "テンプレートを使用",
+      "viewDetails": "詳細を見る",
+      "moreTags": "+{count}個以上",
+      "badges": {
+        "new": "新着",
+        "featured": "おすすめ",
+        "trending": "トレンド",
+        "updated": "更新済み",
+        "popular": "人気"
+      },
+      "difficulty": {
+        "beginner": "初級",
+        "intermediate": "中級",
+        "advanced": "上級"
+      },
+      "setupTime": "{minutes}分セットアップ"
+    },
+    "templateDetail": {
+      "closeButton": "閉じる",
+      "previousTemplate": "前へ",
+      "nextTemplate": "次へ",
+      "useTemplate": "このテンプレートを使用",
+      "previewDemo": "デモをプレビュー",
+      "forkCustomize": "フォークとカスタマイズ",
+      "nameDialog": {
+        "title": "エージェントに名前を付ける",
+        "description": "新しいエージェントの名前を選択してください。後でいつでも変更できます。",
+        "label": "エージェント名",
+        "placeholder": "例: ソーシャルメディアマネージャー",
+        "defaultHint": "デフォルト: {templateTitle}",
+        "cancel": "キャンセル",
+        "create": "エージェントを作成",
+        "creating": "作成中...",
+        "errorRequired": "エージェントの名前を入力してください。"
+      },
+      "tabs": {
+        "overview": "概要",
+        "features": "機能",
+        "setup": "セットアップ",
+        "faq": "FAQ"
+      },
+      "sections": {
+        "whatItDoes": "このテンプレートが行うこと",
+        "keyFeatures": "主な機能",
+        "howItWorks": "仕組み",
+        "included": "含まれるもの",
+        "integrations": "必要な統合",
+        "aiFeatures": "使用されるAI機能",
+        "difficulty": "難易度",
+        "setupTime": "推定セットアップ時間",
+        "pricingTier": "必要なプラン",
+        "prerequisites": "前提条件",
+        "configuration": "構成ステップ",
+        "similarTemplates": "類似テンプレート"
+      },
+      "stats": {
+        "uses": "{count}回使用",
+        "rating": "5点満点中{rating}点",
+        "reviews": "{count}件のレビュー",
+        "created": "作成日: {date}",
+        "updated": "最終更新: {date}",
+        "version": "バージョン{version}"
+      },
+      "creator": {
+        "by": "作成者",
+        "officialTemplate": "公式Ryuテンプレート"
+      },
+      "included": {
+        "agents": "AIエージェントセットアップ",
+        "actions": "アクションシーケンス",
+        "data": "サンプルデータ",
+        "docs": "ドキュメント",
+        "support": "サポートリソース"
+      }
+    },
+    "featured": {
+      "title": "おすすめテンプレート",
+      "description": "素早く始めるための厳選されたテンプレート"
+    },
+    "categorySpotlight": {
+      "viewAll": "すべての{category}テンプレートを見る →"
+    },
+    "gettingStarted": {
+      "title": "テンプレートの使用方法",
+      "description": "すぐに使えるテンプレートで数分で稼働開始",
+      "steps": {
+        "step1": {
+          "title": "閲覧して検索",
+          "description": "テンプレートライブラリを探索するか、必要なものを検索"
+        },
+        "step2": {
+          "title": "プレビューと学習",
+          "description": "テンプレートの詳細、機能、セットアップ要件をレビュー"
+        },
+        "step3": {
+          "title": "使用とカスタマイズ",
+          "description": "ワークスペースにテンプレートを追加し、ニーズに合わせてカスタマイズ"
+        },
+        "step4": {
+          "title": "自動化と拡大",
+          "description": "戦略に集中している間、AIに作業を処理させる"
+        }
+      },
+      "ctaButton": "すべてのテンプレートを閲覧"
+    },
+    "noResults": {
+      "title": "テンプレートが見つかりません",
+      "description": "フィルターまたは検索語を調整してみてください",
+      "suggestions": "次に興味があるかもしれません:",
+      "clearFilters": "すべてのフィルターをクリア",
+      "requestTemplate": "カスタムテンプレートをリクエスト"
+    },
+    "auth": {
+      "signUpToUse": "このテンプレートを使用するにはサインアップ",
+      "loginToUse": "このテンプレートを使用するにはログイン",
+      "explorePilot": "または最初にパイロット版を探索"
+    },
+    "integration": {
+      "required": "必須",
+      "optional": "オプション"
+    }
+  },
+  "marketplaceHeader": {
+    "home": "ホーム",
+    "trade": "取引",
+    "marketplace": "マーケットプレイス",
+    "explorer": "エクスプローラー"
+  },
+  "myAgents": {
+    "title": "マイエージェント",
+    "description": "AI自動化エージェントを管理します。各エージェントにはワークスペース、アクション、ワークフローが含まれています。",
+    "createAgent": "新規エージェント作成",
+    "confirmDelete": "このエージェントを削除してもよろしいですか？この操作は取り消せません。",
+    "lastActive": "最終アクティブ",
+    "workspaces": "ワークスペース",
+    "totalActions": "総アクション数",
+    "thisMonth": "今月",
+    "stats": {
+      "activeAgents": "アクティブエージェント",
+      "totalWorkspaces": "総ワークスペース数",
+      "totalActions": "総アクション数"
+    },
+    "status": {
+      "active": "アクティブ",
+      "paused": "一時停止"
+    },
+    "empty": {
+      "title": "エージェントがまだありません",
+      "description": "ワークフローの自動化を開始するには、最初のエージェントを作成してください。エージェントはワークスペースと自動化タスクの整理に役立ちます。",
+      "createFirst": "最初のエージェントを作成"
+    },
+    "createModal": {
+      "title": "新規エージェント作成",
+      "subtitle": "エージェントは、プロジェクトまたはビジネス機能別にワークスペースと自動化ワークフローを整理するのに役立ちます。",
+      "icon": "アイコン",
+      "name": "エージェント名",
+      "namePlaceholder": "例: コンテンツマーケティングハブ",
+      "description": "説明",
+      "descriptionPlaceholder": "このエージェントが何に使用されるかを説明してください...",
+      "cancel": "キャンセル",
+      "create": "エージェント作成"
+    },
+    "detail": {
+      "status": "ステータス",
+      "workspaces": "ワークスペース",
+      "actionsThisMonth": "今月のアクション",
+      "apiCalls": "API呼び出し",
+      "metrics": "メトリクス",
+      "totalActions": "総実行アクション数",
+      "storageUsed": "使用ストレージ",
+      "created": "作成日",
+      "lastActive": "最終アクティブ",
+      "settings": "設定",
+      "viewWorkspaces": "ワークスペースを見る"
+    }
+  },
+  "tradePage": {
+    "title": "取引",
+    "titleHighlight": "ダッシュボード",
+    "description": "AIトレーディングエージェントを作成して管理します。カスタムパラメータで自動トレーディング戦略をデプロイし、リアルタイムでパフォーマンスを監視します。",
+    "createAgent": "エージェント作成",
+    "templates": "テンプレート",
+    "yourAgents": "トレーディングエージェント",
+    "noAgents": "エージェントがまだありません",
+    "noAgentsDescription": "自動トレーディングを開始するには最初のAIトレーディングエージェントを作成してください",
+    "createFirstAgent": "最初のエージェントを作成",
+    "confirmDelete": "このエージェントを削除してもよろしいですか？",
+    "statusActive": "アクティブ",
+    "statusPaused": "一時停止",
+    "deposit": "入金",
+    "pnl": "損益",
+    "assets": "資産",
+    "createNewAgent": "新規トレーディングエージェント作成",
+    "createAgentDescription": "次のステップに従って自動トレーディングエージェントをセットアップ",
+    "step1Title": "ステップ1: エージェントに名前を付ける",
+    "step1Description": "トレーディングエージェントに覚えやすい名前を付けます",
+    "agentNamePlaceholder": "例: ビットコインモメンタムトレーダー",
+    "step2Title": "ステップ2: 戦略を選択",
+    "step2Description": "マーケットプレイスから事前構築されたテンプレートを選択するか、カスタム戦略を作成",
+    "useTemplate": "テンプレートを使用",
+    "customPrompt": "カスタム戦略",
+    "customPromptPlaceholder": "トレーディング戦略を詳しく説明してください... 例: 'RSI < 30でMACDがシグナルラインを上抜けたときにBTCを購入、RSI > 70または利益が5%に達したら売却'",
+    "step3Title": "ステップ3: 資産を選択",
+    "step3Description": "エージェントが取引する暗号通貨を選択",
+    "step4Title": "ステップ4: 初期入金を設定",
+    "step4Description": "トレーディングエージェントの初期資本を指定",
+    "initialDeposit": "初期入金",
+    "summary": "概要",
+    "agentName": "エージェント名",
+    "template": "テンプレート",
+    "customStrategy": "カスタム戦略",
+    "previous": "前へ",
+    "next": "次へ",
+    "stepIndicator": "ステップ{current}/{total}",
+    "creating": "作成中...",
+    "purchasedTemplates": "購入済みテンプレート",
+    "purchasedTemplatesDescription": "新しいトレーディングエージェントを作成するテンプレートを選択",
+    "noTemplates": "テンプレートがまだありません",
+    "noTemplatesDescription": "マーケットプレイスを閲覧してトレーディング戦略テンプレートを購入",
+    "browseMarketplace": "マーケットプレイスを閲覧"
+  },
+  "explorerPage": {
+    "title": "トレーディング",
+    "titleHighlight": "エクスプローラー",
+    "description": "エコシステムを探索: リーダーボードでトップパフォーマンスのエージェントを発見し、アクティブなトレーディングエージェントを閲覧し、ライブポジションを監視し、トレーディングの旅を始める完璧なテンプレートを見つけましょう。",
+    "viewAll": "すべて見る",
+    "leaderboard": {
+      "title": "リーダーボード",
+      "description": "損益別トップパフォーマンストレーディングエージェント",
+      "trades": "取引",
+      "winRate": "勝率",
+      "volume": "出来高"
+    },
+    "agents": {
+      "title": "実行中のエージェント",
+      "description": "すべてのアクティブトレーディングエージェント",
+      "active": "アクティブ",
+      "paused": "一時停止",
+      "deposit": "入金",
+      "pnl": "損益"
+    },
+    "positions": {
+      "title": "アクティブポジション",
+      "description": "ライブトレーディングポジション",
+      "entry": "エントリー",
+      "current": "現在",
+      "pnl": "損益"
+    },
+    "templates": {
+      "title": "テンプレート",
+      "description": "購入可能な事前構築トレーディング戦略",
+      "agents": "エージェント",
+      "price": "価格"
+    }
+  }
+}
