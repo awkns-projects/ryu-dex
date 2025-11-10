@@ -25,8 +25,8 @@ const Web3Context = createContext<Web3ContextType>({
   signer: null,
   account: null,
   chainId: null,
-  connectWallet: async () => {},
-  disconnectWallet: () => {},
+  connectWallet: async () => { },
+  disconnectWallet: () => { },
   isConnected: false,
   isConnecting: false,
 });
@@ -46,10 +46,10 @@ export function Web3Provider({ children }: { children: ReactNode }) {
 
     try {
       setIsConnecting(true);
-      
+
       // Request account access
       await window.ethereum.request({ method: "eth_requestAccounts" });
-      
+
       // Create provider
       const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
       const web3Signer = web3Provider.getSigner();

@@ -60,7 +60,7 @@ export function AuctionBidCard({ listing, nftMetadata }: AuctionBidCardProps) {
     try {
       // Check if approval is needed
       const hasApproval = await hasAllowance(bidAmount);
-      
+
       if (!hasApproval) {
         // First, approve the marketplace to spend USDC
         toast.info("Approving USDC...");

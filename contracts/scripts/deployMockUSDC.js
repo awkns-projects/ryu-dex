@@ -14,7 +14,7 @@ async function main() {
 
   const usdc = await MockERC20.deploy("Mock USDC", "USDC", 6);
   await usdc.waitForDeployment();
-  
+
   console.log("✅ Mock USDC deployed to:", usdc.target);
 
   // Mint initial supply to deployer (1 million USDC for testing)
@@ -62,7 +62,7 @@ async function main() {
   console.log("Initial Supply: ", "1,000,000 USDC");
   console.log("Decimals:       ", "6");
   console.log("=".repeat(80));
-  
+
   console.log("\n📋 NEXT STEPS:");
   console.log("1. Update your .env file with:");
   console.log(`   USDC_ADDRESS=${usdc.target}`);
