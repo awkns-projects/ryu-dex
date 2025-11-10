@@ -359,8 +359,8 @@ export default function TradePage() {
     try {
       console.log(`🔄 Fetching wallet address for trader ${agentId}...`)
 
-      // Step 1: Fetch trader config to get the exchange_id
-      const traderResponse = await fetch(`/api/go/trade/trader-config/${agentId}`, {
+      // Step 1: Fetch trader config to get the exchange_id (using direct DB access)
+      const traderResponse = await fetch(`/api/go/trade/trader-direct/${agentId}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -546,7 +546,7 @@ export default function TradePage() {
       // This bypasses the Go backend's JOIN query limitations
       let detailedConfig: any = null
       let configLoadSuccess = false
-      
+
       try {
         console.log('🔄 Fetching trader details directly from database...')
         const configResponse = await fetch(`/api/go/trade/trader-direct/${agentId}`, {
@@ -555,7 +555,7 @@ export default function TradePage() {
             'Authorization': `Bearer ${token}`,
           },
         })
-        
+
         if (configResponse.ok) {
           detailedConfig = await configResponse.json()
           configLoadSuccess = true
