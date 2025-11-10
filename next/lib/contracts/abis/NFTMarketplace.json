@@ -1,0 +1,17 @@
+[
+  "function createAuction(address nftContract, uint256 tokenId, address paymentToken, uint256 minBid, uint256 buyoutPrice, uint256 duration) external returns (uint256)",
+  "function placeBid(uint256 auctionId, uint256 bidAmount) external",
+  "function endAuction(uint256 auctionId) external",
+  "function cancelAuction(uint256 auctionId) external",
+  "function getAuction(uint256 auctionId) external view returns (tuple(uint256 auctionId, address nftContract, uint256 tokenId, address seller, address paymentToken, uint256 minBid, uint256 buyoutPrice, uint256 startTime, uint256 endTime, address highestBidder, uint256 highestBid, bool ended, bool cancelled))",
+  "function isAuctionActive(uint256 auctionId) external view returns (bool)",
+  "function getAllValidAuctions() external view returns (uint256[] memory)",
+  "function totalAuctions() external view returns (uint256)",
+  "function platformFee() public view returns (uint256)",
+  "function feeRecipient() public view returns (address)",
+  "event AuctionCreated(uint256 indexed auctionId, address indexed nftContract, uint256 indexed tokenId, address seller, uint256 minBid, uint256 buyoutPrice, uint256 endTime)",
+  "event BidPlaced(uint256 indexed auctionId, address indexed bidder, uint256 amount)",
+  "event AuctionEnded(uint256 indexed auctionId, address indexed winner, uint256 winningBid)",
+  "event AuctionCancelled(uint256 indexed auctionId)"
+]
+

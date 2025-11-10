@@ -1,0 +1,33 @@
+{
+  "name": "nft-marketplace-contracts",
+  "version": "1.0.0",
+  "description": "Custom smart contracts for NFT marketplace on Hyperliquid",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:all": "node scripts/runAllTests.js",
+    "test:collection": "hardhat test test/NFTCollection.test.js",
+    "test:marketplace": "hardhat test test/NFTMarketplace.test.js",
+    "test:integration": "hardhat test test/Integration.test.js",
+    "test:position": "hardhat test test/PositionNFT.test.js",
+    "test:sepolia": "hardhat run scripts/testSepoliaDeployment.js --network sepolia",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "test:coverage": "hardhat coverage",
+    "deploy:mock-usdc": "hardhat run scripts/deployMockUSDC.js --network sepolia",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network hyperliquid-testnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network hyperliquid-mainnet",
+    "verify:sepolia": "hardhat run scripts/verify.js --network sepolia",
+    "verify:testnet": "hardhat run scripts/verify.js --network hyperliquid-testnet",
+    "verify:mainnet": "hardhat run scripts/verify.js --network hyperliquid-mainnet"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.1",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.11.0"
+  }
+}

@@ -8,6 +8,7 @@ import { locales } from '@/i18n';
 import { Toaster } from "sonner"
 import MobileBottomNav from "@/components/mobile-bottom-nav"
 import { GoAuthProvider } from "@/contexts/go-auth-context"
+import { Web3Provider } from "@/lib/contracts/provider"
 import "../globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -82,11 +83,13 @@ export default async function LocaleLayout({
       <body className={`font-sans antialiased ${instrumentSerif.variable}`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider defaultTheme="dark" storageKey="ryu-theme">
-            <GoAuthProvider>
-              {children}
-              <MobileBottomNav />
-              <Toaster position="top-right" richColors />
-            </GoAuthProvider>
+            <Web3Provider>
+              <GoAuthProvider>
+                {children}
+                <MobileBottomNav />
+                <Toaster position="top-right" richColors />
+              </GoAuthProvider>
+            </Web3Provider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -1,0 +1,30 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "deployer": "0x4e53D27AF8d6311F24Cc15BD89094CE6DD441B59",
+  "timestamp": "2025-11-10T20:28:13.560Z",
+  "contracts": {
+    "NFTCollection": {
+      "address": "0x7Ba1C5dcee3B61E8DCd65045fadE9221ec7458d1",
+      "args": [
+        "My NFT Collection",
+        "MNFT",
+        "ipfs://your_collection_metadata_uri",
+        "10000",
+        "0",
+        "0x0000000000000000000000000000000000000000"
+      ]
+    },
+    "NFTMarketplace": {
+      "address": "0x44Fa26061246B2C3178C94789Ae5A136D08031f6",
+      "args": [
+        250,
+        "0x4e53D27AF8d6311F24Cc15BD89094CE6DD441B59"
+      ]
+    }
+  },
+  "configuration": {
+    "mintPaymentToken": "0x0000000000000000000000000000000000000000",
+    "useERC20ForMinting": false
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "templateId": "customer-support",
+  "name": "Customer Support Agent",
+  "description": "Handles customer inquiries, support tickets, and automated responses",
+  "icon": "person.crop.circle.badge.questionmark",
+  "category": "Support",
+  
+  "models": [
+    {
+      "name": "SupportTicket",
+      "fields": [
+        {
+          "name": "ticketId",
+          "type": "text",
+          "label": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "customerName",
+          "type": "text",
+          "label": "Customer Name",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "type": "text",
+          "label": "Subject",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "textarea",
+          "label": "Description",
+          "required": true
+        },
+        {
+          "name": "priority",
+          "type": "select",
+          "label": "Priority",
+          "options": ["Low", "Medium", "High", "Urgent"],
+          "defaultValue": "Medium"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": ["New", "In Progress", "Waiting", "Resolved", "Closed"],
+          "defaultValue": "New"
+        },
+        {
+          "name": "category",
+          "type": "select",
+          "label": "Category",
+          "options": ["Technical", "Billing", "General", "Feature Request", "Bug Report"]
+        },
+        {
+          "name": "assignedTo",
+          "type": "text",
+          "label": "Assigned To"
+        },
+        {
+          "name": "response",
+          "type": "textarea",
+          "label": "Response"
+        },
+        {
+          "name": "sentiment",
+          "type": "select",
+          "label": "Sentiment",
+          "options": ["Positive", "Neutral", "Negative"]
+        },
+        {
+          "name": "createdAt",
+          "type": "date",
+          "label": "Created At"
+        },
+        {
+          "name": "updatedAt",
+          "type": "date",
+          "label": "Updated At"
+        },
+        {
+          "name": "resolvedAt",
+          "type": "date",
+          "label": "Resolved At"
+        }
+      ]
+    }
+  ],
+  
+  "actions": [
+    {
+      "name": "analyzeTicket",
+      "title": "Analyze Ticket",
+      "emoji": "🔍",
+      "description": "Analyze ticket content, determine priority and category",
+      "modelName": "SupportTicket",
+      "inputFields": ["subject", "description", "customerName"],
+      "outputFields": ["priority", "category", "sentiment"],
+      "steps": [
+        {
+          "name": "analyzeSentiment",
+          "type": "ai_reasoning",
+          "order": "1",
+          "config": {
+            "prompt": "Analyze the customer support ticket and determine: 1) Priority level (Low/Medium/High/Urgent) based on urgency and impact, 2) Category (Technical/Billing/General/Feature Request/Bug Report), 3) Sentiment (Positive/Neutral/Negative). Consider the tone, language, and content of the message.",
+            "inputFields": ["subject", "description", "customerName"],
+            "outputFields": ["priority", "category", "sentiment"],
+            "model": "gpt-4o",
+            "temperature": 0.3
+          }
+        }
+      ]
+    },
+    {
+      "name": "generateResponse",
+      "title": "Generate Response",
+      "emoji": "✍️",
+      "description": "Generate an appropriate response to the customer",
+      "modelName": "SupportTicket",
+      "inputFields": ["subject", "description", "category", "priority", "customerName"],
+      "outputFields": ["response", "status"],
+      "steps": [
+        {
+          "name": "searchKnowledgeBase",
+          "type": "web_search",
+          "order": "1",
+          "config": {
+            "searchQuery": "Search for similar support tickets and solutions based on category and subject",
+            "inputFields": ["subject", "category"],
+            "outputFields": []
+          }
+        },
+        {
+          "name": "draftResponse",
+          "type": "ai_reasoning",
+          "order": "2",
+          "config": {
+            "prompt": "Generate a professional, empathetic, and helpful response to the customer support ticket. Use the knowledge base search results if available. Address the customer by name, acknowledge their issue, provide a clear solution or next steps, and maintain a friendly tone.",
+            "inputFields": ["subject", "description", "category", "priority", "customerName"],
+            "outputFields": ["response", "status"],
+            "model": "gpt-4o",
+            "temperature": 0.7
+          }
+        }
+      ]
+    },
+    {
+      "name": "escalateTicket",
+      "title": "Escalate Ticket",
+      "emoji": "🚨",
+      "description": "Escalate high-priority tickets to human agents",
+      "modelName": "SupportTicket",
+      "inputFields": ["ticketId", "priority", "category", "description"],
+      "outputFields": ["assignedTo", "status"],
+      "steps": [
+        {
+          "name": "determineAssignee",
+          "type": "ai_reasoning",
+          "order": "1",
+          "config": {
+            "prompt": "Based on the ticket priority and category, determine the best team member to assign this ticket to. Consider expertise areas and current workload.",
+            "inputFields": ["priority", "category", "description"],
+            "outputFields": ["assignedTo", "status"],
+            "model": "gpt-4o",
+            "temperature": 0.2
+          }
+        }
+      ]
+    }
+  ],
+  
+  "schedules": [
+    {
+      "name": "Auto-analyze new tickets",
+      "mode": "recurring",
+      "intervalHours": "1",
+      "steps": [
+        {
+          "modelName": "SupportTicket",
+          "query": "status is New",
+          "actionName": "analyzeTicket",
+          "order": 1
+        }
+      ]
+    },
+    {
+      "name": "Escalate urgent tickets",
+      "mode": "recurring",
+      "intervalHours": "2",
+      "steps": [
+        {
+          "modelName": "SupportTicket",
+          "query": "priority is Urgent and status is New",
+          "actionName": "escalateTicket",
+          "order": 1
+        }
+      ]
+    }
+  ],
+  
+  "databaseRecordsCreated": {
+    "description": "When a user selects this template, the following database records will be created:",
+    "tables": {
+      "Agent": {
+        "count": 1,
+        "example": {
+          "id": "uuid-generated",
+          "name": "Customer Support Agent",
+          "description": "Handles customer inquiries, support tickets, and automated responses",
+          "userId": "user-uuid",
+          "createdAt": "2025-10-13T...",
+          "updatedAt": "2025-10-13T..."
+        }
+      },
+      "AgentModel": {
+        "count": 1,
+        "example": {
+          "id": "uuid-generated",
+          "agentId": "agent-uuid",
+          "name": "SupportTicket",
+          "fields": "[...14 field definitions as JSON...]",
+          "createdAt": "2025-10-13T..."
+        }
+      },
+      "AgentAction": {
+        "count": 3,
+        "examples": [
+          {
+            "id": "uuid-generated",
+            "agentId": "agent-uuid",
+            "modelId": "model-uuid",
+            "name": "analyzeTicket",
+            "title": "Analyze Ticket",
+            "emoji": "🔍",
+            "description": "Analyze ticket content, determine priority and category",
+            "inputFields": ["subject", "description", "customerName"],
+            "outputFields": ["priority", "category", "sentiment"],
+            "createdAt": "2025-10-13T..."
+          }
+        ]
+      },
+      "AgentStep": {
+        "count": 4,
+        "description": "1 step for analyzeTicket, 2 steps for generateResponse, 1 step for escalateTicket",
+        "examples": [
+          {
+            "id": "uuid-generated",
+            "actionId": "action-uuid",
+            "name": "analyzeSentiment",
+            "type": "ai_reasoning",
+            "order": "1",
+            "config": "{...prompt and configuration...}",
+            "createdAt": "2025-10-13T..."
+          }
+        ]
+      },
+      "AgentSchedule": {
+        "count": 2,
+        "examples": [
+          {
+            "id": "uuid-generated",
+            "agentId": "agent-uuid",
+            "name": "Auto-analyze new tickets",
+            "mode": "recurring",
+            "intervalHours": "1",
+            "status": "active",
+            "createdAt": "2025-10-13T...",
+            "updatedAt": "2025-10-13T..."
+          }
+        ]
+      },
+      "AgentScheduleStep": {
+        "count": 2,
+        "description": "1 step per schedule",
+        "examples": [
+          {
+            "id": "uuid-generated",
+            "scheduleId": "schedule-uuid",
+            "modelId": "model-uuid",
+            "actionId": "action-uuid",
+            "query": "status is New",
+            "order": 1,
+            "createdAt": "2025-10-13T...",
+            "updatedAt": "2025-10-13T..."
+          }
+        ]
+      }
+    },
+    "summary": {
+      "totalRecords": "1 agent + 1 model + 3 actions + 4 steps + 2 schedules + 2 schedule steps = 13 total records"
+    }
+  }
+}
+

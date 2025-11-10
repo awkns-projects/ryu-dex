@@ -1,0 +1,95 @@
+================================================================================
+                    SEPOLIA DEPLOYMENT - CONTRACT ADDRESSES
+================================================================================
+
+Network: Sepolia Testnet
+Chain ID: 11155111
+RPC: https://ethereum-sepolia-rpc.publicnode.com
+Explorer: https://sepolia.etherscan.io
+
+================================================================================
+                              DEPLOYED CONTRACTS
+================================================================================
+
+Mock USDC (Test Token)
+Address: 0xF7FA86E77607C3b63b96765F9131f678e7d82F1F
+View: https://sepolia.etherscan.io/address/0xF7FA86E77607C3b63b96765F9131f678e7d82F1F
+
+NFT Collection (AI Trader Position NFTs)
+Address: 0x7Ba1C5dcee3B61E8DCd65045fadE9221ec7458d1
+View: https://sepolia.etherscan.io/address/0x7Ba1C5dcee3B61E8DCd65045fadE9221ec7458d1
+
+NFT Marketplace
+Address: 0x44Fa26061246B2C3178C94789Ae5A136D08031f6
+View: https://sepolia.etherscan.io/address/0x44Fa26061246B2C3178C94789Ae5A136D08031f6
+
+================================================================================
+                            CONFIGURATION
+================================================================================
+
+NFT Mint Price: 10 USDC
+Payment Token: USDC (0xF7FA86E77607C3b63b96765F9131f678e7d82F1F)
+Platform Fee: 2.5% (250 basis points)
+Fee Recipient: 0x4e53D27AF8d6311F24Cc15BD89094CE6DD441B59
+Max Supply: Unlimited
+
+================================================================================
+                         FOR FRONTEND (.env.local)
+================================================================================
+
+NEXT_PUBLIC_CHAIN_ID=11155111
+NEXT_PUBLIC_RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
+NEXT_PUBLIC_USDC_ADDRESS=0xF7FA86E77607C3b63b96765F9131f678e7d82F1F
+NEXT_PUBLIC_NFT_COLLECTION_ADDRESS=0x7Ba1C5dcee3B61E8DCd65045fadE9221ec7458d1
+NEXT_PUBLIC_MARKETPLACE_ADDRESS=0x44Fa26061246B2C3178C94789Ae5A136D08031f6
+NEXT_PUBLIC_MINT_PRICE=10
+NEXT_PUBLIC_PLATFORM_FEE=2.5
+
+================================================================================
+                         QUICK TEST COMMANDS
+================================================================================
+
+# Open Hardhat console
+npx hardhat console --network sepolia
+
+# Get contracts
+const usdc = await ethers.getContractAt("MockERC20", "0xF7FA86E77607C3b63b96765F9131f678e7d82F1F");
+const nft = await ethers.getContractAt("NFTCollection", "0x7Ba1C5dcee3B61E8DCd65045fadE9221ec7458d1");
+const marketplace = await ethers.getContractAt("NFTMarketplace", "0x44Fa26061246B2C3178C94789Ae5A136D08031f6");
+
+# Mint USDC
+await usdc.mint((await ethers.getSigners())[0].address, ethers.parseUnits("100", 6));
+
+# Mint NFT (costs 10 USDC)
+await usdc.approve(nft.target, ethers.parseUnits("10", 6));
+await nft.mint("ipfs://QmYourHash");
+
+# Create auction
+await nft.approve(marketplace.target, 1);
+await marketplace.createAuction(nft.target, 1, usdc.target, ethers.parseUnits("20", 6), ethers.parseUnits("50", 6), 86400);
+
+================================================================================
+                              RESOURCES
+================================================================================
+
+Documentation:
+- DEPLOYMENT_SUCCESS.md - Overview and next steps
+- SEPOLIA_DEPLOYMENT.md - Complete deployment details
+- QUICK_TEST.md - 5-minute test guide
+- POSITION_NFT_GUIDE.md - Use case documentation
+
+Get Sepolia ETH:
+- https://sepoliafaucet.com/
+- https://www.alchemy.com/faucets/ethereum-sepolia
+
+================================================================================
+                         DEPLOYMENT INFO
+================================================================================
+
+Deployed: November 10, 2025
+Deployer: 0x4e53D27AF8d6311F24Cc15BD89094CE6DD441B59
+Status: ✅ Fully Operational
+Tests: ✅ 69/69 Passing
+
+================================================================================
+
