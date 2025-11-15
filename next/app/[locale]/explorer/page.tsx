@@ -6,7 +6,12 @@ import { useRouter } from "next/navigation"
 import { useSession } from "@/lib/auth-client"
 import useSWR from "swr"
 import AppHeader from '@/components/app-header'
-import PulsingCircle from '@/components/shader/pulsing-circle'
+import dynamic from 'next/dynamic'
+
+// Dynamically import shader components with SSR disabled to prevent server-side texture errors
+const PulsingCircle = dynamic(() => import('@/components/shader/pulsing-circle'), {
+  ssr: false
+})
 import { Trophy, Activity, FileText, ChevronRight, Loader2, Star, Users, Target, TrendingUp, BarChart3, PieChart, ChevronLeft, Search, Filter, X, CirclePlus, CircleMinus, DollarSign, Medal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ComparisonChartSection } from "@/components/explorer"

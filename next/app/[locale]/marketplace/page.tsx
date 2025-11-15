@@ -6,7 +6,12 @@ import { createChart, ColorType, LineStyle, AreaSeries, type Time } from 'lightw
 import Image from 'next/image'
 import { useTranslations, useLocale } from 'next-intl'
 import AppHeader from '@/components/app-header'
-import PulsingCircle from '@/components/shader/pulsing-circle'
+import dynamic from 'next/dynamic'
+
+// Dynamically import shader components with SSR disabled to prevent server-side texture errors
+const PulsingCircle = dynamic(() => import('@/components/shader/pulsing-circle'), {
+  ssr: false
+})
 
 type Agent = {
   id: string

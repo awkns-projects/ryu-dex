@@ -3,9 +3,14 @@
 import ShaderBackground from "@/components/shader/shader-background"
 import ShaderHeader from "@/components/shader/shader-header"
 import HeroContent from "@/components/shader/hero-content"
-import PulsingCircle from "@/components/shader/pulsing-circle"
 import HowItWorksSection from "@/components/shader/how-it-works-section"
 import MarketplaceSection from "@/components/shader/marketplace-section"
+import dynamic from 'next/dynamic'
+
+// Dynamically import shader components with SSR disabled to prevent server-side texture errors
+const PulsingCircle = dynamic(() => import("@/components/shader/pulsing-circle"), {
+  ssr: false
+})
 
 export default function TestPage() {
   return (

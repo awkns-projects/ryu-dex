@@ -6,7 +6,12 @@ import { createChart, ColorType, LineStyle, AreaSeries, type Time } from 'lightw
 import Image from 'next/image'
 import { useTranslations, useLocale } from 'next-intl'
 import AppHeader from '@/components/app-header'
-import CardShaderBackground from '@/components/shader/card-shader-background'
+import dynamic from 'next/dynamic'
+
+// Dynamically import shader components with SSR disabled to prevent server-side texture errors
+const CardShaderBackground = dynamic(() => import('@/components/shader/card-shader-background'), {
+  ssr: false
+})
 
 type Position = {
   id: string

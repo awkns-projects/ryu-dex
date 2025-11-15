@@ -1,0 +1,66 @@
+# Dockerfile for Go Backend Development
+# Uses volume mounts for hot reload instead of copying files
+
+ARG GO_VERSION=1.25-alpine
+ARG ALPINE_VERSION=latest
+ARG TA_LIB_VERSION=0.4.0
+
+# ──────────────────────────────────────────────────────────────
+# TA-Lib Build Stage (only needs to be built once)
+# ──────────────────────────────────────────────────────────────
+FROM alpine:${ALPINE_VERSION} AS ta-lib-builder
+ARG TA_LIB_VERSION
+
+RUN apk update && apk add --no-cache \
+    wget tar make gcc g++ musl-dev autoconf automake
+
+RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-${TA_LIB_VERSION}-src.tar.gz && \
+    tar -xzf ta-lib-${TA_LIB_VERSION}-src.tar.gz && \
+    cd ta-lib && \
+    if [ "$(uname -m)" = "aarch64" ]; then \
+        CONFIG_GUESS=$(find /usr/share -name config.guess | head -1) && \
+        CONFIG_SUB=$(find /usr/share -name config.sub | head -1) && \
+        cp "$CONFIG_GUESS" config.guess && \
+        cp "$CONFIG_SUB" config.sub && \
+        chmod +x config.guess config.sub; \
+    fi && \
+    ./configure --prefix=/usr/local && \
+    make && make install && \
+    cd .. && rm -rf ta-lib ta-lib-${TA_LIB_VERSION}-src.tar.gz
+
+# ──────────────────────────────────────────────────────────────
+# Development Runtime Stage
+# ──────────────────────────────────────────────────────────────
+FROM golang:${GO_VERSION}
+
+# Install build tools and TA-Lib
+RUN apk update && apk add --no-cache \
+    git make gcc g++ musl-dev ca-certificates tzdata wget
+
+# Copy TA-Lib from builder
+COPY --from=ta-lib-builder /usr/local /usr/local
+
+WORKDIR /app
+
+# Pre-download Go modules (this speeds up startup)
+# We'll mount the actual source code as a volume
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy entrypoint script
+COPY docker/entrypoint.backend.dev.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set environment for CGO
+ENV CGO_ENABLED=1
+ENV CGO_CFLAGS="-D_LARGEFILE64_SOURCE"
+
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/health || exit 1
+
+# Use entrypoint script to handle database setup
+ENTRYPOINT ["/entrypoint.sh"]
+

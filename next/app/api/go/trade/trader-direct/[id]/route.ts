@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import Database from 'better-sqlite3'
 import path from 'path'
 
-// Database is in the root directory (2 levels up from next/)
-const DB_PATH = path.join(process.cwd(), '..', 'config.db')
+// Database path - use environment variable if set, otherwise default to ../config.db
+const DB_PATH = process.env.SQLITE_DB_PATH || process.env.DATABASE_PATH || path.join(process.cwd(), '..', 'config.db')
 
 /**
  * Direct SQLite read endpoint - bypasses Go backend to get ALL trader fields

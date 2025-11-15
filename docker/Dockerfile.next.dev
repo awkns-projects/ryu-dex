@@ -1,0 +1,36 @@
+# Dockerfile for Next.js Development
+# Uses volume mounts for hot reload instead of copying files
+
+ARG NODE_VERSION=20-alpine
+
+FROM node:${NODE_VERSION}
+
+# Install Python and build tools for native modules
+RUN apk update && apk add --no-cache python3 make g++ wget
+
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY next/package*.json ./
+COPY next/prisma ./prisma/
+
+# Install dependencies (postinstall will run prisma generate)
+RUN npm ci
+
+# Set NODE_ENV to development
+ENV NODE_ENV=development
+ENV PORT=3000
+
+# Copy entrypoint script
+COPY docker/entrypoint.next.dev.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
+
+# Use entrypoint to set up database symlink
+ENTRYPOINT ["/entrypoint.sh"]
+

@@ -10,8 +10,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import AppHeader from '@/components/app-header'
-import PulsingCircle from '@/components/shader/pulsing-circle'
-import { PulsingBorder } from "@paper-design/shaders-react"
+import dynamic from 'next/dynamic'
+
+// Dynamically import shader components with SSR disabled to prevent server-side texture errors
+const PulsingCircle = dynamic(() => import('@/components/shader/pulsing-circle'), {
+  ssr: false
+})
 import { Plus, ChevronRight, ChevronLeft, Loader2, TrendingUp, Wallet, Settings, Trash2, Activity, DollarSign, Check, FileText, Bot, ShoppingCart, ArrowUpRight, ArrowDownRight, Target, BarChart3, CirclePlus, CircleMinus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from 'next/image'

@@ -3,7 +3,7 @@ import Database from 'better-sqlite3'
 import path from 'path'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
-const DB_PATH = process.env.DATABASE_PATH || path.join(process.cwd(), '..', 'config.db')
+const DB_PATH = process.env.SQLITE_DB_PATH || process.env.DATABASE_PATH || path.join(process.cwd(), '..', 'config.db')
 
 interface EnhancedAgent {
   id: string
