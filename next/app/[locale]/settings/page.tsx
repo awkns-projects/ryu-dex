@@ -10,7 +10,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Loader2, Brain, Check, Trash2, Plus, AlertCircle } from 'lucide-react'
+// Switch component - using a simple toggle button instead
+import { Loader2, Brain, Check, Trash2, Plus, AlertCircle, Network, Wallet } from 'lucide-react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useRouter } from 'next/navigation'
 
@@ -23,6 +24,15 @@ interface AIModel {
   custom_model_name?: string
 }
 
+interface Exchange {
+  id: string
+  name: string
+  type: string
+  enabled: boolean
+  testnet?: boolean
+  hyperliquid_wallet_addr?: string
+}
+
 export default function SettingsPage() {
   const t = useTranslations('settings')
   const locale = useLocale()
@@ -31,8 +41,10 @@ export default function SettingsPage() {
 
   const [supportedModels, setSupportedModels] = useState<AIModel[]>([])
   const [configuredModels, setConfiguredModels] = useState<AIModel[]>([])
+  const [configuredExchanges, setConfiguredExchanges] = useState<Exchange[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
+  const [isSavingExchange, setIsSavingExchange] = useState(false)
   const [isModelModalOpen, setIsModelModalOpen] = useState(false)
   const [editingModel, setEditingModel] = useState<AIModel | null>(null)
   const [selectedModelId, setSelectedModelId] = useState('')
@@ -47,10 +59,11 @@ export default function SettingsPage() {
     }
   }, [user, token, isAuthLoading, router, locale])
 
-  // Fetch models
+  // Fetch models and exchanges
   useEffect(() => {
     if (user && token) {
       fetchModels()
+      fetchExchanges()
     }
   }, [user, token])
 
@@ -82,6 +95,26 @@ export default function SettingsPage() {
       console.error('Failed to fetch models:', err)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const fetchExchanges = async () => {
+    if (!token) return
+
+    try {
+      const exchangesResponse = await fetch('/api/go/trade/exchanges', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+
+      if (exchangesResponse.ok) {
+        const exchangesData = await exchangesResponse.json()
+        setConfiguredExchanges(exchangesData.exchanges || exchangesData || [])
+      }
+    } catch (err) {
+      console.error('Failed to fetch exchanges:', err)
     }
   }
 
@@ -153,6 +186,41 @@ export default function SettingsPage() {
       alert(`Failed to save model: ${err.message}`)
     } finally {
       setIsSaving(false)
+    }
+  }
+
+  const handleToggleTestnet = async (exchangeId: string, currentTestnet: boolean) => {
+    if (!token) return
+
+    setIsSavingExchange(true)
+    try {
+      const response = await fetch('/api/go/trade/update-exchange', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          exchangeId: exchangeId,
+          enabled: true, // Keep enabled
+          testnet: !currentTestnet, // Toggle testnet
+          // Don't send api_key/secret_key to preserve existing values
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to update exchange')
+      }
+
+      // Refresh exchanges
+      await fetchExchanges()
+      alert(`✅ Exchange updated to ${!currentTestnet ? 'Testnet' : 'Mainnet'} mode!`)
+    } catch (err: any) {
+      console.error('Failed to update exchange:', err)
+      alert(`Failed to update exchange: ${err.message}`)
+    } finally {
+      setIsSavingExchange(false)
     }
   }
 
@@ -267,6 +335,101 @@ export default function SettingsPage() {
                     >
                       Edit
                     </Button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Exchanges Section */}
+        <Card className="bg-white/[0.02] border-white/[0.08] mb-6">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Network className="w-5 h-5" />
+                  Exchanges
+                </CardTitle>
+                <CardDescription className="text-white/60">
+                  Configure exchange settings including testnet mode
+                </CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {configuredExchanges.length === 0 ? (
+              <div className="text-center py-8">
+                <AlertCircle className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+                <p className="text-white/60 mb-4">No exchanges configured</p>
+                <p className="text-sm text-white/40 mb-4">
+                  Exchanges are automatically created when you create a trading agent.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {configuredExchanges.map((exchange) => (
+                  <div
+                    key={exchange.id}
+                    className="flex items-center justify-between p-4 rounded-lg bg-white/[0.03] border border-white/[0.08]"
+                  >
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-semibold text-white">
+                          {exchange.name || exchange.id}
+                        </h3>
+                        {exchange.enabled && (
+                          <span className="px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 border border-green-500/30">
+                            Enabled
+                          </span>
+                        )}
+                        {exchange.testnet && (
+                          <span className="px-2 py-0.5 rounded text-xs bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
+                            Testnet
+                          </span>
+                        )}
+                        {!exchange.testnet && (
+                          <span className="px-2 py-0.5 rounded text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                            Mainnet
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-sm text-white/60">
+                        Type: {exchange.type} • ID: {exchange.id}
+                      </div>
+                      {exchange.hyperliquid_wallet_addr && (
+                        <div className="text-xs text-white/40 mt-1 flex items-center gap-1">
+                          <Wallet className="w-3 h-3" />
+                          Wallet: {exchange.hyperliquid_wallet_addr}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
+                        <Label className="text-white/60 text-sm">
+                          Testnet
+                        </Label>
+                        <button
+                          onClick={() => handleToggleTestnet(exchange.id, exchange.testnet || false)}
+                          disabled={isSavingExchange}
+                          className={`
+                            relative inline-flex h-6 w-11 items-center rounded-full transition-colors
+                            ${exchange.testnet 
+                              ? 'bg-yellow-500' 
+                              : 'bg-white/20'
+                            }
+                            ${isSavingExchange ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                          `}
+                        >
+                          <span
+                            className={`
+                              inline-block h-4 w-4 transform rounded-full bg-white transition-transform
+                              ${exchange.testnet ? 'translate-x-6' : 'translate-x-1'}
+                            `}
+                          />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

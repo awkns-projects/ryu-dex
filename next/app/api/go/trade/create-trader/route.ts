@@ -222,7 +222,55 @@ export async function POST(request: NextRequest) {
 
         if (existingHyperliquid) {
           console.log(`✅ Using existing Hyperliquid exchange`)
-          walletAddress = existingHyperliquid.hyperliquid_wallet_addr || ''
+          // Go backend returns hyperliquidWalletAddr (camelCase) in SafeExchangeConfig
+          walletAddress = existingHyperliquid.hyperliquidWalletAddr || existingHyperliquid.hyperliquid_wallet_addr || ''
+          
+          // Update testnet setting if provided in request
+          const testnetMode = (body as any).testnet === true
+          const currentTestnet = existingHyperliquid.testnet === true || existingHyperliquid.testnet === 1
+          
+          if (currentTestnet !== testnetMode) {
+            console.log(`🔄 Updating exchange testnet setting from ${currentTestnet} to ${testnetMode}`)
+            try {
+              const { updateExchangeConfig } = await import('@/lib/go-crypto')
+              await updateExchangeConfig(authHeader, 'hyperliquid', {
+                enabled: true,
+                testnet: testnetMode,
+                hyperliquid_wallet_addr: walletAddress || existingHyperliquid.hyperliquidWalletAddr || existingHyperliquid.hyperliquid_wallet_addr || '',
+                // Don't send api_key/secret_key to preserve existing values
+              })
+              console.log(`✅ Exchange testnet setting updated to ${testnetMode}`)
+            } catch (error) {
+              console.error('⚠️ Failed to update exchange testnet setting:', error)
+              // Continue anyway - the exchange config exists
+            }
+          }
+          
+          // If no wallet address exists, generate a new one
+          if (!walletAddress) {
+            console.log('💡 No wallet address in existing exchange, generating new wallet...')
+            const wallet = generateEthereumWallet()
+            walletAddress = wallet.address
+            isNewWallet = true
+            
+            try {
+              const { updateExchangeConfig } = await import('@/lib/go-crypto')
+              const testnetMode = (body as any).testnet === true
+              await updateExchangeConfig(authHeader, 'hyperliquid', {
+                enabled: true,
+                api_key: wallet.privateKey,
+                testnet: testnetMode,
+                hyperliquid_wallet_addr: wallet.address,
+              })
+              console.log(`✅ Wallet address added to existing exchange (testnet: ${testnetMode})`)
+            } catch (error) {
+              console.error('❌ Failed to add wallet to exchange:', error)
+              return NextResponse.json(
+                { error: `Failed to add wallet to exchange: ${error instanceof Error ? error.message : 'Unknown error'}` },
+                { status: 500 }
+              )
+            }
+          }
         } else {
           console.log('💡 Hyperliquid exchange not found, creating it...')
 
@@ -237,17 +285,23 @@ export async function POST(request: NextRequest) {
           try {
             const { updateExchangeConfig } = await import('@/lib/go-crypto')
 
+            // Use testnet flag from request body, default to false if not provided
+            const testnetMode = (body as any).testnet === true
+
             await updateExchangeConfig(authHeader, 'hyperliquid', {
               enabled: true,
               api_key: wallet.privateKey,
               secret_key: '',
-              testnet: false,
+              testnet: testnetMode,
               hyperliquid_wallet_addr: wallet.address,
             })
 
-            console.log(`✅ Hyperliquid exchange created`)
+            console.log(`✅ Hyperliquid exchange created (testnet: ${testnetMode})`)
             console.log(`💰 Wallet address: ${wallet.address}`)
             console.log(`💰 IMPORTANT: Please fund wallet ${wallet.address} with USDC to start trading`)
+            if (testnetMode) {
+              console.log(`🧪 Using TESTNET - No real funds will be used`)
+            }
           } catch (error) {
             console.error('❌ Failed to create Hyperliquid exchange:', error)
             return NextResponse.json(

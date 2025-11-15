@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
       const traderId = trader.trader_id
       const deposit = trader.initial_balance || 0
 
-      // Query SQLite for trader config + exchange info (with wallet)
+      // Query SQLite for trader config + exchange info (with wallet and testnet)
       const query = `
         SELECT 
           t.id as trader_id,
@@ -102,7 +102,8 @@ export async function GET(request: NextRequest) {
           t.trading_symbols,
           t.exchange_id,
           e.hyperliquid_wallet_addr,
-          e.name as exchange_name
+          e.name as exchange_name,
+          e.testnet
         FROM traders t
         LEFT JOIN exchanges e ON t.exchange_id = e.id
         WHERE t.id = ? AND t.user_id = ?
@@ -115,6 +116,7 @@ export async function GET(request: NextRequest) {
         exchange_id: string
         hyperliquid_wallet_addr: string
         exchange_name: string
+        testnet: number | null
       } | undefined
 
       // Parse trading symbols
@@ -189,7 +191,8 @@ export async function GET(request: NextRequest) {
         winRate,
         walletAddress,
         exchange_id: row?.exchange_id || trader.exchange_id || 'hyperliquid', // Include exchange_id for wallet fetching
-      } as EnhancedAgent & { exchange_id: string }
+        testnet: row?.testnet === 1 || false, // Include testnet flag (SQLite stores boolean as 0/1)
+      } as EnhancedAgent & { exchange_id: string; testnet: boolean }
     })
 
     const agents = await Promise.all(agentsPromises)

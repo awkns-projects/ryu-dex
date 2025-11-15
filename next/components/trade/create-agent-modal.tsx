@@ -41,6 +41,7 @@ interface CreateAgentModalProps {
   selectedAIModel: string
   availableAIModels: any[]
   isLoadingModels: boolean
+  useTestnet: boolean
   onAgentNameChange: (value: string) => void
   onTemplateSelect: (template: PromptTemplate | null) => void
   onCustomPromptChange: (value: string) => void
@@ -49,6 +50,7 @@ interface CreateAgentModalProps {
   onDepositChange: (value: string) => void
   onLeverageChange: (value: number) => void
   onAIModelChange: (value: string) => void
+  onTestnetChange: (value: boolean) => void
   onNext: () => void
   onPrevious: () => void
   onCreate: () => void
@@ -76,6 +78,7 @@ export function CreateAgentModal({
   selectedAIModel,
   availableAIModels,
   isLoadingModels,
+  useTestnet,
   onAgentNameChange,
   onTemplateSelect,
   onCustomPromptChange,
@@ -84,6 +87,7 @@ export function CreateAgentModal({
   onDepositChange,
   onLeverageChange,
   onAIModelChange,
+  onTestnetChange,
   onNext,
   onPrevious,
   onCreate,
@@ -542,6 +546,51 @@ export function CreateAgentModal({
                       <span>10x</span>
                       <span>20x</span>
                     </div>
+                  </div>
+
+                  {/* Network Selection */}
+                  <div className="p-6 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <h4 className="font-semibold text-white/80 mb-1">
+                          Network
+                        </h4>
+                        <p className="text-xs text-white/50">
+                          Choose testnet for testing or mainnet for real trading
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => onTestnetChange(false)}
+                          className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-semibold transition-all",
+                            !useTestnet
+                              ? "bg-blue-500/20 text-blue-400 border-2 border-blue-500/50"
+                              : "bg-white/[0.03] text-white/60 border border-white/[0.08] hover:bg-white/[0.05]"
+                          )}
+                        >
+                          Mainnet
+                        </button>
+                        <button
+                          onClick={() => onTestnetChange(true)}
+                          className={cn(
+                            "px-4 py-2 rounded-lg text-sm font-semibold transition-all",
+                            useTestnet
+                              ? "bg-yellow-500/20 text-yellow-400 border-2 border-yellow-500/50"
+                              : "bg-white/[0.03] text-white/60 border border-white/[0.08] hover:bg-white/[0.05]"
+                          )}
+                        >
+                          Testnet
+                        </button>
+                      </div>
+                    </div>
+                    {useTestnet && (
+                      <div className="mt-3 p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+                        <p className="text-xs text-yellow-400">
+                          ⚠️ Testnet mode: This agent will use testnet funds. No real money will be used.
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>

@@ -213,6 +213,7 @@ export default function TradePage() {
   const [selectedAIModel, setSelectedAIModel] = useState<string>("deepseek")
   const [availableAIModels, setAvailableAIModels] = useState<any[]>([])
   const [isLoadingModels, setIsLoadingModels] = useState(false)
+  const [useTestnet, setUseTestnet] = useState<boolean>(false)
 
   // Tab state
   const [activeTab, setActiveTab] = useState("account")
@@ -457,7 +458,8 @@ export default function TradePage() {
             console.log('🔍 Exchange found:', exchange)
 
             // Check for wallet address with multiple possible field names
-            walletAddress = exchange?.hyperliquid_wallet_addr || exchange?.wallet_address || exchange?.hyperliquidWalletAddr || ''
+            // Go backend returns hyperliquidWalletAddr (camelCase) in SafeExchangeConfig
+            walletAddress = exchange?.hyperliquidWalletAddr || exchange?.hyperliquid_wallet_addr || exchange?.wallet_address || ''
           } else {
             console.warn('⚠️ Failed to fetch exchange configurations')
           }
@@ -867,6 +869,7 @@ export default function TradePage() {
     setDeposit("")
     setLeverage(5)
     setSelectedAIModel("deepseek")
+    setUseTestnet(false)
   }
 
   // Fetch available AI models
@@ -1019,6 +1022,7 @@ export default function TradePage() {
         scan_interval_minutes: 15,    // AI decision interval (3-60 minutes)
         use_coin_pool: false,         // Don't use coin pool signals
         use_oi_top: false,            // Don't use OI top signals
+        testnet: useTestnet,          // User-selected network mode
       }
 
       console.log('🔄 Creating trader via Go backend...', traderData.name)
@@ -1177,12 +1181,29 @@ export default function TradePage() {
         setIsCreateModalOpen(false)
         resetForm()
 
-        // Fetch wallet address and show deposit modal
-        try {
-          await handleShowDepositForAgent(traderId)
-        } catch (err) {
-          console.error('❌ Failed to show deposit modal:', err)
-          // If we can't show deposit modal, at least the trader was created successfully
+        // Use wallet address from creation response if available, otherwise fetch it
+        const walletFromResponse = result.walletAddress
+        if (walletFromResponse) {
+          console.log('✅ Using wallet address from creation response:', walletFromResponse)
+          setDepositWalletAddress(walletFromResponse)
+          setCreatedTraderId(traderId)
+          setDepositRequiredBalance(parseFloat(deposit) || 1000)
+          setDepositCurrentBalance(0)
+          setIsDepositModalOpen(true)
+        } else {
+          // Fallback: refresh agents list and then show deposit modal
+          console.log('💡 Wallet not in response, refreshing agents list first...')
+          await refreshAgentsData()
+          
+          // Wait a bit for the refresh to complete, then try to show deposit modal
+          setTimeout(async () => {
+            try {
+              await handleShowDepositForAgent(traderId)
+            } catch (err) {
+              console.error('❌ Failed to show deposit modal:', err)
+              // If we can't show deposit modal, at least the trader was created successfully
+            }
+          }, 1000) // Increased delay to ensure exchange config is saved
         }
       } else {
         // Just close the create modal if no trader ID
@@ -1933,6 +1954,8 @@ export default function TradePage() {
         onDepositChange={setDeposit}
         onLeverageChange={setLeverage}
         onAIModelChange={setSelectedAIModel}
+        useTestnet={useTestnet}
+        onTestnetChange={setUseTestnet}
         onNext={nextStep}
         onPrevious={prevStep}
         onCreate={handleCreateAgent}

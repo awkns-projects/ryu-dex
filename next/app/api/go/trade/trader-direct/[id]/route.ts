@@ -60,23 +60,25 @@ export async function GET(
     // Open database connection (readonly for safety)
     const db = new Database(DB_PATH, { readonly: true, fileMustExist: true })
 
-    // Query with exact same COALESCE logic as Go backend
+    // Query with exact same COALESCE logic as Go backend, plus exchange testnet info
     const trader = db.prepare(`
       SELECT 
-        id, user_id, name, ai_model_id, exchange_id, initial_balance, 
-        scan_interval_minutes, is_running,
-        COALESCE(btc_eth_leverage, 5) as btc_eth_leverage,
-        COALESCE(altcoin_leverage, 5) as altcoin_leverage,
-        COALESCE(trading_symbols, '') as trading_symbols,
-        COALESCE(custom_prompt, '') as custom_prompt,
-        COALESCE(override_base_prompt, 0) as override_base_prompt,
-        COALESCE(system_prompt_template, 'default') as system_prompt_template,
-        COALESCE(is_cross_margin, 1) as is_cross_margin,
-        COALESCE(use_coin_pool, 0) as use_coin_pool,
-        COALESCE(use_oi_top, 0) as use_oi_top,
-        created_at, updated_at
-      FROM traders 
-      WHERE id = ? AND user_id = ?
+        t.id, t.user_id, t.name, t.ai_model_id, t.exchange_id, t.initial_balance, 
+        t.scan_interval_minutes, t.is_running,
+        COALESCE(t.btc_eth_leverage, 5) as btc_eth_leverage,
+        COALESCE(t.altcoin_leverage, 5) as altcoin_leverage,
+        COALESCE(t.trading_symbols, '') as trading_symbols,
+        COALESCE(t.custom_prompt, '') as custom_prompt,
+        COALESCE(t.override_base_prompt, 0) as override_base_prompt,
+        COALESCE(t.system_prompt_template, 'default') as system_prompt_template,
+        COALESCE(t.is_cross_margin, 1) as is_cross_margin,
+        COALESCE(t.use_coin_pool, 0) as use_coin_pool,
+        COALESCE(t.use_oi_top, 0) as use_oi_top,
+        t.created_at, t.updated_at,
+        e.testnet
+      FROM traders t
+      LEFT JOIN exchanges e ON t.exchange_id = e.id
+      WHERE t.id = ? AND t.user_id = ?
     `).get(traderId, userId) as any
 
     db.close()
@@ -117,6 +119,7 @@ export async function GET(
       override_base_prompt: trader.override_base_prompt === 1,
       use_coin_pool: trader.use_coin_pool === 1,
       use_oi_top: trader.use_oi_top === 1,
+      testnet: trader.testnet === 1 || false, // Include testnet flag (SQLite stores boolean as 0/1)
       created_at: trader.created_at,
       updated_at: trader.updated_at,
     })

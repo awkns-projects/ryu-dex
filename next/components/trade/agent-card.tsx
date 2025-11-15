@@ -19,6 +19,7 @@ interface Agent {
   pnlPercent?: number
   winRate?: number
   walletAddress?: string
+  testnet?: boolean
 }
 
 interface AgentCardProps {
@@ -203,18 +204,30 @@ export function AgentCard({
 
         {/* Status Badge + Start/Stop Button */}
         <div className="flex items-center justify-between mb-2">
-          <span className={cn(
-            "text-[10px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1",
-            agent.status === "active"
-              ? "bg-green-500/20 text-green-400 border border-green-500/30"
-              : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-          )}>
-            <div className={cn(
-              "w-1 h-1 rounded-full",
-              agent.status === "active" ? "bg-green-400 animate-pulse" : "bg-yellow-400"
-            )}></div>
-            {agent.status === "active" ? t('statusActive') : t('statusPaused')}
-          </span>
+          <div className="flex items-center gap-1.5">
+            <span className={cn(
+              "text-[10px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1",
+              agent.status === "active"
+                ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+            )}>
+              <div className={cn(
+                "w-1 h-1 rounded-full",
+                agent.status === "active" ? "bg-green-400 animate-pulse" : "bg-yellow-400"
+              )}></div>
+              {agent.status === "active" ? t('statusActive') : t('statusPaused')}
+            </span>
+            {agentAny.testnet !== undefined && (
+              <span className={cn(
+                "text-[10px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1",
+                agentAny.testnet
+                  ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                  : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+              )}>
+                {agentAny.testnet ? 'TESTNET' : 'MAINNET'}
+              </span>
+            )}
+          </div>
 
           {/* Start/Pause Toggle Button */}
           <button

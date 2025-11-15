@@ -116,6 +116,7 @@ interface TraderInfo {
   is_running: boolean
   initial_balance: number
   system_prompt_template?: string
+  testnet?: boolean
 }
 
 interface TraderDashboardProps {
@@ -306,6 +307,21 @@ export function TraderDashboard({ traderId, onTraderSelect, traders: propTraders
               {selectedTrader.system_prompt_template || '-'}
             </span>
           </span>
+          {selectedTrader.testnet !== undefined && (
+            <>
+              <span>•</span>
+              <span
+                className={cn(
+                  "px-2 py-0.5 rounded text-xs font-semibold",
+                  selectedTrader.testnet
+                    ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                    : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                )}
+              >
+                {selectedTrader.testnet ? 'TESTNET' : 'MAINNET'}
+              </span>
+            </>
+          )}
           {status && (
             <>
               <span>•</span>
