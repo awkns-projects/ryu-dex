@@ -13,6 +13,7 @@ interface DepositModalProps {
   currentBalance: number
   requiredBalance: number
   isCheckingBalance: boolean
+  testnet?: boolean // Optional: if provided, will link to correct explorer
   onStartTrader: () => void
   onRefreshBalance: () => void
 }
@@ -24,6 +25,7 @@ export function DepositModal({
   currentBalance,
   requiredBalance,
   isCheckingBalance,
+  testnet = false,
   onStartTrader,
   onRefreshBalance,
 }: DepositModalProps) {
@@ -97,17 +99,51 @@ export function DepositModal({
               <code className="flex-1 text-xs sm:text-sm text-white/80 font-mono break-all">
                 {walletAddress}
               </code>
-              <Button
-                size="sm"
-                onClick={() => {
-                  navigator.clipboard.writeText(walletAddress)
-                  alert('✅ Wallet address copied!')
-                }}
-                className="w-full sm:w-auto shrink-0 bg-white text-black hover:bg-white/90 h-8 px-3 text-xs"
-              >
-                Copy
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    const explorerUrl = testnet 
+                      ? `https://app.hyperliquid-testnet.xyz/explorer/address/${walletAddress}`
+                      : `https://app.hyperliquid.xyz/explorer/address/${walletAddress}`
+                    window.open(explorerUrl, '_blank', 'noopener,noreferrer')
+                  }}
+                  variant="outline"
+                  className="shrink-0 bg-white/[0.03] text-white/60 hover:text-white hover:bg-white/[0.05] border-white/[0.08] h-8 px-3 text-xs"
+                  title={`View on ${testnet ? 'Testnet' : 'Mainnet'} Explorer`}
+                >
+                  <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  View
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    navigator.clipboard.writeText(walletAddress)
+                    alert('✅ Wallet address copied!')
+                  }}
+                  className="w-full sm:w-auto shrink-0 bg-white text-black hover:bg-white/90 h-8 px-3 text-xs"
+                >
+                  Copy
+                </Button>
+              </div>
             </div>
+            <p className="text-xs text-white/40">
+              View this address on{' '}
+              <a
+                href={testnet 
+                  ? `https://app.hyperliquid-testnet.xyz/explorer/address/${walletAddress}`
+                  : `https://app.hyperliquid.xyz/explorer/address/${walletAddress}`
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white underline"
+              >
+                Hyperliquid {testnet ? 'Testnet' : 'Mainnet'} Explorer
+              </a>
+              {' '}to check balance and transaction history
+            </p>
           </div>
 
           {/* QR Code Section */}

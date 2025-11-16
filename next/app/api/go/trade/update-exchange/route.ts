@@ -27,14 +27,17 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    console.log(`🔄 [API Route] Updating exchange: ${exchangeId} (testnet: ${testnet})`)
+    // Auto-set testnet based on exchange ID: hyperliquid-testnet = true, hyperliquid = false
+    // Ignore any testnet value from request body to prevent manual changes
+    const autoTestnet = exchangeId === 'hyperliquid-testnet'
+    console.log(`🔄 [API Route] Updating exchange: ${exchangeId} (testnet auto-set to: ${autoTestnet} based on ID)`)
 
     // Use the go-crypto helper to encrypt and send the update
     await updateExchangeConfig(authHeader, exchangeId, {
       enabled: enabled !== undefined ? enabled : true,
       api_key: api_key || '',
       secret_key: secret_key || '',
-      testnet: testnet !== undefined ? testnet : false,
+      testnet: autoTestnet, // Always auto-set based on exchange ID
       hyperliquid_wallet_addr: hyperliquid_wallet_addr || '',
     })
 

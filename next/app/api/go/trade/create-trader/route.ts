@@ -39,6 +39,10 @@ export async function POST(request: NextRequest) {
     const body: CreateTraderRequest = await request.json()
 
     console.log('🔄 [API Route] Creating trader...', body.name)
+    console.log('🔍 [API Route] Initial request body:', {
+      exchange_id: body.exchange_id,
+      testnet: (body as any).testnet,
+    })
     console.log('📊 [API Route] Trader creation data:', {
       name: body.name,
       trading_symbols: body.trading_symbols,
@@ -198,13 +202,33 @@ export async function POST(request: NextRequest) {
     }
 
     // ====================================
-    // 🔐 STEP 2: Ensure Hyperliquid exchange exists
+    // 🔐 STEP 2: Determine exchange_id based on testnet preference
     // ====================================
+    // Use separate exchange configs for mainnet and testnet to support per-agent network switching
+    // Mainnet uses 'hyperliquid' (backward compatible), testnet uses 'hyperliquid-testnet'
+    const testnetMode = (body as any).testnet === true
+    const actualExchangeId = testnetMode ? 'hyperliquid-testnet' : 'hyperliquid'
+    
+    console.log('🔍 [API Route] Testnet mode determination:', {
+      'body.testnet (raw)': (body as any).testnet,
+      'testnetMode (parsed)': testnetMode,
+      'actualExchangeId': actualExchangeId,
+      'body.exchange_id (before)': body.exchange_id,
+    })
+    
+    // Update the exchange_id in the body for the Go backend
+    body.exchange_id = actualExchangeId
+    
+    console.log('✅ [API Route] Updated exchange_id:', {
+      'body.exchange_id (after)': body.exchange_id,
+      'actualExchangeId': actualExchangeId,
+    })
+    
     let walletAddress = ''
     let isNewWallet = false
 
-    if (body.exchange_id === 'hyperliquid') {
-      console.log('🔑 Hyperliquid exchange detected, checking if it exists...')
+    if (body.exchange_id === 'hyperliquid' || body.exchange_id === 'hyperliquid-testnet') {
+      console.log(`🔑 Hyperliquid exchange detected (${actualExchangeId}), checking if it exists...`)
 
       // Check if Hyperliquid exchange already exists
       const exchangesResponse = await fetch(`${BACKEND_URL}/api/exchanges`, {
@@ -216,53 +240,66 @@ export async function POST(request: NextRequest) {
 
       if (exchangesResponse.ok) {
         const exchangesData = await exchangesResponse.json()
-        const existingHyperliquid = Array.isArray(exchangesData)
-          ? exchangesData.find((ex: any) => ex.id === 'hyperliquid')
-          : null
+        console.log(`🔍 [Create Trader] Fetched exchanges:`, {
+          isArray: Array.isArray(exchangesData),
+          exchangeIds: Array.isArray(exchangesData) ? exchangesData.map((ex: any) => ex.id) : Object.keys(exchangesData),
+          lookingFor: actualExchangeId,
+        })
+        
+        const foundExchange = Array.isArray(exchangesData)
+          ? exchangesData.find((ex: any) => ex.id === actualExchangeId)
+          : exchangesData[actualExchangeId] || null
 
-        if (existingHyperliquid) {
-          console.log(`✅ Using existing Hyperliquid exchange`)
-          // Go backend returns hyperliquidWalletAddr (camelCase) in SafeExchangeConfig
-          walletAddress = existingHyperliquid.hyperliquidWalletAddr || existingHyperliquid.hyperliquid_wallet_addr || ''
-          
-          // Update testnet setting if provided in request
-          const testnetMode = (body as any).testnet === true
-          const currentTestnet = existingHyperliquid.testnet === true || existingHyperliquid.testnet === 1
-          
-          if (currentTestnet !== testnetMode) {
-            console.log(`🔄 Updating exchange testnet setting from ${currentTestnet} to ${testnetMode}`)
-            try {
-              const { updateExchangeConfig } = await import('@/lib/go-crypto')
-              await updateExchangeConfig(authHeader, 'hyperliquid', {
-                enabled: true,
-                testnet: testnetMode,
-                hyperliquid_wallet_addr: walletAddress || existingHyperliquid.hyperliquidWalletAddr || existingHyperliquid.hyperliquid_wallet_addr || '',
-                // Don't send api_key/secret_key to preserve existing values
-              })
-              console.log(`✅ Exchange testnet setting updated to ${testnetMode}`)
-            } catch (error) {
-              console.error('⚠️ Failed to update exchange testnet setting:', error)
-              // Continue anyway - the exchange config exists
-            }
+        // Check if we can safely reuse the existing exchange
+        // CRITICAL: Only reuse if testnet setting matches to avoid affecting other agents
+        let canReuseExchange = false
+        if (foundExchange) {
+          const currentTestnet = foundExchange.testnet === true || foundExchange.testnet === 1
+          if (currentTestnet === testnetMode) {
+            // Testnet matches - safe to reuse
+            canReuseExchange = true
+            console.log(`✅ Found existing ${actualExchangeId} exchange with matching testnet=${currentTestnet}, reusing it`)
+          } else {
+            // Testnet doesn't match - don't reuse to avoid affecting other agents
+            console.warn(`⚠️ Exchange ${actualExchangeId} exists but has testnet=${currentTestnet}, while new agent wants testnet=${testnetMode}`)
+            console.warn(`⚠️ NOT reusing this exchange to avoid affecting other agents. Will create a new exchange.`)
+            canReuseExchange = false
           }
+        }
+
+        if (canReuseExchange && foundExchange) {
+          console.log(`🔍 Exchange data:`, {
+            id: foundExchange.id,
+            hasHyperliquidWalletAddr: !!foundExchange.hyperliquidWalletAddr,
+            hasHyperliquid_wallet_addr: !!foundExchange.hyperliquid_wallet_addr,
+            testnet: foundExchange.testnet,
+          })
           
-          // If no wallet address exists, generate a new one
+          // Get wallet address from existing exchange
+          walletAddress = foundExchange.hyperliquidWalletAddr || foundExchange.hyperliquid_wallet_addr || ''
+          console.log(`💰 Wallet address from existing exchange:`, walletAddress || '(empty)')
+          
+          // If no wallet address exists, we need to add one
+          // This is safe because it doesn't change the testnet setting that affects other agents
           if (!walletAddress) {
-            console.log('💡 No wallet address in existing exchange, generating new wallet...')
+            console.log(`💡 No wallet address in existing ${actualExchangeId} exchange, generating new wallet...`)
             const wallet = generateEthereumWallet()
             walletAddress = wallet.address
             isNewWallet = true
             
+            const currentTestnet = foundExchange.testnet === true || foundExchange.testnet === 1
             try {
               const { updateExchangeConfig } = await import('@/lib/go-crypto')
-              const testnetMode = (body as any).testnet === true
-              await updateExchangeConfig(authHeader, 'hyperliquid', {
+              // Auto-set testnet based on exchange ID: hyperliquid-testnet = true, hyperliquid = false
+              // This ensures the exchange always has the correct testnet setting matching its ID
+              const autoTestnet = actualExchangeId === 'hyperliquid-testnet'
+              await updateExchangeConfig(authHeader, actualExchangeId, {
                 enabled: true,
-                api_key: wallet.privateKey,
-                testnet: testnetMode,
+                api_key: wallet.privateKey, // Generate new private key if missing
+                testnet: autoTestnet, // Auto-set based on exchange ID
                 hyperliquid_wallet_addr: wallet.address,
               })
-              console.log(`✅ Wallet address added to existing exchange (testnet: ${testnetMode})`)
+              console.log(`✅ Wallet address added to existing ${actualExchangeId} exchange (testnet auto-set to ${autoTestnet} based on ID)`)
             } catch (error) {
               console.error('❌ Failed to add wallet to exchange:', error)
               return NextResponse.json(
@@ -272,7 +309,8 @@ export async function POST(request: NextRequest) {
             }
           }
         } else {
-          console.log('💡 Hyperliquid exchange not found, creating it...')
+          // Exchange doesn't exist OR testnet doesn't match - create a new one
+          console.log(`💡 ${actualExchangeId} exchange not found, creating it...`)
 
           // Generate a new wallet
           const wallet = generateEthereumWallet()
@@ -281,34 +319,61 @@ export async function POST(request: NextRequest) {
           walletAddress = wallet.address
           isNewWallet = true
 
-          // Create Hyperliquid exchange config
+          // Create Hyperliquid exchange config with appropriate ID and testnet setting
           try {
             const { updateExchangeConfig } = await import('@/lib/go-crypto')
 
-            // Use testnet flag from request body, default to false if not provided
-            const testnetMode = (body as any).testnet === true
-
-            await updateExchangeConfig(authHeader, 'hyperliquid', {
+            // Auto-set testnet based on exchange ID: hyperliquid-testnet = true, hyperliquid = false
+            const autoTestnet = actualExchangeId === 'hyperliquid-testnet'
+            await updateExchangeConfig(authHeader, actualExchangeId, {
               enabled: true,
               api_key: wallet.privateKey,
               secret_key: '',
-              testnet: testnetMode,
+              testnet: autoTestnet, // Auto-set based on exchange ID
               hyperliquid_wallet_addr: wallet.address,
             })
 
-            console.log(`✅ Hyperliquid exchange created (testnet: ${testnetMode})`)
+            console.log(`✅ ${actualExchangeId} exchange created (testnet: ${autoTestnet} - auto-set from ID)`)
             console.log(`💰 Wallet address: ${wallet.address}`)
             console.log(`💰 IMPORTANT: Please fund wallet ${wallet.address} with USDC to start trading`)
             if (testnetMode) {
               console.log(`🧪 Using TESTNET - No real funds will be used`)
+            } else {
+              console.log(`🌐 Using MAINNET - Real funds will be used`)
             }
           } catch (error) {
-            console.error('❌ Failed to create Hyperliquid exchange:', error)
+            console.error(`❌ Failed to create ${actualExchangeId} exchange:`, error)
             return NextResponse.json(
-              { error: `Failed to create Hyperliquid exchange: ${error instanceof Error ? error.message : 'Unknown error'}` },
+              { error: `Failed to create exchange: ${error instanceof Error ? error.message : 'Unknown error'}` },
               { status: 500 }
             )
           }
+        }
+      } else {
+        // If exchange fetch fails, we still need to create the exchange with wallet
+        console.warn(`⚠️ Failed to fetch exchanges (${exchangesResponse.status}), creating new exchange...`)
+        const wallet = generateEthereumWallet()
+        walletAddress = wallet.address
+        isNewWallet = true
+        
+        try {
+          const { updateExchangeConfig } = await import('@/lib/go-crypto')
+          // Auto-set testnet based on exchange ID: hyperliquid-testnet = true, hyperliquid = false
+          const autoTestnet = actualExchangeId === 'hyperliquid-testnet'
+          await updateExchangeConfig(authHeader, actualExchangeId, {
+            enabled: true,
+            api_key: wallet.privateKey,
+            secret_key: '',
+            testnet: autoTestnet, // Auto-set based on exchange ID
+            hyperliquid_wallet_addr: wallet.address,
+          })
+          console.log(`✅ ${actualExchangeId} exchange created after fetch failure (testnet=${autoTestnet})`)
+        } catch (error) {
+          console.error(`❌ Failed to create exchange after fetch failure:`, error)
+          return NextResponse.json(
+            { error: `Failed to create exchange: ${error instanceof Error ? error.message : 'Unknown error'}` },
+            { status: 500 }
+          )
         }
       }
     }
@@ -321,8 +386,13 @@ export async function POST(request: NextRequest) {
     const goBackendPayload = {
       ...body,
       ai_model_id: aiModelId, // Ensure we use the correct AI model ID
-      exchange_id: body.exchange_id, // Always use the original exchange_id (e.g., 'hyperliquid')
+      exchange_id: body.exchange_id, // Use the updated exchange_id (hyperliquid or hyperliquid-testnet)
     }
+    
+    console.log('🔍 [API Route] Final payload before sending to Go backend:', {
+      'exchange_id': goBackendPayload.exchange_id,
+      'testnet (from body)': (body as any).testnet,
+    })
 
     console.log('📦 [API Route] COMPLETE payload being sent to Go backend (POST /api/traders):')
     console.log('   ✅ name:', goBackendPayload.name)
@@ -339,6 +409,8 @@ export async function POST(request: NextRequest) {
     console.log('   ✅ scan_interval_minutes:', goBackendPayload.scan_interval_minutes)
     console.log('   ✅ use_coin_pool:', goBackendPayload.use_coin_pool)
     console.log('   ✅ use_oi_top:', goBackendPayload.use_oi_top)
+    console.log('   ✅ testnet (from request):', (body as any).testnet, '← Determines exchange_id (hyperliquid for mainnet, hyperliquid-testnet for testnet)')
+    console.log('   ✅ actual exchange_id:', body.exchange_id, '← Used for trader creation')
 
     // Forward request to Go backend
     const response = await fetch(`${BACKEND_URL}/api/traders`, {
@@ -378,6 +450,13 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json()
     console.log('✅ [API Route] Trader created:', data.trader_id)
+    console.log('💰 [API Route] Wallet address status:', {
+      walletAddress: walletAddress || '(empty)',
+      hasWalletAddress: !!walletAddress,
+      isNewWallet,
+      exchangeId: body.exchange_id,
+      isHyperliquid: body.exchange_id === 'hyperliquid' || body.exchange_id === 'hyperliquid-testnet',
+    })
 
     return NextResponse.json({
       success: true,
@@ -385,7 +464,7 @@ export async function POST(request: NextRequest) {
       message: 'Trader created successfully',
       walletAddress: walletAddress || undefined,
       isNewWallet: isNewWallet,
-      needsDeposit: body.exchange_id === 'hyperliquid' && !!walletAddress, // Show deposit modal for all Hyperliquid traders with wallet
+      needsDeposit: (body.exchange_id === 'hyperliquid' || body.exchange_id === 'hyperliquid-testnet') && !!walletAddress, // Show deposit modal for all Hyperliquid traders with wallet
     })
 
   } catch (error) {

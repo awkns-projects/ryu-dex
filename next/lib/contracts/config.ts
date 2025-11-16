@@ -25,7 +25,7 @@ export const HYPERLIQUID_TESTNET = {
     symbol: "HYPE",
     decimals: 18,
   },
-  blockExplorer: "https://explorer.hyperliquid-testnet.xyz",
+  blockExplorer: "https://app.hyperliquid-testnet.xyz/explorer",
 };
 
 // Hyperliquid EVM Mainnet Configuration
@@ -38,7 +38,7 @@ export const HYPERLIQUID_MAINNET = {
     symbol: "HYPE",
     decimals: 18,
   },
-  blockExplorer: "https://explorer.hyperliquid.xyz",
+  blockExplorer: "https://app.hyperliquid.xyz/explorer",
 };
 
 // Active network (switch to mainnet when ready)

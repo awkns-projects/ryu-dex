@@ -843,8 +843,13 @@ func (d *Database) UpdateExchange(userID, id string, enabled bool, apiKey, secre
 		if id == "binance" {
 			name = "Binance Futures"
 			typ = "cex"
-		} else if id == "hyperliquid" {
-			name = "Hyperliquid"
+		} else if id == "hyperliquid" || id == "hyperliquid-testnet" {
+			// Support "hyperliquid" (mainnet, backward compatible) and "hyperliquid-testnet" (testnet) exchange IDs
+			if id == "hyperliquid-testnet" {
+				name = "Hyperliquid Testnet"
+			} else {
+				name = "Hyperliquid"
+			}
 			typ = "dex"
 		} else if id == "aster" {
 			name = "Aster DEX"

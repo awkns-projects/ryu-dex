@@ -61,6 +61,7 @@ export async function GET(
     const db = new Database(DB_PATH, { readonly: true, fileMustExist: true })
 
     // Query with exact same COALESCE logic as Go backend, plus exchange testnet info
+    // Note: exchanges table has composite primary key (id, user_id), so we must join on both
     const trader = db.prepare(`
       SELECT 
         t.id, t.user_id, t.name, t.ai_model_id, t.exchange_id, t.initial_balance, 
@@ -77,7 +78,7 @@ export async function GET(
         t.created_at, t.updated_at,
         e.testnet
       FROM traders t
-      LEFT JOIN exchanges e ON t.exchange_id = e.id
+      LEFT JOIN exchanges e ON t.exchange_id = e.id AND t.user_id = e.user_id
       WHERE t.id = ? AND t.user_id = ?
     `).get(traderId, userId) as any
 

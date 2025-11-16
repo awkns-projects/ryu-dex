@@ -282,14 +282,27 @@ export default function TradePage() {
         }
 
         // Set agents (already transformed by API route)
-        const mappedAgents: Agent[] = tradersData.agents.map((agent: any) => ({
-          ...agent,
-          createdAt: new Date(agent.createdAt),
-          templateId: undefined,
-        }))
+        const mappedAgents: Agent[] = tradersData.agents.map((agent: any) => {
+          // Debug: Log testnet value for each agent
+          console.log(`🔍 [Trade Page] Agent ${agent.id}:`, {
+            name: agent.name,
+            exchange_id: agent.exchange_id,
+            testnet: agent.testnet,
+            testnetType: typeof agent.testnet,
+          })
+          
+          return {
+            ...agent,
+            createdAt: new Date(agent.createdAt),
+            templateId: undefined,
+            // Ensure testnet is explicitly set as boolean
+            testnet: agent.testnet === true || agent.testnet === 1 || (agent.exchange_id === 'hyperliquid-testnet'),
+          }
+        })
 
         setAgents(mappedAgents)
         console.log('✅ Agents set:', mappedAgents.length)
+        console.log('🔍 [Trade Page] Agents testnet values:', mappedAgents.map(a => ({ id: a.id, name: a.name, testnet: (a as any).testnet })))
 
         // ========================
         // STEP 2: Fetch Positions via Next.js API route
@@ -393,42 +406,45 @@ export default function TradePage() {
       const requiredBalance = agent?.deposit || 0
       
       // Try to get wallet address from agent object first (from traders-enhanced API)
-      let walletAddress = (agent as any)?.walletAddress || ''
+      const agentAny = agent as any
+      let walletAddress = agentAny?.walletAddress || ''
+      
+      // Get exchange_id from agent object (should be set by traders-enhanced API)
+      let exchangeId: string | null = agentAny?.exchange_id || null
+
+      console.log('🔍 Agent data:', {
+        hasWalletAddress: !!walletAddress,
+        exchange_id: exchangeId,
+        agentKeys: agent ? Object.keys(agentAny) : [],
+      })
 
       // If not found in agent object, try fetching from exchange config
       if (!walletAddress) {
         console.log('💡 Wallet address not in agent object, fetching from exchange config...')
         
-        // Step 1: Fetch trader config to get the exchange_id (using direct DB access)
-        let exchangeId: string | null = null
-        
-        try {
-          const traderResponse = await fetch(`/api/go/trade/trader-direct/${agentId}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-          })
+        // Step 1: If we don't have exchange_id from agent, try to get it from trader-direct API
+        if (!exchangeId) {
+          try {
+            const traderResponse = await fetch(`/api/go/trade/trader-direct/${agentId}`, {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+              },
+            })
 
-          if (traderResponse.ok) {
-            const traderData = await traderResponse.json()
-            exchangeId = traderData.exchange_id
-            console.log('📊 Trader data received:', traderData)
-          } else {
-            console.warn('⚠️ Could not fetch trader-direct, trying alternative method...')
+            if (traderResponse.ok) {
+              const traderData = await traderResponse.json()
+              exchangeId = traderData.exchange_id
+              console.log('📊 Trader data received from trader-direct:', traderData)
+            } else {
+              console.warn('⚠️ Could not fetch trader-direct, trying alternative method...')
+            }
+          } catch (err) {
+            console.warn('⚠️ Failed to fetch trader-direct:', err)
           }
-        } catch (err) {
-          console.warn('⚠️ Failed to fetch trader-direct:', err)
         }
 
-        // If we still don't have exchange_id, try to get it from agent object
-        if (!exchangeId && agent) {
-          // Try to infer from agent data
-          const agentAny = agent as any
-          exchangeId = agentAny.exchange_id || agentAny.exchange || null
-        }
-
-        // If still no exchange_id, default to 'hyperliquid' (since all traders currently use Hyperliquid)
+        // If still no exchange_id, default to 'hyperliquid' (fallback, backward compatible)
         if (!exchangeId) {
           console.warn('⚠️ No exchange_id found, defaulting to hyperliquid')
           exchangeId = 'hyperliquid'
@@ -455,13 +471,25 @@ export default function TradePage() {
               ? exchanges.find((ex: any) => ex.id === exchangeId)
               : null
 
-            console.log('🔍 Exchange found:', exchange)
+            console.log('🔍 Exchange lookup:', {
+              exchangeId,
+              totalExchanges: Array.isArray(exchanges) ? exchanges.length : 0,
+              exchangeIds: Array.isArray(exchanges) ? exchanges.map((ex: any) => ex.id) : [],
+              exchangeFound: !!exchange,
+            })
 
-            // Check for wallet address with multiple possible field names
-            // Go backend returns hyperliquidWalletAddr (camelCase) in SafeExchangeConfig
-            walletAddress = exchange?.hyperliquidWalletAddr || exchange?.hyperliquid_wallet_addr || exchange?.wallet_address || ''
+            if (exchange) {
+              // Check for wallet address with multiple possible field names
+              // Go backend returns hyperliquidWalletAddr (camelCase) in SafeExchangeConfig
+              // Support hyperliquid (mainnet) and hyperliquid-testnet (testnet) exchange IDs
+              walletAddress = exchange.hyperliquidWalletAddr || exchange.hyperliquid_wallet_addr || exchange.wallet_address || ''
+              console.log('💰 Wallet address from exchange:', walletAddress || '(empty)')
+            } else {
+              console.warn(`⚠️ Exchange ${exchangeId} not found in exchanges list`)
+            }
           } else {
-            console.warn('⚠️ Failed to fetch exchange configurations')
+            const errorText = await exchangesResponse.text().catch(() => 'Unknown error')
+            console.warn('⚠️ Failed to fetch exchange configurations:', exchangesResponse.status, errorText)
           }
         } catch (err) {
           console.error('❌ Error fetching exchanges:', err)
@@ -1006,7 +1034,7 @@ export default function TradePage() {
       const traderData = {
         name: agentName,
         ai_model_id: selectedAIModel || 'deepseek',  // Use selected AI model
-        exchange_id: 'hyperliquid',  // Default to Hyperliquid (wallet auto-generated by backend)
+        exchange_id: 'hyperliquid',  // Will be converted to hyperliquid (mainnet) or hyperliquid-testnet (testnet) by API route
         initial_balance: parseFloat(deposit) || 1000,
         trading_symbols: selectedAssets.map(asset => `${asset}USDT`).join(','),
         custom_prompt: useTemplate && selectedTemplate
@@ -1057,6 +1085,20 @@ export default function TradePage() {
       const traderId = result.trader?.trader_id
       console.log('✅ Trader created:', traderId)
 
+      // Extract exchange_id from trader_id (format: {exchange_id}_{ai_model_id}_{timestamp})
+      // This ensures we use the correct exchange_id that was actually used during creation
+      // Note: exchange_id can be 'hyperliquid' or 'hyperliquid-testnet' (hyphen, not underscore)
+      // When split by '_', 'hyperliquid-testnet' stays as the first part
+      let actualExchangeId = traderData.exchange_id // fallback
+      if (traderId) {
+        const parts = traderId.split('_')
+        if (parts.length >= 3) {
+          // The first part is the exchange_id (e.g., 'hyperliquid' or 'hyperliquid-testnet')
+          actualExchangeId = parts[0]
+          console.log('🔍 Extracted exchange_id from trader_id:', actualExchangeId)
+        }
+      }
+
       // Update trader configuration to ensure all settings are saved
       if (traderId) {
         console.log('🔄 Updating trader configuration to ensure all settings are saved...')
@@ -1064,7 +1106,7 @@ export default function TradePage() {
         const updateData = {
           name: agentName,
           ai_model_id: selectedAIModel || 'deepseek',
-          exchange_id: result.trader?.exchange_id || traderData.exchange_id,
+          exchange_id: actualExchangeId, // Use the exchange_id extracted from trader_id
           btc_eth_leverage: leverage,
           altcoin_leverage: leverage,
           is_cross_margin: false,
@@ -2030,6 +2072,14 @@ export default function TradePage() {
         currentBalance={depositCurrentBalance}
         requiredBalance={depositRequiredBalance}
         isCheckingBalance={isCheckingBalance}
+        testnet={(() => {
+          // Get testnet status from the agent if available
+          if (createdTraderId) {
+            const agent = agents.find(a => a.id === createdTraderId)
+            return (agent as any)?.testnet === true
+          }
+          return false
+        })()}
         onStartTrader={async () => {
           setIsDepositModalOpen(false)
           await handleStartStopTrader(createdTraderId, 'start')

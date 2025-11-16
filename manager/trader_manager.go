@@ -245,7 +245,8 @@ func (tm *TraderManager) addTraderFromDB(traderCfg *config.TraderRecord, aiModel
 	if exchangeCfg.ID == "binance" {
 		traderConfig.BinanceAPIKey = exchangeCfg.APIKey
 		traderConfig.BinanceSecretKey = exchangeCfg.SecretKey
-	} else if exchangeCfg.ID == "hyperliquid" {
+	} else if exchangeCfg.ID == "hyperliquid" || exchangeCfg.ID == "hyperliquid-testnet" {
+		// Support "hyperliquid" (mainnet, backward compatible) and "hyperliquid-testnet" (testnet) exchange IDs
 		traderConfig.HyperliquidPrivateKey = exchangeCfg.APIKey // hyperliquid用APIKey存储private key
 		traderConfig.HyperliquidWalletAddr = exchangeCfg.HyperliquidWalletAddr
 	} else if exchangeCfg.ID == "aster" {
@@ -351,7 +352,8 @@ func (tm *TraderManager) AddTraderFromDB(traderCfg *config.TraderRecord, aiModel
 	if exchangeCfg.ID == "binance" {
 		traderConfig.BinanceAPIKey = exchangeCfg.APIKey
 		traderConfig.BinanceSecretKey = exchangeCfg.SecretKey
-	} else if exchangeCfg.ID == "hyperliquid" {
+	} else if exchangeCfg.ID == "hyperliquid" || exchangeCfg.ID == "hyperliquid-testnet" {
+		// Support "hyperliquid" (mainnet, backward compatible) and "hyperliquid-testnet" (testnet) exchange IDs
 		traderConfig.HyperliquidPrivateKey = exchangeCfg.APIKey // hyperliquid用APIKey存储private key
 		traderConfig.HyperliquidWalletAddr = exchangeCfg.HyperliquidWalletAddr
 	} else if exchangeCfg.ID == "aster" {
@@ -1052,7 +1054,8 @@ func (tm *TraderManager) loadSingleTrader(traderCfg *config.TraderRecord, aiMode
 	if exchangeCfg.ID == "binance" {
 		traderConfig.BinanceAPIKey = exchangeCfg.APIKey
 		traderConfig.BinanceSecretKey = exchangeCfg.SecretKey
-	} else if exchangeCfg.ID == "hyperliquid" {
+	} else if exchangeCfg.ID == "hyperliquid" || exchangeCfg.ID == "hyperliquid-testnet" {
+		// Support "hyperliquid" (mainnet, backward compatible) and "hyperliquid-testnet" (testnet) exchange IDs
 		traderConfig.HyperliquidPrivateKey = exchangeCfg.APIKey // hyperliquid用APIKey存储private key
 		traderConfig.HyperliquidWalletAddr = exchangeCfg.HyperliquidWalletAddr
 	} else if exchangeCfg.ID == "aster" {

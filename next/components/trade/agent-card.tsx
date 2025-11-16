@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { CirclePlus, CircleMinus, Settings, RefreshCw, MoreVertical, FileText } from "lucide-react"
+import { CirclePlus, CircleMinus, Settings, RefreshCw, MoreVertical, FileText, ExternalLink } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface Agent {
@@ -57,6 +57,45 @@ export function AgentCard({
   // Win rate from enhanced API (from Go backend /api/performance)
   const winRate = agentAny.winRate || 0
 
+  // Determine testnet status - check multiple sources
+  // hyperliquid-testnet = testnet, hyperliquid (or anything else) = mainnet
+  const isTestnet = agentAny.testnet === true || 
+                    agentAny.testnet === 1 || 
+                    agentAny.exchange_id === 'hyperliquid-testnet'
+  
+  // Debug logging
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`[AgentCard] ${agent.id} testnet check:`, {
+      'agentAny.testnet': agentAny.testnet,
+      'agentAny.exchange_id': agentAny.exchange_id,
+      'final isTestnet': isTestnet,
+    })
+  }
+
+  // Generate explorer URL based on testnet status and wallet address
+  // Format: https://app.hyperliquid-{{testnet|mainnet}}.xyz/explorer/address/{{account address}}
+  const getExplorerUrl = () => {
+    // Try multiple sources for wallet address
+    const walletAddr = agent.walletAddress || agentAny.hyperliquidWalletAddr || agentAny.hyperliquid_wallet_addr || ''
+    if (!walletAddr) {
+      console.log(`[AgentCard] No wallet address for agent ${agent.id}:`, {
+        walletAddress: agent.walletAddress,
+        hyperliquidWalletAddr: agentAny.hyperliquidWalletAddr,
+        hyperliquid_wallet_addr: agentAny.hyperliquid_wallet_addr,
+        agentKeys: Object.keys(agent),
+        agentAnyKeys: Object.keys(agentAny),
+      })
+      return null
+    }
+    const url = isTestnet
+      ? `https://app.hyperliquid-testnet.xyz/explorer/address/${walletAddr}`
+      : `https://app.hyperliquid.xyz/explorer/address/${walletAddr}`
+    console.log(`[AgentCard] Generated explorer URL for ${agent.id}:`, url)
+    return url
+  }
+
+  const explorerUrl = getExplorerUrl()
+
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -99,7 +138,22 @@ export function AgentCard({
         <div className="flex items-start gap-2.5 mb-2.5">
           <div className="text-2xl mt-0.5">{agent.icon || '🤖'}</div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-white text-sm group-hover:text-white/90 transition-colors">{agent.name}</h3>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h3 className="font-semibold text-white text-sm group-hover:text-white/90 transition-colors">{agent.name}</h3>
+              {explorerUrl && (
+                <a
+                  href={explorerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-400 hover:text-blue-300 text-xs font-medium transition-all"
+                  title={`View on ${isTestnet ? 'Testnet' : 'Mainnet'} Explorer`}
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  <span>Explorer</span>
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Action Buttons */}
@@ -217,15 +271,25 @@ export function AgentCard({
               )}></div>
               {agent.status === "active" ? t('statusActive') : t('statusPaused')}
             </span>
-            {agentAny.testnet !== undefined && (
-              <span className={cn(
-                "text-[10px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1",
-                agentAny.testnet
-                  ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-                  : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-              )}>
-                {agentAny.testnet ? 'TESTNET' : 'MAINNET'}
-              </span>
+            {(agentAny.testnet !== undefined || agentAny.exchange_id) && (
+              <>
+                <span className={cn(
+                  "text-[10px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1",
+                  isTestnet
+                    ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                    : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                )}>
+                  {isTestnet ? 'TESTNET' : 'MAINNET'}
+                </span>
+                {agentAny.exchange_id && (
+                  <span 
+                    className="text-[9px] px-1.5 py-0.5 rounded text-white/40 font-mono bg-white/5 border border-white/10"
+                    title={`Exchange ID: ${agentAny.exchange_id}`}
+                  >
+                    {agentAny.exchange_id}
+                  </span>
+                )}
+              </>
             )}
           </div>
 

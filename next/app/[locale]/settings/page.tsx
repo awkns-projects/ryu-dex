@@ -189,40 +189,9 @@ export default function SettingsPage() {
     }
   }
 
-  const handleToggleTestnet = async (exchangeId: string, currentTestnet: boolean) => {
-    if (!token) return
-
-    setIsSavingExchange(true)
-    try {
-      const response = await fetch('/api/go/trade/update-exchange', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          exchangeId: exchangeId,
-          enabled: true, // Keep enabled
-          testnet: !currentTestnet, // Toggle testnet
-          // Don't send api_key/secret_key to preserve existing values
-        }),
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to update exchange')
-      }
-
-      // Refresh exchanges
-      await fetchExchanges()
-      alert(`✅ Exchange updated to ${!currentTestnet ? 'Testnet' : 'Mainnet'} mode!`)
-    } catch (err: any) {
-      console.error('Failed to update exchange:', err)
-      alert(`Failed to update exchange: ${err.message}`)
-    } finally {
-      setIsSavingExchange(false)
-    }
-  }
+  // Note: Testnet setting is now auto-determined from exchange ID
+  // hyperliquid-testnet = testnet, hyperliquid = mainnet
+  // Users cannot manually change testnet setting to avoid affecting other agents
 
   const selectedModel = selectedModelId
     ? supportedModels.find(m => (m.id || m.provider) === selectedModelId) || 
@@ -352,7 +321,7 @@ export default function SettingsPage() {
                   Exchanges
                 </CardTitle>
                 <CardDescription className="text-white/60">
-                  Configure exchange settings including testnet mode
+                  Configure exchange settings (network is auto-determined from exchange ID)
                 </CardDescription>
               </div>
             </div>
@@ -383,16 +352,7 @@ export default function SettingsPage() {
                             Enabled
                           </span>
                         )}
-                        {exchange.testnet && (
-                          <span className="px-2 py-0.5 rounded text-xs bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
-                            Testnet
-                          </span>
-                        )}
-                        {!exchange.testnet && (
-                          <span className="px-2 py-0.5 rounded text-xs bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                            Mainnet
-                          </span>
-                        )}
+                        {/* Network is auto-determined from exchange ID, shown below */}
                       </div>
                       <div className="text-sm text-white/60">
                         Type: {exchange.type} • ID: {exchange.id}
@@ -405,29 +365,21 @@ export default function SettingsPage() {
                       )}
                     </div>
                     <div className="flex items-center gap-3">
+                      {/* Network badge - auto-determined from exchange ID */}
                       <div className="flex items-center gap-2">
                         <Label className="text-white/60 text-sm">
-                          Testnet
+                          Network
                         </Label>
-                        <button
-                          onClick={() => handleToggleTestnet(exchange.id, exchange.testnet || false)}
-                          disabled={isSavingExchange}
-                          className={`
-                            relative inline-flex h-6 w-11 items-center rounded-full transition-colors
-                            ${exchange.testnet 
-                              ? 'bg-yellow-500' 
-                              : 'bg-white/20'
-                            }
-                            ${isSavingExchange ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-                          `}
-                        >
-                          <span
-                            className={`
-                              inline-block h-4 w-4 transform rounded-full bg-white transition-transform
-                              ${exchange.testnet ? 'translate-x-6' : 'translate-x-1'}
-                            `}
-                          />
-                        </button>
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold inline-flex items-center gap-1 ${
+                          exchange.id === 'hyperliquid-testnet'
+                            ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
+                            : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                        }`}>
+                          {exchange.id === 'hyperliquid-testnet' ? 'TESTNET' : 'MAINNET'}
+                        </span>
+                        <span className="text-xs text-white/40">
+                          (auto from ID)
+                        </span>
                       </div>
                     </div>
                   </div>

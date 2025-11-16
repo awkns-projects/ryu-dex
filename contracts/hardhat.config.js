@@ -51,8 +51,16 @@ module.exports = {
         network: "hyperliquid-testnet",
         chainId: 998,
         urls: {
-          apiURL: "https://explorer.hyperliquid-testnet.xyz/api",
-          browserURL: "https://explorer.hyperliquid-testnet.xyz",
+          apiURL: "https://app.hyperliquid-testnet.xyz/explorer/api",
+          browserURL: "https://app.hyperliquid-testnet.xyz/explorer",
+        },
+      },
+      {
+        network: "hyperliquid-mainnet",
+        chainId: parseInt(process.env.HYPERLIQUID_MAINNET_CHAIN_ID || "998"),
+        urls: {
+          apiURL: "https://app.hyperliquid.xyz/explorer/api",
+          browserURL: "https://app.hyperliquid.xyz/explorer",
         },
       },
     ],

@@ -55,8 +55,25 @@ export async function GET(request: NextRequest) {
       },
     })
 
+    // Handle authentication errors
+    if (tradersResponse.status === 401) {
+      console.warn('⚠️ [Enhanced API] Unauthorized request - token may be invalid or expired')
+      return NextResponse.json(
+        { 
+          error: 'Unauthorized - Please log in again', 
+          agents: [], 
+          totalCount: 0,
+          activeCount: 0,
+          lastUpdated: new Date().toISOString(),
+        },
+        { status: 401 }
+      )
+    }
+
     if (!tradersResponse.ok) {
-      throw new Error(`Backend error: ${tradersResponse.status}`)
+      const errorText = await tradersResponse.text().catch(() => 'Unknown error')
+      console.error(`❌ [Enhanced API] Backend error: ${tradersResponse.status}`, errorText)
+      throw new Error(`Backend error: ${tradersResponse.status} - ${errorText}`)
     }
 
     const tradersData = await tradersResponse.json()
@@ -95,6 +112,7 @@ export async function GET(request: NextRequest) {
       const deposit = trader.initial_balance || 0
 
       // Query SQLite for trader config + exchange info (with wallet and testnet)
+      // Note: exchanges table has composite primary key (id, user_id), so we must join on both
       const query = `
         SELECT 
           t.id as trader_id,
@@ -105,19 +123,22 @@ export async function GET(request: NextRequest) {
           e.name as exchange_name,
           e.testnet
         FROM traders t
-        LEFT JOIN exchanges e ON t.exchange_id = e.id
+        LEFT JOIN exchanges e ON t.exchange_id = e.id AND t.user_id = e.user_id
         WHERE t.id = ? AND t.user_id = ?
       `
 
-      const row = db!.prepare(query).get(traderId, userId) as {
-        trader_id: string
-        trader_name: string
-        trading_symbols: string
-        exchange_id: string
-        hyperliquid_wallet_addr: string
-        exchange_name: string
-        testnet: number | null
-      } | undefined
+      const row = db!.prepare(query).get(traderId, userId) as any
+
+      // Debug: Log the raw row to see what we're getting
+      console.log(`🔍 [Enhanced API] Raw query result for ${traderId}:`, JSON.stringify(row, null, 2))
+      console.log(`🔍 [Enhanced API] Trader from Go backend:`, JSON.stringify(trader, null, 2))
+      
+      if (!row) {
+        console.warn(`⚠️ [Enhanced API] No row found for trader ${traderId} with user_id ${userId}`)
+      } else {
+        console.log(`🔍 [Enhanced API] Row columns:`, Object.keys(row))
+        console.log(`🔍 [Enhanced API] t.exchange_id=${row.exchange_id}, trader.exchange_id=${trader.exchange_id}, e.testnet=${row.testnet}`)
+      }
 
       // Parse trading symbols
       let assets: string[] = []
@@ -176,6 +197,45 @@ export async function GET(request: NextRequest) {
         console.warn(`⚠️ [Enhanced API] Failed to fetch performance for ${traderId}`)
       }
 
+      // Check if exchange exists for this user
+      if (row && row.exchange_id && !row.testnet && row.testnet !== 0) {
+        // Exchange JOIN failed - let's query it directly
+        console.log(`⚠️ [Enhanced API] Exchange JOIN failed for ${traderId}, querying exchange directly...`)
+        const exchangeQuery = db!.prepare('SELECT testnet, hyperliquid_wallet_addr, name FROM exchanges WHERE id = ? AND user_id = ?')
+        const exchangeRow = exchangeQuery.get(row.exchange_id, userId) as any
+        if (exchangeRow) {
+          console.log(`✅ [Enhanced API] Found exchange directly: testnet=${exchangeRow.testnet}`)
+          row.testnet = exchangeRow.testnet
+          row.hyperliquid_wallet_addr = exchangeRow.hyperliquid_wallet_addr || row.hyperliquid_wallet_addr
+          row.exchange_name = exchangeRow.name || row.exchange_name
+        } else {
+          console.warn(`⚠️ [Enhanced API] Exchange ${row.exchange_id} not found for user ${userId}`)
+        }
+      }
+
+      // Determine testnet from exchange_id (hyperliquid-testnet = true, hyperliquid = false/mainnet)
+      // Priority: row.exchange_id (from DB) > trader.exchange_id (from Go API) > default
+      const exchangeId = row?.exchange_id || trader.exchange_id || 'hyperliquid'
+      
+      console.log(`🔍 [Enhanced API] Exchange ID sources for ${traderId}:`, {
+        'row.exchange_id': row?.exchange_id,
+        'trader.exchange_id': trader.exchange_id,
+        'final exchangeId': exchangeId
+      })
+      
+      // Explicitly check exchange_id first, then fallback to exchange.testnet
+      let testnetValue: boolean
+      if (exchangeId === 'hyperliquid-testnet') {
+        testnetValue = true
+        console.log(`✅ [Enhanced API] ${traderId}: Detected TESTNET from exchange_id='hyperliquid-testnet'`)
+      } else {
+        // hyperliquid (or any other ID) = mainnet (backward compatible)
+        testnetValue = false
+        console.log(`✅ [Enhanced API] ${traderId}: Detected MAINNET from exchange_id='${exchangeId}'`)
+      }
+      
+      console.log(`🔍 [Enhanced API] Final result for ${traderId}: exchange_id=${exchangeId}, testnet=${testnetValue}`)
+      
       return {
         id: traderId,
         name: trader.trader_name || 'Unnamed Trader',
@@ -190,8 +250,8 @@ export async function GET(request: NextRequest) {
         pnlPercent,
         winRate,
         walletAddress,
-        exchange_id: row?.exchange_id || trader.exchange_id || 'hyperliquid', // Include exchange_id for wallet fetching
-        testnet: row?.testnet === 1 || false, // Include testnet flag (SQLite stores boolean as 0/1)
+        exchange_id: exchangeId, // Include exchange_id for wallet fetching
+        testnet: testnetValue, // Include testnet flag (determined from exchange_id: hyperliquid-testnet = true, hyperliquid = false/mainnet)
       } as EnhancedAgent & { exchange_id: string; testnet: boolean }
     })
 

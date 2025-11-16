@@ -565,7 +565,8 @@ func (s *Server) handleCreateTrader(c *gin.Context) {
 		switch req.ExchangeID {
 		case "binance":
 			tempTrader = trader.NewFuturesTrader(exchangeCfg.APIKey, exchangeCfg.SecretKey, userID)
-		case "hyperliquid":
+		case "hyperliquid", "hyperliquid-testnet":
+			// Support "hyperliquid" (mainnet, backward compatible) and "hyperliquid-testnet" (testnet) exchange IDs
 			tempTrader, createErr = trader.NewHyperliquidTrader(
 				exchangeCfg.APIKey, // private key
 				exchangeCfg.HyperliquidWalletAddr,
@@ -939,7 +940,8 @@ func (s *Server) handleSyncBalance(c *gin.Context) {
 	switch traderConfig.ExchangeID {
 	case "binance":
 		tempTrader = trader.NewFuturesTrader(exchangeCfg.APIKey, exchangeCfg.SecretKey, userID)
-	case "hyperliquid":
+	case "hyperliquid", "hyperliquid-mainnet", "hyperliquid-testnet":
+		// Support both old "hyperliquid" and new "hyperliquid-mainnet"/"hyperliquid-testnet" exchange IDs
 		tempTrader, createErr = trader.NewHyperliquidTrader(
 			exchangeCfg.APIKey,
 			exchangeCfg.HyperliquidWalletAddr,

@@ -176,8 +176,9 @@ func NewAutoTrader(config AutoTraderConfig, database interface{}, userID string)
 	case "binance":
 		log.Printf("🏦 [%s] 使用币安合约交易", config.Name)
 		trader = NewFuturesTrader(config.BinanceAPIKey, config.BinanceSecretKey, userID)
-	case "hyperliquid":
-		log.Printf("🏦 [%s] 使用Hyperliquid交易", config.Name)
+	case "hyperliquid", "hyperliquid-testnet":
+		// Support "hyperliquid" (mainnet, backward compatible) and "hyperliquid-testnet" (testnet) exchange IDs
+		log.Printf("🏦 [%s] 使用Hyperliquid交易 (exchange_id=%s, testnet=%v)", config.Name, config.Exchange, config.HyperliquidTestnet)
 		trader, err = NewHyperliquidTrader(config.HyperliquidPrivateKey, config.HyperliquidWalletAddr, config.HyperliquidTestnet)
 		if err != nil {
 			return nil, fmt.Errorf("初始化Hyperliquid交易器失败: %w", err)
